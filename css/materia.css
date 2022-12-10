@@ -9,20 +9,21 @@
     align-items: center;
     justify-content: center;
 }
-.ventanaEmergente
-{
+
+.ventanaEmergente{
     background-image: url(../imagenes/papelFondoo.jpg);
     width: 660px;
     height: 642px;
     border-radius: 10px;
    border: black 4px solid;
 }
-.contenedor-inputs
+
+/* .contenedor-inputs
 {
     
-}
-.forma_input
-{
+} */
+
+.forma_input{
   border-radius: 5px;  
   border:black 2px solid;
   border-radius: 5px;  
@@ -34,8 +35,8 @@
     height: 78px;
  
 }
-.cerrarVentana
-{
+
+.cerrarVentana{
     font-size: 40px;
     line-height: 40px;
     display: block;
@@ -45,17 +46,17 @@
     color: #838389;
     transition: .3s ease all;
 }
-.cerrarVentana:hover
-{
+
+.cerrarVentana:hover{
     color:black
 }
-.forma_label
-{
+
+.forma_label{
     font-size: 22px;
     font-family: "Poppins",sans-serif;
 }
-.mate
-{
+
+.mate{
     border-radius: 5px;  
     text-align: center;
     border:black 3px solid;
@@ -67,5 +68,4 @@
     position: absolute;
     top:80px;
     right: 216.5px;
-    
 }
