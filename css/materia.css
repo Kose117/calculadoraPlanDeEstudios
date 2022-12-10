@@ -1,0 +1,71 @@
+.overlay{
+    background: rgba(0, 0, 0, .3);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ventanaEmergente
+{
+    background-image: url(../imagenes/papelFondoo.jpg);
+    width: 660px;
+    height: 642px;
+    border-radius: 10px;
+   border: black 4px solid;
+}
+.contenedor-inputs
+{
+    
+}
+.forma_input
+{
+  border-radius: 5px;  
+  border:black 2px solid;
+  border-radius: 5px;  
+    text-align: center;
+    border:black 3px solid;
+    font-size: 22px;
+    font-family: "Poppins",sans-serif;
+    width: 267px;
+    height: 78px;
+ 
+}
+.cerrarVentana
+{
+    font-size: 40px;
+    line-height: 40px;
+    display: block;
+    position: fixed;
+    bottom: 630px;
+    right:130px;
+    color: #838389;
+    transition: .3s ease all;
+}
+.cerrarVentana:hover
+{
+    color:black
+}
+.forma_label
+{
+    font-size: 22px;
+    font-family: "Poppins",sans-serif;
+}
+.mate
+{
+    border-radius: 5px;  
+    text-align: center;
+    border:black 3px solid;
+    font-weight: bold;
+    font-size: 38px;
+    font-family: "Poppins",sans-serif;
+    width: 433px;
+    height: 83px;
+    position: absolute;
+    top:80px;
+    right: 216.5px;
+    
+}
