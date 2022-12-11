@@ -1,4 +1,7 @@
-*{font-family: "Poppins",sans-serif;}
+*{
+    font-family: "Poppins",sans-serif;
+}
+
 /*------------------Fondo de atras------------------*/
 .overlay{
     background: rgba(0, 0, 0, .3);
@@ -10,23 +13,57 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    visibility: hidden;
 }
 
 /*------------------Ventana emergente------------------*/
 
-.ventanaEmergente{
-    background-image: url(../imagenes/papelFondoo.jpg);
-    width: 660px;
-    height: 642px;
-    border-radius: 10px;
+.popup{
+    background-image: url(../imagenes/papelFondo.jpg);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    width: 60%;
+    height: 90%;
+    max-width: 660px;
+    /* max-height: 642px; */
+    border-radius: 2%;
     border: black 4px solid;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
 }
+
+/*------------------Contiene a todas las etiquetas label,input,table y button------------------*/
+.contenedor{
+    display: grid;
+    grid-gap: 10px;
+    align-content: end;
+    justify-content: center;
+}
+
+/*------------------Boton de cerrar------------------*/
+.popup .cerrar-popup{
+    position: relative;
+    font-size: 24px;
+	line-height: 16px;
+    top: 2%;
+    left: 98%;
+    color: #838389;
+    transition: .3s ease all;
+}    
+
+.cerrar-popup:hover{
+    color:black
+}    
+
+/*------------------Estilo de todos los label------------------*/
+.forma_label{
+    font-size: 22px;
+    position: fixed; 
+}    
+
 /*------------------Estilo de todas las casillas input------------------*/
-.forma_input
-{
-   border-radius: 5px;  
-   border:black 2px solid;
-   border-radius: 5px;  
+.forma_input{
+    border-radius: 5px;  
     text-align: center;
     border:black 3px solid;
     font-size: 22px;
@@ -34,49 +71,16 @@
     height: 78px;
     text-align: left;
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);  
-}
+}    
 
-/*------------------Boton de cerrar------------------*/
-.cerrarVentana{
-
-    font-size: 40px;
-    line-height: 40px;
-    display: block;
-    position: fixed;
-    color: #838389;
-    right: 460px;
-    bottom: 640px;
-    transition: .3s ease all;
-}
-.cerrarVentana:hover{
-    color:black
-}
-/*------------------Estilo de todos los label------------------*/
-.forma_label
-{
-    font-size: 22px;
-    position: fixed; 
-}
-/*------------------Contiene a todas las etiquetas label,input,table y button------------------*/
-.contenedor-inputs
-{
-    width: 660px;
-    height: 642px;
-    display: grid;
-    grid-gap: 10px;
-    align-content: end;
-    justify-content: center;
-}
 /*------------------Estilo de materia------------------*/
-.materia
-{
+.materias{
     display: flex;
-    justify-content: center; 
-    margin-bottom: 20px;  
-      
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
-.mate{
+.materia{
     border-radius: 5px;  
     text-align: center;
     border:black 3px solid;
@@ -85,29 +89,28 @@
     width: 433px;
     height: 83px;
     place-content: center; 
-       
 }
+
 /*------------------Estilo de la primera seccion de inputs------------------*/
-.primerosInputs
-{
+.primerosInputs{
     display: grid;
     grid-gap: 10px;
     grid-template-columns:  repeat(2,1fr);
     grid-template-rows:  repeat(2,1fr);
 }
+
 /*------------------Estilo de la tabla de requisitos------------------*/
-.inputPreDiv::-webkit-scrollbar
-{
+.inputPreDiv::-webkit-scrollbar{
     width: 5px;
     background-color: #fff;
 }
-.inputPreDiv::-webkit-scrollbar-thumb
-{
+
+.inputPreDiv::-webkit-scrollbar-thumb{
     background-color: black;
     border-radius: 5px;
 }
-.inputPreDiv
-{
+
+.inputPreDiv{
     display: block;
     overflow-y: scroll;
     background-color: #fff;
@@ -120,21 +123,22 @@
     resize: none;
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);  
 }
+
 th{
     position: sticky;
     top: 0;
     background-color: #fff;
     padding-right: 145px;
 }
+
 /*------------------Estilo de la segunda seccion de inputs------------------*/
-.segundosInputs
-{
+.segundosInputs{
     display: grid;
     grid-gap: 10px;
     grid-template-columns:  repeat(2,1fr);
     grid-template-rows:  repeat(1,1fr);
-    
 }
+
 /*------------------Estilo de los botones------------------*/
 .btn{
     position: relative;
@@ -199,7 +203,6 @@ th{
         
     }
 }
-
 
 .btn-2{
     border: 4px solid #17ae8b;

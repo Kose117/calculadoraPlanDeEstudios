@@ -8,91 +8,94 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&family=Poppins&display=swap" rel="stylesheet">
-        <script type="text/javascript" src="../js/codigo1.js"></script>
+        <script type="text/javascript" src="../js/controladorMateria.js"></script>
     </head>
     <body>
         <h1>Click aca para abrir ventana emergente</h1>
-        <div class="contenedor">    
-            <button>presiona</button>
-            <div class="overlay">
-                <div class="ventanaEmergente">
-                    <a href="#" id="cerrarVentana" class="cerrarVentana"><i class="fas fa-times"></i></a>
-                    <form action="">
+        <p>
+            <button id="presiona">presiona</button>
+        </p>
+        <div class="overlay">
+            <div class="popup">
+                <a href="#" id="cerrarVentana" class="cerrar-popup"><i class="fas fa-times"></i></a>
+                <form action="">
+                    
+                    <div class="contenedor">
+
+                        <div class="materias">
+                            <input type="text" id="materia"  value="Materia" class="materia" aria-disabled="true">
+                        </div>
                         
-                        <div class="contenedor-inputs">
-
-                            <div class="materia">
-                                <input type="text" id="materia"  value="Materia" class="mate">
+                        <div class="primerosInputs">
+                            <div>
+                                <label for="codigo" class="forma_label">ㅤCodigo</label>
+                                <input type="text" id="codigo" class="forma_input">
                             </div>
                             
-                           <div class="primerosInputs">
-
-                                <div>
-                                    <label for="codigo" class="forma_label">ㅤCodigo</label>
-                                    <input type="text" id="codigo" class="forma_input">
-                                </div>
-                                
-                                <div>
-                                    <label for="semestre" class="forma_label">ㅤSemestre</label>
-                                    <input type="text" id="semestre" class="forma_input">
-                                </div>
-                                
-                                <div>
-                                    <label for="creditos" class="forma_label">ㅤCreditos</label>
-                                    <input type="text" id="creditos" class="forma_input">
-                                </div>
-                                
-                                <div>
-                                    <label for="tipo" class="forma_label">ㅤTipo</label>
-                                    <input type="text" id="tipo" class="forma_input">
-                                </div>
-                           </div>
-                            
-                            <div class="inputPreDiv">
-                                <table id="preRequi" class="forma_inputPre">
-                                    <tr>
-                                        <th>Pre-requisitos</th>
-                                        <th>Codigo</th>
-                                    </tr>
-                                    <tr>
-                                        <td></td><td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Calculo Integral</td>
-                                        <td>12412</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Calculo Integral</td>
-                                        <td>12412</td>
-                                    </tr>
-                                    
-                                </table>
+                            <div>
+                                <label for="semestre" class="forma_label">ㅤSemestre</label>
+                                <input type="text" id="semestre" class="forma_input">
                             </div>
                             
-                            <div class="segundosInputs">
-                                <div>
-                                    <label for="profesor" class="forma_label">ㅤProfesor</label>
-                                    <input type="text" id="profesor" class="forma_input">
-                                </div>
-                                
-                                <div>
-                                    <label for="nota" class="forma_label">ㅤNota</label>
-                                    <input type="text" id="nota" class="forma_input">
-                                </div>
-    
+                            <div>
+                                <label for="creditos" class="forma_label">ㅤCreditos</label>
+                                <input type="text" id="creditos" class="forma_input">
                             </div>
-
-                            <div >
-                                <div>
-                                    <button class="btn btn-1" id="bt1">Eliminar</button>
-                                </div>
-                                <div>
-                                    <button class="btn btn-2" id="bt2">Agregar</button>                                   
-                                </div>
+                            
+                            <div>
+                                <label for="tipo" class="forma_label">ㅤTipo</label>
+                                <input type="text" id="tipo" class="forma_input">
                             </div>
                         </div>
-                    </form>
-                </div>
+                        
+                        <div class="inputPreDiv">
+                            <table id="preRequi" class="forma_inputPre">
+                                <tr>
+                                    <th>Pre-requisitos</th>
+                                    <th>Codigo</th>
+                                </tr>
+                                <tr>
+                                    <td>Calculo Integral</td>
+                                    <td>12412</td>
+                                </tr>
+                                <tr>
+                                    <td>Calculo Integral</td>
+                                    <td>12412</td>
+                                </tr>
+                                <tr>
+                                    <td>Calculo Integral</td>
+                                    <td>12412</td>
+                                </tr>
+                                <tr>
+                                    <td>Calculo Integral</td>
+                                    <td>12412</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div class="segundosInputs">
+                            <div>
+                                <label for="profesor" class="forma_label">ㅤProfesor</label>
+                                <input type="text" id="profesor" class="forma_input">
+                            </div>
+                            
+                            <div>
+                                <label for="nota" class="forma_label">ㅤNota</label>
+                                <input type="text" id="nota" class="forma_input">
+                            </div>
+
+                        </div>
+
+                        <div >
+                            <div>
+                                <button class="btn btn-1" id="bt1">Eliminar</button>
+                            </div>
+                            <div>
+                                <button class="btn btn-2" id="bt2">Agregar</button>                                   
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </body>
