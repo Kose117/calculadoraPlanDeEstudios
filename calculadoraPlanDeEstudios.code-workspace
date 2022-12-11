@@ -5,7 +5,9 @@
 		}
 	],
 	"settings": {
-		"titleBar.activeBackground": "#326a7c"
+		"workbench.colorCustomizations": {
+			"titleBar.activeBackground": "#326a7c"
+		},
+		"markdown-mermaid.darkModeTheme": "dark"
 	},
-	"markdown-mermaid.darkModeTheme": "dark"
 }
