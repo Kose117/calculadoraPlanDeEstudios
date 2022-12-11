@@ -1,0 +1,318 @@
+{
+    "1295":{
+        "nombre":"Cálculo diferencial",
+        "creditos":3,
+        "departamento":"Matemáticas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[],
+        "co-requisitos":[]
+    },
+    "33518":{
+        "nombre":"Matemáticas discretas",
+        "creditos":3,
+        "departamento":"Matemáticas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[],
+        "co-requisitos":[]
+    },
+    "33698":{
+        "nombre":"Introducción a la programación",
+        "creditos":3,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[],
+        "co-requisitos":[]
+    },
+    "4075":{
+        "nombre":"Pensamiento sistémico",
+        "creditos":3,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[],
+        "co-requisitos":[]
+    },
+    "33763":{
+        "nombre":"Introducción a la ingeniería",
+        "creditos":2,
+        "departamento":"Industrial",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[],
+        "co-requisitos":[]
+    },
+    "34809":{
+        "nombre":"Fundamentos de seguridad de la información",
+        "creditos":2,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[],
+        "co-requisitos":[]
+    },
+    "1297":{
+        "nombre":"Cálculo integral",
+        "creditos":3,
+        "departamento":"Matemáticas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "1295"
+        ],
+        "co-requisitos":[]
+    },
+    "1290":{
+        "nombre":"Algebra Lineal",
+        "creditos":3,
+        "departamento":"Matemáticas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[],
+        "co-requisitos":[]
+    },
+    "33699":{
+        "nombre":"Programación avanzada",
+        "creditos":3,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "33698"
+        ],
+        "co-requisitos":[]
+    },
+    "34816":{
+        "nombre":"Gestión financiera en TI",
+        "creditos":2,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[],
+        "co-requisitos":[]
+    },
+    "33733":{
+        "nombre":"Proyecto CDIO I",
+        "creditos":2,
+        "departamento":"Industrial",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "33763"
+        ],
+        "co-requisitos":[]
+    },
+    "34580":{
+        "nombre":"Arquitectura del computador",
+        "creditos":2,
+        "departamento":"Electrónica",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "33698"
+        ],
+        "co-requisitos":[]
+    },
+    "33732":{
+        "nombre":"Probabilidad",
+        "creditos":3,
+        "departamento":"Matemáticas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "1297"
+        ],
+        "co-requisitos":[
+            "4085"
+        ]
+    },
+    "33700":{
+        "nombre":"Base de datos",
+        "creditos":4,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "33699",
+            "33518"
+        ],
+        "co-requisitos":[
+            "4056"
+        ]
+    },
+    "34805":{
+        "nombre":"Analisis y diseño de software",
+        "creditos":3,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "33699"
+        ],
+        "co-requisitos":[]
+    },
+    "4190":{
+        "nombre":"Comunicaciones y redes",
+        "creditos":4,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "33698"
+        ],
+        "co-requisitos":[]
+    },
+    "2544":{
+        "nombre":"Sgnificación teológica",
+        "creditos":2,
+        "departamento":"Centro de formación teológica",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "33733"
+        ],
+        "co-requisitos":[]
+    },
+    "1340":{
+        "nombre":"Física mecánica",
+        "creditos":3,
+        "departamento":"Física",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[],
+        "co-requisitos":[]
+    },
+    "1300":{
+        "nombre":"Ecuaciones diferenciales",
+        "creditos":3,
+        "departamento":"Matemáticas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "1297",
+            "1290"
+        ],
+        "co-requisitos":[]
+    },
+    "4196":{
+        "nombre":"Estructuras de datos",
+        "creditos":3,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "33699"
+        ],
+        "co-requisitos":[]
+    },
+    "4056":{
+        "nombre":"Sistemas de información",
+        "creditos":3,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "4075"
+        ],
+        "co-requisitos":[
+            "33700"
+        ]
+    },
+    "34803":{
+        "nombre":"Gestion de proyectos TI",
+        "creditos":3,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "34816"
+        ],
+        "co-requisitos":[]
+    },
+    "34806":{
+        "nombre":"Fundamentos de ingeniería de software",
+        "creditos":3,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "34805"
+        ],
+        "co-requisitos":[]
+    },
+    "4085":{
+        "nombre":"Sistemas operativos",
+        "creditos":3,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "34580"
+        ],
+        "co-requisitos":[
+            "33732"
+        ]
+    },
+    "1299":{
+        "nombre":"Cálculo vectorial",
+        "creditos":3,
+        "departamento":"Matemáticas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "1297",
+            "1290"
+        ],
+        "co-requisitos":[]
+    },
+    "34801":{
+        "nombre":"Teoría de la computación",
+        "creditos":2,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "33518",
+            "33699"
+        ],
+        "co-requisitos":[]
+    },
+    "34810":{
+        "nombre":"Proyecto innvación y emprendimiento",
+        "creditos":3,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "4085",
+            "34803",
+            "33733",
+            "34806"
+        ],
+        "co-requisitos":[]
+    },
+    "22586":{
+        "nombre":"Introducción sistemas distribuidos",
+        "creditos":2,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "4085",
+            "34809",
+            "34805",
+            "4190"
+        ],
+        "co-requisitos":[]
+    },
+    "3194":{
+        "nombre":"Análisisde algoritmos",
+        "creditos":2,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "34801",
+            "4196"
+        ],
+        "co-requisitos":[]
+    },
+    "34807":{
+        "nombre":"Desarrollo web",
+        "creditos":3,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "34801",
+            "33700",
+            "34806",
+            "4190"
+        ],
+        "co-requisitos":[]
+    },
+    "34808":{
+        "nombre":"Introducción computación móvil",
+        "creditos":2,
+        "departamento":"Sistemas",
+        "tipo":"Núcleo fundamental",
+        "pre-requisitos":[
+            "34806",
+            "4190",
+            "33700"
+        ],
+        "co-requisitos":[]
+    }
+}
