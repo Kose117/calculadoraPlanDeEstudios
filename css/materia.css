@@ -11,9 +11,10 @@
     align-items: center;
     justify-content: center;
 }
+
 /*------------------Ventana emergente------------------*/
-.ventanaEmergente
-{
+
+.ventanaEmergente{
     background-image: url(../imagenes/papelFondoo.jpg);
     width: 660px;
     height: 642px;
@@ -33,9 +34,10 @@
     height: 78px;
     text-align: left;
 }
+
 /*------------------Boton de cerrar------------------*/
-.cerrarVentana
-{
+.cerrarVentana{
+
     font-size: 40px;
     line-height: 40px;
     display: block;
@@ -45,8 +47,7 @@
     bottom: 640px;
     transition: .3s ease all;
 }
-.cerrarVentana:hover
-{
+.cerrarVentana:hover{
     color:black
 }
 /*------------------Estilo de todos los label------------------*/
@@ -72,8 +73,8 @@
     justify-content: center; 
     margin-bottom: 20px;    
 }
-.mate
-{
+
+.mate{
     border-radius: 5px;  
     text-align: center;
     border:black 3px solid;
