@@ -1,3 +1,5 @@
+*{font-family: "Poppins",sans-serif;}
+/*------------------Fondo de atras------------------*/
 .overlay{
     background: rgba(0, 0, 0, .3);
     position: fixed;
@@ -9,50 +11,66 @@
     align-items: center;
     justify-content: center;
 }
+/*------------------Ventana emergente------------------*/
 .ventanaEmergente
 {
     background-image: url(../imagenes/papelFondoo.jpg);
     width: 660px;
     height: 642px;
     border-radius: 10px;
-   border: black 4px solid;
+    border: black 4px solid;
 }
-.contenedor-inputs
-{
-    
-}
+/*------------------Estilo de todas las casillas input------------------*/
 .forma_input
 {
-  border-radius: 5px;  
-  border:black 2px solid;
-  border-radius: 5px;  
+   border-radius: 5px;  
+   border:black 2px solid;
+   border-radius: 5px;  
     text-align: center;
     border:black 3px solid;
     font-size: 22px;
-    font-family: "Poppins",sans-serif;
     width: 267px;
     height: 78px;
- 
+    text-align: left;
 }
+/*------------------Boton de cerrar------------------*/
 .cerrarVentana
 {
     font-size: 40px;
     line-height: 40px;
     display: block;
     position: fixed;
-    bottom: 630px;
-    right:130px;
     color: #838389;
+    right: 460px;
+    bottom: 640px;
     transition: .3s ease all;
 }
 .cerrarVentana:hover
 {
     color:black
 }
+/*------------------Estilo de todos los label------------------*/
 .forma_label
 {
     font-size: 22px;
-    font-family: "Poppins",sans-serif;
+    position: fixed; 
+}
+/*------------------Contiene a todas las etiquetas label,input,table y button------------------*/
+.contenedor-inputs
+{
+    width: 660px;
+    height: 642px;
+    display: grid;
+    grid-gap: 10px;
+    align-content: end;
+    justify-content: center;
+}
+/*------------------Estilo de materia------------------*/
+.materia
+{
+    display: flex;
+    justify-content: center; 
+    margin-bottom: 20px;    
 }
 .mate
 {
@@ -61,11 +79,168 @@
     border:black 3px solid;
     font-weight: bold;
     font-size: 38px;
-    font-family: "Poppins",sans-serif;
     width: 433px;
     height: 83px;
-    position: absolute;
-    top:80px;
-    right: 216.5px;
+    place-content: center;  
+}
+/*------------------Estilo de la primera seccion de inputs------------------*/
+.primerosInputs
+{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns:  repeat(2,1fr);
+    grid-template-rows:  repeat(2,1fr);
+}
+/*------------------Estilo de la tabla de requisitos------------------*/
+.inputPreDiv::-webkit-scrollbar
+{
+    width: 5px;
+    background-color: #fff;
+}
+.inputPreDiv::-webkit-scrollbar-thumb
+{
+    background-color: black;
+    border-radius: 5px;
+}
+.inputPreDiv
+{
+    display: block;
+    overflow-y: scroll;
+    background-color: #fff;
+    height: 105px;
+    width: 99%;
+    border-radius: 5px;  
+    border:black 3px solid;
+    text-align: justify;
+    font-size: 22px;
+    resize: none;  
+}
+th{
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    padding-right: 145px;
+}
+/*------------------Estilo de la segunda seccion de inputs------------------*/
+.segundosInputs
+{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns:  repeat(2,1fr);
+    grid-template-rows:  repeat(1,1fr);
     
+}
+/*------------------Estilo de los botones------------------*/
+.btn{
+    position: relative;
+    padding: 6px 50px;
+    color: black;
+    z-index: 2;
+    font-size: 22px;
+    height: 54px;
+    width: 195px;
+    text-align: center;
+    border-radius: 5px;  
+    display: flex;
+    justify-content: center; 
+}
+
+
+.btn-1{
+    border: 4px solid #F06C64;
+    overflow: hidden;
+    float: left;  
+    margin-left: 40px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-1::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgb(240, 108, 100, 1);
+    z-index: -2;
+}
+
+.btn-1::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    left: 0;
+    bottom: -150%;
+    border-radius: 30%;
+    background-color: #fff;
+    z-index: -1;
+}
+
+.btn-1:hover::before{
+    animation: btn-1 1.5s linear both;
+}
+
+
+@keyframes btn-1 {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        bottom: 100px;
+        transform: rotate(360deg);
+        
+    }
+}
+
+
+.btn-2{
+    border: 4px solid #17ae8b;
+    
+    overflow: hidden;
+    float: right; 
+    margin-left: 10px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+}
+
+.btn-2::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgb(23, 174, 139, 1);
+    z-index: -2;
+}
+
+.btn-2::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    left: 0;
+    bottom: -150%;
+    border-radius: 30%;
+    background-color: #fff;
+    
+    z-index: -1;
+}
+
+.btn-2:hover::before{
+    animation: btn-2 1.5s linear both;
+}
+
+
+@keyframes btn-2 {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        bottom: 100px;
+        transform: rotate(360deg);
+        
+    }
 }
