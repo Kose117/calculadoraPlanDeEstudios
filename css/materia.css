@@ -16,6 +16,10 @@
     visibility: hidden;
 }
 
+.overlay.active {
+    visibility: visible;
+}
+
 /*------------------Ventana emergente------------------*/
 
 .popup{
@@ -24,16 +28,15 @@
     width: 60%;
     height: 90%;
     max-width: 660px;
-    /* max-height: 642px; */
+    max-height: 632px;
     border-radius: 2%;
     border: black 4px solid;
     padding-left: 2%;
     padding-right: 2%;
-    padding-bottom: 2%;
 }
 
 /*------------------Contiene a todas las etiquetas label,input,table y button------------------*/
-.contenedor{
+.popup .contenedor{
     display: grid;
     grid-gap: 10px;
     align-content: end;
@@ -48,12 +51,12 @@
     top: 2%;
     left: 98%;
     color: #838389;
-    transition: .3s ease all;
+    transition: .3s;
 }    
 
 .cerrar-popup:hover{
     color:black
-}    
+}
 
 /*------------------Estilo de todos los label------------------*/
 .forma_label{
@@ -74,13 +77,13 @@
 }    
 
 /*------------------Estilo de materia------------------*/
-.materias{
+.materia{
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 3%;
 }
 
-.materia{
+.nombre-materia{
     border-radius: 5px;  
     text-align: center;
     border:black 3px solid;
@@ -88,7 +91,8 @@
     font-size: 38px;
     width: 433px;
     height: 83px;
-    place-content: center; 
+    place-content: center;
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0);  
 }
 
 /*------------------Estilo de la primera seccion de inputs------------------*/
@@ -124,7 +128,7 @@
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);  
 }
 
-th{
+.contenedor th{
     position: sticky;
     top: 0;
     background-color: #fff;
@@ -132,7 +136,7 @@ th{
 }
 
 /*------------------Estilo de la segunda seccion de inputs------------------*/
-.segundosInputs{
+.contenedor .segundosInputs{
     display: grid;
     grid-gap: 10px;
     grid-template-columns:  repeat(2,1fr);
@@ -140,7 +144,7 @@ th{
 }
 
 /*------------------Estilo de los botones------------------*/
-.btn{
+.contenedor .btn{
     position: relative;
     padding: 6px 50px;
     color: black;
@@ -156,7 +160,7 @@ th{
 }
 
 
-.btn-1{
+.contenedor .btn-1{
     border: 4px solid #F06C64;
     overflow: hidden;
     float: left;  
@@ -204,7 +208,7 @@ th{
     }
 }
 
-.btn-2{
+.contenedor .btn-2{
     border: 4px solid #17ae8b;
     
     overflow: hidden;
