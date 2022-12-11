@@ -12,39 +12,84 @@
     
     <body>
         <h1>Click aca para abrir ventana emergente</h1>
-        <div class="contenedor">
+        <div class="contenedor">    
             <button>presiona</button>
             <div class="overlay">
                 <div class="ventanaEmergente">
                     <a href="#" id="cerrarVentana" class="cerrarVentana"><i class="fas fa-times"></i></a>
                     <form action="">
+                        
                         <div class="contenedor-inputs">
-                            <input type="text" id="materia"  value="Materia" class="mate">
-                            <br>
-                            <label for="codigo" class="forma_label">Codigo</label>
-                            <input type="text" id="codigo" class="forma_input">
-                            <br>
-                            <label for="semestre" class="forma_label">Semestre</label>
-                            <input type="text" id="semestre" class="forma_input">
-                            <br>
-                            <label for="creditos" class="forma_label">Creditos</label>
-                            <input type="text" id="creditos" class="forma_input">
-                            <br>
-                            <label for="tipo" class="forma_label">Tipo</label>
-                            <input type="text" id="tipo" class="forma_input">
-                            <br>
-                            <label for="preRequi" class="forma_label">Pre-requisitos</label>
-                            <input type="text" id="preRequi" class="forma_input">
-                            <br>
-                            <label for="profesor" class="forma_label">Profesor</label>
-                            <input type="text" id="profesor" class="forma_input">
-                            <br>
-                            <label for="nota" class="forma_label">Nota</label>
-                            <input type="text" id="nota" class="forma_input"    >
-                        </div>
-                        <div>
-                            <button class="btn">Eliminar</button>
-                            <button class="btn">Agregar</button>
+
+                            <div class="materia">
+                                <input type="text" id="materia"  value="Materia" class="mate">
+                            </div>
+                            
+                           <div class="primerosInputs">
+
+                                <div>
+                                    <label for="codigo" class="forma_label">ㅤCodigo</label>
+                                    <input type="text" id="codigo" class="forma_input">
+                                </div>
+                                
+                                <div>
+                                    <label for="semestre" class="forma_label">ㅤSemestre</label>
+                                    <input type="text" id="semestre" class="forma_input">
+                                </div>
+                                
+                                <div>
+                                    <label for="creditos" class="forma_label">ㅤCreditos</label>
+                                    <input type="text" id="creditos" class="forma_input">
+                                </div>
+                                
+                                <div>
+                                    <label for="tipo" class="forma_label">ㅤTipo</label>
+                                    <input type="text" id="tipo" class="forma_input">
+                                </div>
+                           </div>
+                            
+                            <div class="inputPreDiv">
+                                <table id="preRequi" class="forma_inputPre">
+                                    <tr>
+                                        <th>Pre-requisitos</th>
+                                        <th>Codigo</th>
+                                    </tr>
+                                    <tr>
+                                        <td></td><td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calculo Integral</td>
+                                        <td>12412</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calculo Integral</td>
+                                        <td>12412</td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                            
+                            <div class="segundosInputs">
+                                <div>
+                                    <label for="profesor" class="forma_label">ㅤProfesor</label>
+                                    <input type="text" id="profesor" class="forma_input">
+                                </div>
+                                
+                                <div>
+                                    <label for="nota" class="forma_label">ㅤNota</label>
+                                    <input type="text" id="nota" class="forma_input">
+                                </div>
+    
+                            </div>
+
+                            <div >
+                                <div>
+                                    <button class="btn btn-1" id="bt1">Eliminar</button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-2" id="bt2">Agregar</button>                                   
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
