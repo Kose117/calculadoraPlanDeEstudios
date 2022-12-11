@@ -4,5 +4,8 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"titleBar.activeBackground": "#326a7c"
+	},
+	"markdown-mermaid.darkModeTheme": "dark"
 }
