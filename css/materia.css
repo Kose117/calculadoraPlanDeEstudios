@@ -42,7 +42,7 @@
     padding-right: 1%;
 }
 
-/*------------------Contiene a todas las etiquetas label,input,table y button------------------*/
+/*------------------Contiene a todas las etiquetas label, input, table y button------------------*/
 .popup .contenedor{
     display: grid;
     grid-gap: 10px;
@@ -58,11 +58,14 @@
     top: 2%;
     left: 98%;
     color: #838389;
+}
+
+.cerrar-popup.active{
     transition: .3s;
-}    
+}
 
 .cerrar-popup:hover{
-    color:black
+    color:black;
 }
 
 /*------------------Estilo de todos los label------------------*/
