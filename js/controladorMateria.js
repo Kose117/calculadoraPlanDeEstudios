@@ -2,11 +2,15 @@
 
 window.addEventListener("load", function(){
 
-    var overlay = this.document.querySelector(".overlay");
+    var overlay = this.document.querySelector(".overlay"),
+        btnAbrir = this.document.querySelector("#abrir");
+        btnCerrar = this.document.querySelector("#cerrar")
 
-    var botonPresiona = this.document.querySelector("#presiona");
+    btnAbrir.addEventListener("click", function(){
+        overlay.classList.add("active");
+    });
 
-    botonPresiona.addEventListener("click", function(){
-        overlay.style.visibility = "visible";
+    btnCerrar.addEventListener("click", function(){
+        overlay.classList.remove("active");
     });
 });

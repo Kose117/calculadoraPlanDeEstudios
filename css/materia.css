@@ -1,7 +1,14 @@
 *{
     font-family: "Poppins",sans-serif;
 }
-
+/*------------------encabezado------------------*/
+.header
+{
+   width: 8%;
+   height: 80px;
+   position: fixed;
+   top: 0;left: 0;
+}
 /*------------------Fondo de atras------------------*/
 .overlay{
     background: rgba(0, 0, 0, .3);
@@ -14,6 +21,10 @@
     align-items: center;
     justify-content: center;
     visibility: hidden;
+}
+
+.overlay.active {
+    visibility: visible;
 }
 
 /*------------------Ventana emergente------------------*/
@@ -32,7 +43,7 @@
 }
 
 /*------------------Contiene a todas las etiquetas label,input,table y button------------------*/
-.contenedor{
+.popup .contenedor{
     display: grid;
     grid-gap: 10px;
     align-content: end;
@@ -47,12 +58,12 @@
     top: 2%;
     left: 98%;
     color: #838389;
-    transition: .3s ease all;
+    transition: .3s;
 }    
 
 .cerrar-popup:hover{
     color:black
-}    
+}
 
 /*------------------Estilo de todos los label------------------*/
 .forma_label{
@@ -73,13 +84,13 @@
 }    
 
 /*------------------Estilo de materia------------------*/
-.materias{
+.materia{
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 3%;
 }
 
-.materia{
+.nombre-materia{
     border-radius: 5px;  
     text-align: center;
     border:black 3px solid;
@@ -87,7 +98,8 @@
     font-size: 38px;
     width: 433px;
     height: 83px;
-    place-content: center; 
+    place-content: center;
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0);  
 }
 
 /*------------------Estilo de la primera seccion de inputs------------------*/
@@ -123,7 +135,7 @@
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);  
 }
 
-th{
+.contenedor th{
     position: sticky;
     top: 0;
     background-color: #fff;
@@ -131,7 +143,7 @@ th{
 }
 
 /*------------------Estilo de la segunda seccion de inputs------------------*/
-.segundosInputs{
+.contenedor .segundosInputs{
     display: grid;
     grid-gap: 10px;
     grid-template-columns:  repeat(2,1fr);
@@ -139,7 +151,7 @@ th{
 }
 
 /*------------------Estilo de los botones------------------*/
-.btn{
+.contenedor .btn{
     position: relative;
     padding: 6px 50px;
     color: black;
@@ -155,7 +167,7 @@ th{
 }
 
 
-.btn-1{
+.contenedor .btn-1{
     border: 4px solid #F06C64;
     overflow: hidden;
     float: left;  
@@ -203,7 +215,7 @@ th{
     }
 }
 
-.btn-2{
+.contenedor .btn-2{
     border: 4px solid #17ae8b;
     
     overflow: hidden;
@@ -249,6 +261,89 @@ th{
     100%{
         bottom: 100px;
         transform: rotate(360deg);
-        
     }
+}
+
+ .fondoPlanEst
+ {
+    position: relative;
+    width: 95%;
+    height: 135vh;
+    background-image: url(../imagenes/planDeEstudiosFondo.jpg);
+    background-size: cover;
+	background-repeat: no-repeat;
+    background-position: center center;
+ }
+
+ #abrir
+ {
+     position: fixed;
+     bottom: 500px;
+     position: absolute;
+     
+}
+/*------------------Menu------------------*/
+.icono-menu{
+    position: relative;
+    font-size: 40px;
+    line-height: 16px;
+    top: 30%;
+    left: 15%;
+    color: black;
+    transition: .3s;
+    cursor: pointer;
+}
+ #btn-menu
+ {
+    display: none;
+ }
+
+.container-menu{
+    position: absolute;
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    top: 0;left: 0;
+    transition: all 500ms ease;
+    opacity: 0;
+    visibility: hidden;
+}
+#btn-menu:checked ~ .container-menu{
+    opacity: 1;
+    visibility: visible;
+}
+.cont-menu{
+    width: 100%;
+    max-width: 250px;
+    background: #1c1c1c;
+    height: 100%;
+    position: relative;
+    transition: all 500ms ease;
+    transform: translateX(-100%);
+}
+#btn-menu:checked ~ .container-menu .cont-menu{
+    transform: translateX(0%);
+}
+.cont-menu nav{
+    transform: translateY(15%);
+}
+.cont-menu nav a{
+    display: block;
+    text-decoration: none;
+    padding: 20px;
+    color: #c7c7c7;
+    border-left: 5px solid transparent;
+    transition: all 400ms ease;
+}
+.cont-menu nav a:hover{
+    border-left: 5px solid #c7c7c7;
+    background: #1f1f1f;
+}
+.cont-menu label{
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
 }

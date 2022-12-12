@@ -9,21 +9,40 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&family=Poppins&display=swap" rel="stylesheet">
         <script type="text/javascript" src="../js/controladorMateria.js"></script>
+        <script src="https://kit.fontawesome.com/c15a751039.js" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <h1>Click aca para abrir ventana emergente</h1>
-        <p>
-            <button id="presiona">presiona</button>
-        </p>
-        <div class="overlay">
+    <body class="fondoPlanEst"></body>
+        <div >
+                <button id="abrir">presiona</button>
+        </div>
+        <header class="header">
+            <label for="btn-menu" class="icono-menu"><i class="fa-solid fa-bars"></i></label>
+        </header>
+        <input type="checkbox" id="btn-menu">
+       
+
+       <div class="container-menu">
+            <div class="cont-menu">
+                <nav>
+                    <a href="#">Añadir Materias</a>
+                    <a href="#">Calculadora Promedio</a>
+                    <a href="#">Besar a santi</a>
+                    <a href="#">Guapo Joselito</a>
+                    <a href="#">Ñya</a>
+                </nav>
+                <label for="btn-menu"><i class="fas fa-times"></i></label>
+            </div>
+        </div>
+        
+       <div class="overlay">
             <div class="popup">
-                <a href="#" id="cerrarVentana" class="cerrar-popup"><i class="fas fa-times"></i></a>
+                <a href="#" id="cerrar" class="cerrar-popup"><i class="fas fa-times"></i></a>
                 <form action="">
                     
                     <div class="contenedor">
 
-                        <div class="materias">
-                            <input type="text" id="materia"  value="Materia" class="materia" aria-disabled="true" readonly>
+                        <div class="materia">
+                            <input type="text" id="nombre-materia"  value="Materia" class="nombre-materia forma_input" readonly>
                         </div>
                         
                         <div class="primerosInputs">
