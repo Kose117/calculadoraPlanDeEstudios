@@ -25,31 +25,44 @@
 .popup{
     background-image: url(../imagenes/papelFondo.jpg);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
-    width: 60%;
-    height: 90%;
+    width: 30%;
+    height: 80%;
+    min-width: 334px;
+    min-height: 400px;
     max-width: 660px;
     max-height: 632px;
     border-radius: 2%;
     border: black 4px solid;
-    padding-left: 2%;
-    padding-right: 2%;
+    display: flex;
+    justify-content: center;
+    padding: 2%;
 }
 
 /*------------------Contiene a todas las etiquetas label, input, table y button------------------*/
+.popup .elementos-popup{
+    margin-top: -1%;
+    margin-left: -1%;
+    margin-right: -1%;
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
 .popup .contenedor{
+    margin-top: 3%;
+    width: 100%;
+    height: 100%;
     display: grid;
-    grid-gap: 10px;
-    align-content: end;
-    justify-content: center;
+    grid-template-rows: 3fr 4fr 3fr 2fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 2%;
 }
 
 /*------------------Boton de cerrar------------------*/
 .popup .cerrar-popup{
-    position: relative;
+    position: fixed;
     font-size: 24px;
-	line-height: 16px;
-    top: 2%;
-    left: 98%;
+	line-height: 2%;
     color: #838389;
 }
 
@@ -63,87 +76,117 @@
 
 /*------------------Estilo de todos los label------------------*/
 .forma_label{
-    font-size: 22px;
+    margin-left: 20px;
+    font-size: 100%;
     position: fixed; 
 }    
 
 /*------------------Estilo de todas las casillas input------------------*/
 .forma_input{
-    border-radius: 5px;  
-    text-align: center;
+    border-radius: 5px;
     border:black 3px solid;
-    font-size: 22px;
-    width: 267px;
-    height: 78px;
+    font-size: 100%;
+    width: 96.5%;
+    height: 80%;
     text-align: left;
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);  
-}    
-
-/*------------------Estilo de materia------------------*/
-.materia{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3%;
 }
 
-.nombre-materia{
+.primerosInputs .forma_input,
+.segundosInputs .forma_input{
+    height: 60%;
+    text-indent: 10%;
+    padding-top: 5%;
+}
+
+/*------------------Estilo de materia------------------*/
+.contenedor .materia{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.materia .nombre-materia{
     border-radius: 5px;  
     text-align: center;
+    place-content: center;
     border:black 3px solid;
     font-weight: bold;
-    font-size: 38px;
-    width: 433px;
-    height: 83px;
-    place-content: center;
+    font-size: 200%;
+    display: flex;
+    width: 80%;
+    height: 80%;
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0);  
+
 }
 
 /*------------------Estilo de la primera seccion de inputs------------------*/
-.primerosInputs{
+.contenedor .primerosInputs{
+    width: 100%;
+    height: 100%;
     display: grid;
-    grid-gap: 10px;
-    grid-template-columns:  repeat(2,1fr);
-    grid-template-rows:  repeat(2,1fr);
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+    gap: 4%;
+    align-items: center;
+}
+
+.primerosInputs div{
+    height: 100%;
 }
 
 /*------------------Estilo de la tabla de requisitos------------------*/
-.inputPreDiv::-webkit-scrollbar{
-    width: 5px;
-    background-color: #fff;
-}
-
-.inputPreDiv::-webkit-scrollbar-thumb{
-    background-color: black;
-    border-radius: 5px;
-}
-
-.inputPreDiv{
+.requisitos{
     display: block;
     overflow-y: scroll;
     background-color: #fff;
     height: 105px;
     width: 99%;
-    border-radius: 5px;  
+    border-radius: 5px;
     border:black 3px solid;
     text-align: justify;
-    font-size: 22px;
-    resize: none;
+    font-size: 125%;
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);  
 }
 
-.contenedor th{
-    position: sticky;
-    top: 0;
+.requisitos::-webkit-scrollbar{
+    width: 5px;
     background-color: #fff;
-    padding-right: 145px;
+}    
+
+.requisitos::-webkit-scrollbar-thumb{
+    background-color: black;
+    border-radius: 5px;
+}
+
+.requisitos .tabla-requisitos{
+    width: 100%;
+}
+
+.tabla-requisitos tr{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.tabla-requisitos th{
+    justify-self: center;
+}
+
+.tabla-requisitos td{
+    justify-self: center;
 }
 
 /*------------------Estilo de la segunda seccion de inputs------------------*/
 .contenedor .segundosInputs{
     display: grid;
-    grid-gap: 10px;
     grid-template-columns:  repeat(2,1fr);
-    grid-template-rows:  repeat(1,1fr);
+    gap: 4%;
+    align-items: center;
+}
+
+.segundosInputs div{
+    height: 100%;
 }
 
 /*------------------Estilo de los botones------------------*/
@@ -153,10 +196,10 @@
     color: black;
     z-index: 2;
     font-size: 22px;
-    height: 54px;
-    width: 195px;
+    height: 100%;
+    width: 35%;
     text-align: center;
-    border-radius: 7px;  
+    border-radius: 8px;  
     display: flex;
     justify-content: center; 
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);  
@@ -164,7 +207,7 @@
 
 
 .contenedor .btn-1{
-    border: 4px solid #F06C64;
+    border: 5px solid #F06C64;
     overflow: hidden;
     float: left;  
     margin-left: 40px;
@@ -212,8 +255,7 @@
 }
 
 .contenedor .btn-2{
-    border: 4px solid #17ae8b;
-    
+    border: 5px solid #17ae8b;
     overflow: hidden;
     float: right; 
     margin-left: 10px;

@@ -17,39 +17,38 @@
         </p>
         <div class="overlay">
             <div class="popup">
-                <a href="#" id="cerrar" class="cerrar-popup"><i class="fas fa-times"></i></a>
-                <form action="">
-                    
+                <div class="elementos-popup">
+                    <a href="#" id="cerrar" class="cerrar-popup"><i class="fas fa-times"></i></a>
                     <div class="contenedor">
-
+                        
                         <div class="materia">
                             <input type="text" id="nombre-materia"  value="Materia" class="nombre-materia forma_input" readonly>
                         </div>
                         
                         <div class="primerosInputs">
                             <div>
-                                <label for="codigo" class="forma_label">ㅤCodigo</label>
-                                <input type="text" id="codigo" class="forma_input">
+                                <label for="codigo" class="forma_label">Codigo</label>
+                                <input type="text" id="codigo" class="forma_input" readonly>
                             </div>
                             
                             <div>
-                                <label for="semestre" class="forma_label">ㅤSemestre</label>
-                                <input type="text" id="semestre" class="forma_input">
+                                <label for="semestre" class="forma_label">Semestre</label>
+                                <input type="text" id="semestre" class="forma_input" readonly>
                             </div>
                             
                             <div>
-                                <label for="creditos" class="forma_label">ㅤCreditos</label>
-                                <input type="text" id="creditos" class="forma_input">
+                                <label for="creditos" class="forma_label">Creditos</label>
+                                <input type="text" id="creditos" class="forma_input" readonly>
                             </div>
                             
                             <div>
-                                <label for="tipo" class="forma_label">ㅤTipo</label>
-                                <input type="text" id="tipo" class="forma_input">
+                                <label for="tipo" class="forma_label">Tipo</label>
+                                <input type="text" id="tipo" class="forma_input" readonly>
                             </div>
                         </div>
                         
-                        <div class="inputPreDiv">
-                            <table id="preRequi" class="forma_inputPre">
+                        <div class="requisitos">
+                            <table id="preRequi" class="tabla-requisitos">
                                 <tr>
                                     <th>Pre-requisitos</th>
                                     <th>Codigo</th>
@@ -95,18 +94,18 @@
                         
                         <div class="segundosInputs">
                             <div>
-                                <label for="profesor" class="forma_label">ㅤProfesor</label>
-                                <input type="text" id="profesor" class="forma_input">
+                                <label for="profesor" class="forma_label">Profesor</label>
+                                <input type="text" id="profesor" class="forma_input" readonly>
                             </div>
                             
                             <div>
-                                <label for="nota" class="forma_label">ㅤNota</label>
-                                <input type="text" id="nota" class="forma_input">
+                                <label for="nota" class="forma_label">Nota</label>
+                                <input type="text" id="nota" class="forma_input" readonly>
                             </div>
-
+    
                         </div>
-
-                        <div >
+    
+                        <div>
                             <div>
                                 <button class="btn btn-1" id="bt1">Eliminar</button>
                             </div>
@@ -115,7 +114,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </body>
