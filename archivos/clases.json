@@ -125,7 +125,7 @@
             "33518"
         ],
         "co-requisitos":[
-            "4056"
+            "4082"
         ]
     },
     "34805":{
@@ -183,11 +183,12 @@
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
         "pre-requisitos":[
-            "33699"
+            "33699",
+            "33518"
         ],
         "co-requisitos":[]
     },
-    "4056":{
+    "4082":{
         "nombre":"Sistemas de información",
         "creditos":3,
         "departamento":"Sistemas",
@@ -254,12 +255,12 @@
         "co-requisitos":[]
     },
     "34810":{
-        "nombre":"Proyecto innvación y emprendimiento",
+        "nombre":"Proyecto innovación y emprendimiento",
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
         "pre-requisitos":[
-            "4085",
+            "4082",
             "34803",
             "33733",
             "34806"
