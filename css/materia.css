@@ -17,14 +17,15 @@
 /* +-+-+-+-+-+-+-+-+-+ BODY +-+-+-+-+-+-+-+-+-+ */
 
 body{
-    overflow: scroll;
+    display: flex;
+    justify-content: center;
 }
 
 /* ---------- Plan de Estudios ---------- */
 #planDeEstudios{
     position: absolute;
+    overflow-x: initial;
     top: 0;
-    left: 0;
     width: var(--width-bg);
     height: var(--height-bg);
     background-image: var(--bg-plan-estudios);
