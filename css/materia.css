@@ -1,13 +1,103 @@
 *{
-    font-family: "Poppins",sans-serif;
+    font-family: "Poppins", sans-serif;
 }
-/*------------------encabezado------------------*/
+
+:root{
+    --bg-plan-estudios: url(../imagenes/planDeEstudiosFondo.jpg);
+    --width-bg: 1440px;
+    --height-bg: 1026px;
+    --width-btn-materias: 140px;
+    --height-btn-materias: 60px;
+    --top-btn-materias: 166px;
+    --left-btn-materias: 68px;
+    --space-between-semesters: 160px;
+    --space-between-years: 177px;
+}
+
+/* +-+-+-+-+-+-+-+-+-+ BODY +-+-+-+-+-+-+-+-+-+ */
+
+body{
+    overflow: scroll;
+}
+
+/* ---------- Plan de Estudios ---------- */
+#planDeEstudios{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--width-bg);
+    height: var(--height-bg);
+    background-image: var(--bg-plan-estudios);
+    background-size: contain;
+    background-repeat: no-repeat;
+    scroll-behavior: smooth;
+}
+
+.btn-materias{
+    position: absolute;
+    width: var(--width-btn-materias);
+    height: var(--height-btn-materias);
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 2px solid black;
+    padding: 0;
+}
+
+
+.btn-materias:hover{
+    background-color: lightgrey;
+}
+
+.semestre1{
+    left: var(--left-btn-materias);
+}
+
+.semestre2{
+    left: calc(var(--left-btn-materias) + var(--space-between-semesters));
+}
+
+.semestre3{
+    left: calc(var(--left-btn-materias) + var(--space-between-semesters) + var(--space-between-years));
+}
+
+.semestre4{
+    left: calc(var(--left-btn-materias) + var(--space-between-semesters)*2 + var(--space-between-years));
+}
+
+.semestre5{
+    left: calc(var(--left-btn-materias) + var(--space-between-semesters)*2 + var(--space-between-years)*2);
+}
+
+.semestre6{
+    left: calc(var(--left-btn-materias) + var(--space-between-semesters)*3 + var(--space-between-years)*2);
+}
+
+.semestre7{
+    left: calc(var(--left-btn-materias) + var(--space-between-semesters)*3 + var(--space-between-years)*3);
+}
+
+.semestre8{
+    left: calc(var(--left-btn-materias) + var(--space-between-semesters)*4 + var(--space-between-years)*3 - 1px);
+}
+
+.fil1{
+    top: var(--top-btn-materias);
+}
+
+/* #cd1295.btn-materias{
+    top: 166px;
+    left: 68px;
+} */
+
 .header{
-   width: 8%;
-   height: 80px;
-   position: fixed;
-   top: 0;left: 0;
+    top: 0;
+    left: 0;
+    width: 8%;
+    height: 80px;
+    position: fixed;
 }
+
 /*------------------Fondo de atras------------------*/
 .overlay{
     background: rgba(0, 0, 0, .3);
@@ -146,7 +236,6 @@
 .requisitos{
     display: block;
     overflow-y: scroll;
-    background-color: #fff;
     height: 105px;
     width: 99%;
     border-radius: 5px;
@@ -168,19 +257,21 @@
 
 .requisitos .tabla-requisitos{
     width: 100%;
-}
-
-.tabla-requisitos tr{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    border: 2px grey;
+    background-color: #fff;
 }
 
 .tabla-requisitos th{
-    justify-self: center;
+    position: sticky;
+    top: 0;
+    width: 50%;
+    text-align: center;
+    background-color: #fff;
 }
 
 .tabla-requisitos td{
-    justify-self: center;
+    width: 50%;
+    text-align: center;
 }
 
 /*------------------Estilo de la segunda seccion de inputs------------------*/
@@ -308,23 +399,6 @@
     }
 }
 
-.fondoPlanEst{
-    position: relative;
-    width: 95%;
-    height: 135vh;
-    background-image: url(../imagenes/planDeEstudiosFondo.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding-top: 100px;
-}
-
- #abrir
- {
-     position: fixed;
-     bottom: 500px;
-     position: absolute;
-     
-}
 /*------------------Menu------------------*/
 .icono-menu{
     position: relative;
@@ -341,14 +415,12 @@
 }
 
 .container-menu{
-    position: sticky;
+    position: fixed;
     background: rgba(0,0,0,0.5);
     top: 0;
     left: 0;
-    margin-top: -100px;
-    margin-right: -4.6%;
-    margin-bottom: -15px;
-    height: 75%;
+    width: 100%;
+    height: 100%;
     transition: all 500ms ease;
     opacity: 0;
     visibility: hidden;
