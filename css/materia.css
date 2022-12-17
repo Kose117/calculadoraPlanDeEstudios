@@ -3,20 +3,16 @@
 }
 
 :root{
-    --bg-plan-estudios: url(../imagenes/planDeEstudiosFondo.jpg);
+    --bg-plan-estudios: url(../imagenes/planDeEstudios.jpg);
     --width-bg: 1440px;
-    --height-bg: 1026px;
-    --width-btn-materias: 140px;
-    --height-btn-materias: 60px;
-    --top-btn-materias: 166px;
-    --left-btn-materias: 68px;
-    --space-between-semesters: 160px;
+    --height-bg: 1024px;
+    --width-btn-materias: 142px;
+    --height-btn-materias: 62px;
+    --top-btn-materias: 165px;
+    --left-btn-materias: 67px;
+    --space-between-semesters: 159px;
     --space-between-years: 177px;
 }
-
-/* +-+-+-+-+-+-+-+-+-+ BODY +-+-+-+-+-+-+-+-+-+ */
-
-
 
 @media (min-width: 1440px){
     body{
@@ -30,6 +26,9 @@
         left: 0;
     }
 }
+
+/* +-+-+-+-+-+-+-+-+-+ BODY +-+-+-+-+-+-+-+-+-+ */
+
 
 /* ---------- Plan de Estudios ---------- */
 #planDeEstudios{
@@ -48,12 +47,12 @@
     width: var(--width-btn-materias);
     height: var(--height-btn-materias);
     font-size: 16px;
+    font-weight: bolder;
     border-radius: 5px;
     background-color: #ffffff;
     border: 2px solid black;
     padding: 0;
 }
-
 
 .btn-materias:hover{
     background-color: lightgrey;
@@ -88,24 +87,144 @@
 }
 
 .semestre8{
-    left: calc(var(--left-btn-materias) + var(--space-between-semesters)*4 + var(--space-between-years)*3 - 1px);
+    left: calc(var(--left-btn-materias) + var(--space-between-semesters)*4 + var(--space-between-years)*3);
 }
 
 .fil1{
     top: var(--top-btn-materias);
 }
 
-/* #cd1295.btn-materias{
-    top: 166px;
-    left: 68px;
-} */
+.fil2{
+    top: 262px;
+}
 
-.header{
+.fil3{
+    top: 332px;
+}
+
+.fil3m{
+    top: 361px;
+}
+
+.fil4{
+    top: 408px;
+}
+
+.fil5{
+    top: 471px;
+}
+
+.fil6{
+    top: 531px;
+}
+
+.fil6m{
+    top: 561px;
+}
+
+.fil7{
+    top: 602px;
+}
+
+.fil7m1{
+    top: 624px;
+}
+
+.fil7m2{
+    top: 644px;
+}
+
+.fil8{
+    top: 689px;
+}
+
+.nff-ciencias-basicas{
+    color: darkgoldenrod;
+}
+
+.nff-ingenieria-aplicada{
+    color: chocolate;
+}
+
+.nff-socio-humanistica{
+    color: aqua;
+}
+
+.enfasis{
+    color: darkslateblue;
+}
+
+/* ---------- Menu ---------- */
+.icono-menu{
+    position: fixed;
+    font-size: 40px;
+    line-height: 16px;
+    top: 20px;
+    left: 15px;
+    color: black;
+    transition: .3s;
+    cursor: pointer;
+}
+#btn-menu{
+    display: none;
+}
+
+#container-menu{
+    position: fixed;
+    background: rgba(0,0,0,0.5);
     top: 0;
     left: 0;
-    width: 8%;
-    height: 80px;
-    position: fixed;
+    width: 100%;
+    height: 100%;
+    transition: all 500ms ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#btn-menu:checked ~ #container-menu{
+    opacity: 1;
+    visibility: visible;
+}
+
+#menu{
+    width: 100%;
+    max-width: 250px;
+    background: #1c1c1c;
+    height: 100%;
+    position: relative;
+    transition: all 500ms ease;
+    transform: translateX(-100%);
+}
+
+#btn-menu:checked ~ #container-menu #menu{
+    transform: translateX(0%);
+}
+
+#menu nav{
+    transform: translateY(15%);
+}
+
+#menu nav a{
+    display: block;
+    text-decoration: none;
+    padding: 20px;
+    color: #c7c7c7;
+    border-left: 5px solid transparent;
+    transition: all 400ms ease;
+}
+
+#menu nav a:hover{
+    border-left: 5px solid #c7c7c7;
+    background: #1f1f1f;
+}
+
+#menu label{
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
 }
 
 /*------------------Fondo de atras------------------*/
@@ -407,70 +526,4 @@
         bottom: 100px;
         transform: rotate(360deg);
     }
-}
-
-/*------------------Menu------------------*/
-.icono-menu{
-    position: relative;
-    font-size: 40px;
-    line-height: 16px;
-    top: 30%;
-    left: 15%;
-    color: black;
-    transition: .3s;
-    cursor: pointer;
-}
-#btn-menu{
-    display: none;
-}
-
-.container-menu{
-    position: fixed;
-    background: rgba(0,0,0,0.5);
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: all 500ms ease;
-    opacity: 0;
-    visibility: hidden;
-}
-#btn-menu:checked ~ .container-menu{
-    opacity: 1;
-    visibility: visible;
-}
-.cont-menu{
-    width: 100%;
-    max-width: 250px;
-    background: #1c1c1c;
-    height: 100%;
-    position: relative;
-    transition: all 500ms ease;
-    transform: translateX(-100%);
-}
-#btn-menu:checked ~ .container-menu .cont-menu{
-    transform: translateX(0%);
-}
-.cont-menu nav{
-    transform: translateY(15%);
-}
-.cont-menu nav a{
-    display: block;
-    text-decoration: none;
-    padding: 20px;
-    color: #c7c7c7;
-    border-left: 5px solid transparent;
-    transition: all 400ms ease;
-}
-.cont-menu nav a:hover{
-    border-left: 5px solid #c7c7c7;
-    background: #1f1f1f;
-}
-.cont-menu label{
-    position: absolute;
-    right: 5px;
-    top: 10px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 18px;
 }
