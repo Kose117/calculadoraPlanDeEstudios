@@ -8,7 +8,6 @@
     --height-bg: 1024px;
     --width-btn-materias: 142px;
     --height-btn-materias: 62px;
-    --top-btn-materias: 165px;
     --left-btn-materias: 67px;
     --space-between-semesters: 159px;
     --space-between-years: 177px;
@@ -90,69 +89,37 @@
     left: calc(var(--left-btn-materias) + var(--space-between-semesters)*4 + var(--space-between-years)*3);
 }
 
-.fil1{
-    top: var(--top-btn-materias);
-}
+.fil1{top: 165px;}
 
-.fil2{
-    top: 262px;
-}
+.fil2{top: 262px;}
 
-.fil3{
-    top: 332px;
-}
+.fil3{top: 332px;}
 
-.fil3m{
-    top: 361px;
-}
+.fil3m{top: 361px;}
 
-.fil4{
-    top: 408px;
-}
+.fil4{top: 408px;}
 
-.fil5{
-    top: 471px;
-}
+.fil5{top: 471px;}
 
-.fil6{
-    top: 531px;
-}
+.fil6{top: 531px;}
 
-.fil6m{
-    top: 561px;
-}
+.fil6m{top: 561px;}
 
-.fil7{
-    top: 602px;
-}
+.fil7{top: 602px;}
 
-.fil7m1{
-    top: 624px;
-}
+.fil7m1{top: 624px;}
 
-.fil7m2{
-    top: 644px;
-}
+.fil7m2{top: 644px;}
 
-.fil8{
-    top: 689px;
-}
+.fil8{top: 689px;}
 
-.nff-ciencias-basicas{
-    color: darkgoldenrod;
-}
+.nff-ciencias-basicas{color: darkgoldenrod;}
 
-.nff-ingenieria-aplicada{
-    color: chocolate;
-}
+.nff-ingenieria-aplicada{color: chocolate;}
 
-.nff-socio-humanistica{
-    color: aqua;
-}
+.nff-socio-humanistica{color: aqua;}
 
-.enfasis{
-    color: darkslateblue;
-}
+.enfasis{color: darkslateblue;}
 
 /* ---------- Menu ---------- */
 .icono-menu{
@@ -165,6 +132,7 @@
     transition: .3s;
     cursor: pointer;
 }
+
 #btn-menu{
     display: none;
 }
