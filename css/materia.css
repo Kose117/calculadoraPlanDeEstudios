@@ -8,7 +8,6 @@
     --height-bg: 1024px;
     --width-btn-materias: 142px;
     --height-btn-materias: 62px;
-    --top-btn-materias: 165px;
     --left-btn-materias: 67px;
     --space-between-semesters: 159px;
     --space-between-years: 177px;
@@ -49,13 +48,37 @@
     font-size: 16px;
     font-weight: bolder;
     border-radius: 5px;
+    transition: .3s ease all;
     background-color: #ffffff;
     border: 2px solid black;
     padding: 0;
+    overflow:hidden;
+    cursor: pointer;
 }
 
-.btn-materias:hover{
-    background-color: lightgrey;
+.btn-materias span{
+    z-index: 2;
+    position: relative;
+}
+
+.btn-materias::after {
+	content: "";
+	width: 1px;
+	height: 1px;
+	background: none;
+	position: absolute;
+	z-index: 1;
+	top: 50%;
+	left: 50%;
+	transition: .3s ease-in-out all;
+	border-radius: 100px;
+	transform-origin: center;
+}
+
+.btn-materias:hover::after {
+	transform: scale(400);
+    background: black;
+	/*aca puedes cambiar el color de los botones, yo no tengo ni idea de que putas poner xd*/
 }
 
 .semestre1{
@@ -90,76 +113,55 @@
     left: calc(var(--left-btn-materias) + var(--space-between-semesters)*4 + var(--space-between-years)*3);
 }
 
-.fil1{
-    top: var(--top-btn-materias);
-}
+.fil1{top: 165px;}
 
-.fil2{
-    top: 262px;
-}
+.fil2{top: 261px;}
 
-.fil3{
-    top: 332px;
-}
+.fil3{top: 332px;}
 
-.fil3m{
-    top: 361px;
-}
+.fil3m{top: 361px;}
 
-.fil4{
-    top: 408px;
-}
+.fil4{top: 408px;}
 
-.fil5{
-    top: 471px;
-}
+.fil5{top: 469px;}
 
-.fil6{
-    top: 531px;
-}
+.fil6{top: 529px;}
 
-.fil6m{
-    top: 561px;
-}
+.fil6m{top: 561px;}
 
-.fil7{
-    top: 602px;
-}
+.fil7{top: 601px;}
 
-.fil7m1{
-    top: 624px;
-}
+.fil7m1{top: 624px;}
 
-.fil7m2{
-    top: 644px;
-}
+.fil7m2{top: 644px;}
 
-.fil8{
-    top: 689px;
-    
-}
-.fil8m1{
-    top: 705px;
-}
-.fil9{
-    top: 729px;
-}
+.fil8{top: 689px;}
 
-.nff-ciencias-basicas{
-    color: darkgoldenrod;
-}
+.fil8m1{top: 705px;}
 
-.nff-ingenieria-aplicada{
-    color: chocolate;
-}
+.fil9{top: 729px;}
 
-.nff-socio-humanistica{
-    color: aqua;
-}
+.fil9m{top: 768px;}
 
-.enfasis{
-    color: darkslateblue;
-}
+.fil10{top: 808px;}
+
+.fil10m{top: 817px;}
+
+.fil11{top: 804px;}
+
+.fil11m{top: 849px;}
+
+.fil12{top: 869px;}
+
+.fil13{top: 901px;}
+
+.nff-ciencias-basicas{color: #cf9524;}
+
+.nff-ingenieria-aplicada{color: chocolate;}
+
+.nff-socio-humanistica{color: #5accf4;}
+
+.enfasis{color: #6b3595;}
 
 /* ---------- Menu ---------- */
 .icono-menu{
@@ -172,6 +174,7 @@
     transition: .3s;
     cursor: pointer;
 }
+
 #btn-menu{
     display: none;
 }
@@ -246,6 +249,7 @@
     align-items: center;
     justify-content: center;
     visibility: hidden;
+    z-index: 3;
 }
 
 .overlay.active {
@@ -435,7 +439,8 @@
     border-radius: 8px;  
     display: flex;
     justify-content: center; 
-    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);  
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2); 
+    cursor: pointer;    
 }
 
 

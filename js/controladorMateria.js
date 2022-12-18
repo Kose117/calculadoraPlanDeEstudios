@@ -11,8 +11,7 @@ window.addEventListener("load", function(){
                 overlay.classList.add("active");
             });
         }
-        
-
+    
     btnCerrar.addEventListener("click", function(){
         overlay.classList.remove("active");
         btnCerrar.classList.remove("active");

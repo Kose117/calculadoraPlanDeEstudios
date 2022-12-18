@@ -434,7 +434,7 @@
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
         "pre-requisitos":[
-            "4056",
+            "4082",
             "34803"
         ],
         "co-requisitos":[]
