@@ -194,6 +194,7 @@
 #btn-menu:checked ~ #container-menu{
     opacity: 1;
     visibility: visible;
+    z-index: 5;
 }
 
 #menu{
@@ -204,6 +205,7 @@
     position: relative;
     transition: all 500ms ease;
     transform: translateX(-100%);
+    z-index: 5;
 }
 
 #btn-menu:checked ~ #container-menu #menu{
