@@ -8,7 +8,7 @@
         "co-requisitos":[]
     },
     "33518":{
-        "nombre":"Matemáticas discretas",
+        "nombre":"Lógica y matemáticas discretas",
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo de formación fundamental",
@@ -149,7 +149,7 @@
         "co-requisitos":[]
     },
     "2544":{
-        "nombre":"Sgnificación teológica",
+        "nombre":"Significación teológica",
         "creditos":2,
         "departamento":"Centro de formación teológica",
         "tipo":"Núcleo de formación fundamental",
@@ -201,7 +201,7 @@
         ]
     },
     "34803":{
-        "nombre":"Gestion de proyectos TI",
+        "nombre":"Gestión de proyectos TI",
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",

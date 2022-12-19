@@ -77,8 +77,9 @@
 
 .btn-materias:hover::after {
 	transform: scale(400);
-    background: black;
-	/*aca puedes cambiar el color de los botones, yo no tengo ni idea de que putas poner xd*/
+    background: slategrey;
+	/*aca puedes cambiar el color de los botones, yo no tengo ni idea de que putas poner xd
+        - le puse ese griz, no se que tal te parece*/
 }
 
 .semestre1{
@@ -153,7 +154,7 @@
 
 .fil12{top: 869px;}
 
-.fil13{top: 901px;}
+.fil13{top: 902px;}
 
 .nff-ciencias-basicas{color: #cf9524;}
 
@@ -351,7 +352,7 @@
     place-content: center;
     border:black 3px solid;
     font-weight: bold;
-    font-size: 200%;
+    font-size: 150%;
     display: flex;
     width: 80%;
     height: 80%;
