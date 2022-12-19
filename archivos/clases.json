@@ -4,114 +4,114 @@
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[],
-        "co-requisitos":[]
+        "pre_requisitos":[],
+        "co_requisitos":[]
     },
     "33518":{
         "nombre":"Lógica y matemáticas discretas",
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[],
-        "co-requisitos":[]
+        "pre_requisitos":[],
+        "co_requisitos":[]
     },
     "33698":{
         "nombre":"Introducción a la programación",
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[],
-        "co-requisitos":[]
+        "pre_requisitos":[],
+        "co_requisitos":[]
     },
     "4075":{
         "nombre":"Pensamiento sistémico",
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[],
-        "co-requisitos":[]
+        "pre_requisitos":[],
+        "co_requisitos":[]
     },
     "33763":{
         "nombre":"Introducción a la ingeniería",
         "creditos":2,
         "departamento":"Industrial",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[],
-        "co-requisitos":[]
+        "pre_requisitos":[],
+        "co_requisitos":[]
     },
     "34809":{
         "nombre":"Fundamentos de seguridad de la información",
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[],
-        "co-requisitos":[]
+        "pre_requisitos":[],
+        "co_requisitos":[]
     },
     "1297":{
         "nombre":"Cálculo integral",
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "1295"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "1290":{
         "nombre":"Álgebra Lineal",
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[],
-        "co-requisitos":[]
+        "pre_requisitos":[],
+        "co_requisitos":[]
     },
     "33699":{
         "nombre":"Programación avanzada",
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "33698"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "34816":{
         "nombre":"Gestión financiera en TI",
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[],
-        "co-requisitos":[]
+        "pre_requisitos":[],
+        "co_requisitos":[]
     },
     "33733":{
         "nombre":"Proyecto CDIO I",
         "creditos":2,
         "departamento":"Industrial",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "33763"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "34580":{
         "nombre":"Arquitectura del computador",
         "creditos":2,
         "departamento":"Electrónica",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "33698"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "33732":{
         "nombre":"Probabilidad y estadísitca",
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "1297"
         ],
-        "co-requisitos":[
+        "co_requisitos":[
             "4085"
         ]
     },
@@ -120,11 +120,11 @@
         "creditos":4,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "33699",
             "33518"
         ],
-        "co-requisitos":[
+        "co_requisitos":[
             "4082"
         ]
     },
@@ -133,70 +133,70 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "33699"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "4190":{
         "nombre":"Comunicaciones y redes",
         "creditos":4,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "33698"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "2544":{
         "nombre":"Significación teológica",
         "creditos":2,
         "departamento":"Centro de formación teológica",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "33733"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "1340":{
         "nombre":"Física mecánica",
         "creditos":3,
         "departamento":"Física",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[],
-        "co-requisitos":[]
+        "pre_requisitos":[],
+        "co_requisitos":[]
     },
     "1300":{
         "nombre":"Ecuaciones diferenciales",
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "1297",
             "1290"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "4196":{
         "nombre":"Estructuras de datos",
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "33699",
             "33518"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "4082":{
         "nombre":"Sistemas de información",
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "4075"
         ],
-        "co-requisitos":[
+        "co_requisitos":[
             "33700"
         ]
     },
@@ -205,30 +205,30 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "34816"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "34806":{
         "nombre":"Fundamentos de ingeniería de software",
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "34805"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "4085":{
         "nombre":"Sistemas operativos",
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "34580"
         ],
-        "co-requisitos":[
+        "co_requisitos":[
             "33732"
         ]
     },
@@ -237,84 +237,84 @@
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "1297",
             "1290"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "34801":{
         "nombre":"Teoría de la computación",
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "33518",
             "33699"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "34810":{
         "nombre":"Proyecto innovación y emprendimiento",
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "4082",
             "34803",
             "33733",
             "34806"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "22586":{
         "nombre":"Introducción sistemas distribuidos",
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "4085",
             "34809",
             "34805",
             "4190"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "3194":{
         "nombre":"Análisis de algoritmos",
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "34801",
             "4196"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "34807":{
         "nombre":"Desarrollo web",
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "34801",
             "33700",
             "34806",
             "4190"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
     "34808":{
         "nombre":"Introducción computación móvil",
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "34806",
             "4190",
             "33700"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
 
     "34866":{
@@ -322,11 +322,11 @@
         "creditos":2,
         "departamento":"Industrial",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "1290",
             "33732"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
 
     "2476":{
@@ -334,10 +334,10 @@
         "creditos":2,
         "departamento":"Centro de formación teológica",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "34810"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
 
     "1291":{
@@ -345,10 +345,10 @@
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "1300"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
 
     "4084":{
@@ -356,10 +356,10 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "4196"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
 
     "4185":{
@@ -367,12 +367,12 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "34807",
             "34808",
             "22586"
         ],
-        "co-requisitos":[
+        "co_requisitos":[
             "34814"
         ]
     },
@@ -382,12 +382,12 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "34803",
             "34806",
             "2544"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
 
     "34863":{
@@ -395,8 +395,8 @@
         "creditos":2,
         "departamento":"Filosofía",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[],
-        "co-requisitos":[]
+        "pre_requisitos":[],
+        "co_requisitos":[]
     },
 
     "2356":{
@@ -404,8 +404,8 @@
         "creditos":2,
         "departamento":"Filosofía",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[],
-        "co-requisitos":[]
+        "pre_requisitos":[],
+        "co_requisitos":[]
     },
 
     "16143":{
@@ -413,8 +413,8 @@
         "creditos":2,
         "departamento":"Derecho",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[],
-        "co-requisitos":[]
+        "pre_requisitos":[],
+        "co_requisitos":[]
     },
 
     "34804":{
@@ -422,10 +422,10 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "34810"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
 
     "31339":{
@@ -433,11 +433,11 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Énfasis",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "4082",
             "34803"
         ],
-        "co-requisitos":[]
+        "co_requisitos":[]
     },
 
     "34814":{
@@ -445,11 +445,11 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Énfasis",
-        "pre-requisitos":[
+        "pre_requisitos":[
             "34810",
             "31339"
         ],
-        "co-requisitos":[
+        "co_requisitos":[
             "4185"
         ]
     },
@@ -459,7 +459,7 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo de formación fundamental",
-        "pre-requisitos":[],
-        "co-requisitos":[]
+        "pre_requisitos":[],
+        "co_requisitos":[]
     }
 }
