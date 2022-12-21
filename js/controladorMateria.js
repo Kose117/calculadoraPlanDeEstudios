@@ -17,9 +17,11 @@ window.addEventListener("load", function(){
     var creditos = this.document.querySelector("#creditos");
     var tipo = this.document.querySelector("#tipo");
     var tabla_requisitos = this.document.querySelector("#preRequi");
+   
 
     for (var i = 0; i < btnsMaterias.length; i++){
         btnsMaterias.item(i).addEventListener("click", function(){
+            document.getElementsByClassName("popup")[0].classList.add("active")
             btnCerrar.classList.add("active");
             overlay.classList.add("active");
             abrir_materia(this.id, clases[this.id]);
@@ -27,6 +29,7 @@ window.addEventListener("load", function(){
     }
     
     btnCerrar.addEventListener("click", function(){
+        document.getElementsByClassName("popup")[0].classList.remove("active")
         overlay.classList.remove("active");
         btnCerrar.classList.remove("active");
         while (tabla_requisitos.rows.length!=0){
