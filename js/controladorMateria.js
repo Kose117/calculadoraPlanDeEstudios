@@ -42,7 +42,7 @@ window.addEventListener("load", function(){
         agregar_lista_requisitos("pre-requisitos", materia.pre_requisitos);
         agregar_lista_requisitos("co-requisitos", materia.co_requisitos);
         if (materia.pre_requisitos == 0 && materia.co_requisitos == 0){
-            agregar_fila(tabla_requisitos, "th", "Esta materia no tiene ningún tipo de requisito");
+            agregar_fila(tabla_requisitos, "td", "Esta materia no tiene requisitos");
         }
     }
 
