@@ -284,8 +284,8 @@
     transform:translate(-50%,-50%) scale(0.1);
     transition:500ms ease-in-out;
 }
-.popup.active
-{
+
+.popup.active{
     opacity: 1;
     top: 50%;
     transform:translate(-50%,-50%) scale(1);
