@@ -77,7 +77,7 @@
 
 .btn-materias:hover::after {
 	transform: scale(400);
-    background: slategrey;
+    background: rgba(141, 137, 139, 0.404)
 	/*aca puedes cambiar el color de los botones, yo no tengo ni idea de que putas poner xd
         - le puse ese griz, no se que tal te parece*/
 }
