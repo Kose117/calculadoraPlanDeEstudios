@@ -3,7 +3,7 @@
         "nombre":"Cálculo diferencial",
         "creditos":3,
         "departamento":"Matemáticas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -11,7 +11,7 @@
         "nombre":"Lógica y matemáticas discretas",
         "creditos":3,
         "departamento":"Matemáticas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -19,7 +19,7 @@
         "nombre":"Introducción a la programación",
         "creditos":3,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -27,7 +27,7 @@
         "nombre":"Pensamiento sistémico",
         "creditos":3,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -35,7 +35,7 @@
         "nombre":"Introducción a la ingeniería",
         "creditos":2,
         "departamento":"Industrial",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -43,7 +43,7 @@
         "nombre":"Fundamentos de seguridad de la información",
         "creditos":2,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -51,7 +51,7 @@
         "nombre":"Cálculo integral",
         "creditos":3,
         "departamento":"Matemáticas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "1295"
         ],
@@ -61,7 +61,7 @@
         "nombre":"Álgebra Lineal",
         "creditos":3,
         "departamento":"Matemáticas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -69,7 +69,7 @@
         "nombre":"Programación avanzada",
         "creditos":3,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "33698"
         ],
@@ -79,7 +79,7 @@
         "nombre":"Gestión financiera en TI",
         "creditos":2,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -87,7 +87,7 @@
         "nombre":"Proyecto CDIO I",
         "creditos":2,
         "departamento":"Industrial",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "33763"
         ],
@@ -97,7 +97,7 @@
         "nombre":"Arquitectura del computador",
         "creditos":2,
         "departamento":"Electrónica",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "33698"
         ],
@@ -107,7 +107,7 @@
         "nombre":"Probabilidad y estadísitca",
         "creditos":3,
         "departamento":"Matemáticas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "1297"
         ],
@@ -119,7 +119,7 @@
         "nombre":"Base de datos",
         "creditos":4,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "33699",
             "33518"
@@ -132,7 +132,7 @@
         "nombre":"Análisis y diseño de software",
         "creditos":3,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "33699"
         ],
@@ -142,7 +142,7 @@
         "nombre":"Comunicaciones y redes",
         "creditos":4,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "33698"
         ],
@@ -152,7 +152,7 @@
         "nombre":"Significación teológica",
         "creditos":2,
         "departamento":"Centro de formación teológica",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "33733"
         ],
@@ -162,7 +162,7 @@
         "nombre":"Física mecánica",
         "creditos":3,
         "departamento":"Física",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -170,7 +170,7 @@
         "nombre":"Ecuaciones diferenciales",
         "creditos":3,
         "departamento":"Matemáticas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "1297",
             "1290"
@@ -181,7 +181,7 @@
         "nombre":"Estructuras de datos",
         "creditos":3,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "33699",
             "33518"
@@ -192,7 +192,7 @@
         "nombre":"Sistemas de información",
         "creditos":3,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "4075"
         ],
@@ -204,7 +204,7 @@
         "nombre":"Gestión de proyectos TI",
         "creditos":3,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "34816"
         ],
@@ -214,7 +214,7 @@
         "nombre":"Fundamentos de ingeniería de software",
         "creditos":3,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "34805"
         ],
@@ -224,7 +224,7 @@
         "nombre":"Sistemas operativos",
         "creditos":3,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "34580"
         ],
@@ -236,7 +236,7 @@
         "nombre":"Cálculo vectorial",
         "creditos":3,
         "departamento":"Matemáticas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "1297",
             "1290"
@@ -247,7 +247,7 @@
         "nombre":"Teoría de la computación",
         "creditos":2,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "33518",
             "33699"
@@ -258,7 +258,7 @@
         "nombre":"Proyecto innovación y emprendimiento",
         "creditos":3,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "4082",
             "34803",
@@ -271,7 +271,7 @@
         "nombre":"Introducción sistemas distribuidos",
         "creditos":2,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "4085",
             "34809",
@@ -284,7 +284,7 @@
         "nombre":"Análisis de algoritmos",
         "creditos":2,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "34801",
             "4196"
@@ -295,7 +295,7 @@
         "nombre":"Desarrollo web",
         "creditos":3,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "34801",
             "33700",
@@ -308,7 +308,7 @@
         "nombre":"Introducción computación móvil",
         "creditos":2,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "34806",
             "4190",
@@ -321,7 +321,7 @@
         "nombre":"Optimización y simulación",
         "creditos":2,
         "departamento":"Industrial",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "1290",
             "33732"
@@ -333,7 +333,7 @@
         "nombre":"Fe y compromiso del ingeniero",
         "creditos":2,
         "departamento":"Centro de formación teológica",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "34810"
         ],
@@ -344,7 +344,7 @@
         "nombre":"Análisis numérico",
         "creditos":3,
         "departamento":"Matemáticas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "1300"
         ],
@@ -355,7 +355,7 @@
         "nombre":"Introducción a la inteligencia artificial",
         "creditos":3,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "4196"
         ],
@@ -366,7 +366,7 @@
         "nombre":"Arquitectura de software",
         "creditos":3,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "34807",
             "34808",
@@ -381,7 +381,7 @@
         "nombre":"Proyecto social universitario",
         "creditos":2,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "34803",
             "34806",
@@ -394,7 +394,7 @@
         "nombre":"Ética en la era de la información",
         "creditos":2,
         "departamento":"Filosofía",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -403,7 +403,7 @@
         "nombre":"Epistemología de la ingeniería",
         "creditos":2,
         "departamento":"Filosofía",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -412,7 +412,7 @@
         "nombre":"Constitución y legislacion para ingenieros",
         "creditos":2,
         "departamento":"Derecho",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -421,7 +421,7 @@
         "nombre":"Gerencia estratégica TI",
         "creditos":2,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[
             "34810"
         ],
@@ -458,7 +458,7 @@
         "nombre":"Tecnologías digitales emergentes",
         "creditos":2,
         "departamento":"Sistemas",
-        "tipo":"Núcleo de formación fundamental",
+        "tipo":"Núcleo fundamental",
         "pre_requisitos":[],
         "co_requisitos":[]
     }

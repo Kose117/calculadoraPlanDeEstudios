@@ -6,30 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/CalculadoraPromedio.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">      
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c15a751039.js" crossorigin="anonymous"></script>
+    <script type="module" src="../js/controladorTarjetas.js"></script>
 </head>
 <body>
+    <button id="boton" style="margin: 500px; position: absolute;">click</button>
+        <!-- Menu -->
+    </div>
+    <label for="btn-menu" class="icono-menu"><i class="fa-solid fa-bars"></i></label>
+    <input type="checkbox" id="btn-menu">
+    
+    <div id="container-menu">
+        <div id="menu">
+            <nav>
+                <a href="#">Añadir Materias</a>
+                <a href="CalculadoraPromedio.html">Calculadora Promedio</a>
+                <a href="materia.html">Plan de estudios</a>
+                <a href="#">Guapo Joselito</a>
+                <a href="#">Ñya</a>
+            </nav>
+            <label for="btn-menu"><i class="fas fa-times"></i></label>
+        </div>
+    </div>
+    <!-- tarjetas -->
     <main>
         <div class="container-card">
             <div class="card-father">
                 <div class="card">
-                    <div class="card-front">
+                    <div class="card-front" style="background-image: url(../imagenes/mapu.jpg);">
                         <div class="bg"></div>
                         <div class="body-card-front">
-                            <h1>Calculo Integral</h1>
+                            <h1 id="Nombreclase">Calculo Integral</h1>
                         </div>
                     </div>
-                    <div class="card-back">
+                    <div class="card-back" style="background-image: url(../imagenes/sorpresa.jpg);">
                         <div class="body-card-back">
-                            <ul></ul>
-                            <h1 class="alejate">Clase</h1>
-                            <h2 class="alejate">Nota:</h2>
-                            <h2 class="alejate">Profesor:</h2>
+                            <h1 id="clase" class="alejate">Clase</h1>
+                            <h2 id="nota" class="alejate">Nota:</h2>
+                            <h2 id="profesor" class="alejate">Profesor:</h2>
                             <button class="btn"><span>Cálculo Diferencial</span></button>
                         </div>
                     </div>
-
                 </div>
             </div>
+            
         </div>
     </main>
 </body>
