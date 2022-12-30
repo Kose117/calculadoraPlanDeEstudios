@@ -17,37 +17,73 @@ window.addEventListener("load", function(){
 var btnAnadir = this.document.querySelector("#boton");
 btnAnadir.addEventListener("click",crearTarjetas)
 {
-
+        
 }
-
-boton.add
 function crearTarjetas()
 {
     var containerCard=document.querySelector(".container-card");
                     
     var cardFather=document.createElement("div");
-    cardFather.innerHTML="<div class='card-father'></div>";
-    var card=document.createElement("div");
-    card.innerHTML=" <div class='card'></div>"
-    var cardFront=document.createElement("div");
-    //cardFront.innerHTML="<div class='card-front' style='background-image: url(../imagenes/mapu.jpg);'</div>";
-    var bg=document.createElement("div");
-    bg.innerHTML="<div class='bg'></div>";
-    var bodyCardFront=document.createElement("div");
-    bodyCardFront.innerHTML="<div class='body-card-front'>";
-    var Nombreclase=document.createElement("h1");
-    Nombreclase.innerHTML="<h1 id='Nombreclase'>Calculo Integral</h1>";
-    var cardBack=document.createElement("div");
-    var bodyCardBack=document.createElement("div");
-    var clase=document.createElement("h1");
-    var nota=document.createElement("h2");
-    var profesor=document.createElement("h2"); 
-    var btn=document.createElement("button"); 
-    //bodyCardFront.appendChild(Nombreclase)
-    //cardFront.appendChild(bodyCardFront);
-    //cardFront.appendChild(bg);
-    card.appendChild(cardFront);
-    cardFather.appendChild(card);
+    cardFather.classList.add("card-father");
     containerCard.appendChild(cardFather);
+    
+    var card=document.createElement("div");
+    card.classList.add("card");
+    cardFather.appendChild(card);
+    
+    var cardFront=document.createElement("div");
+    cardFront.classList.add("card-front");
+    cardFront.style.backgroundImage= "url('../imagenes/mapu.jpg')";;
+    card.appendChild(cardFront);
+
+    var bg=document.createElement("div");
+    bg.classList.add("bg");
+    cardFront.append(bg);
+
+    var bodyCardFront=document.createElement("div");
+    bodyCardFront.classList.add("body-card-front");
+    cardFront.append(bodyCardFront);
+
+    var nombreClase=document.createElement("h1");
+    nombreClase.setAttribute('id',"Nombreclase");
+    nombreClase.innerText="Calculo integral";
+    bodyCardFront.appendChild(nombreClase);
+
+    var cardBack=document.createElement("div");
+    cardBack.classList.add("card-back");
+    cardBack.style.backgroundImage= "url('../imagenes/sorpresa.jpg')";;
+    card.appendChild(cardBack);
+
+    var bodyCardBack=document.createElement("div");
+    bodyCardBack.classList.add("body-card-back");
+    cardBack.append(bodyCardBack);
+
+    var clase=document.createElement("h1");
+    clase.classList.add("alejate");
+    clase.setAttribute('id',"clase");
+    clase.innerText="Clase";
+    bodyCardBack.appendChild(clase);
+
+    var nota=document.createElement("h2");
+    nota.classList.add("alejate");
+    nota.setAttribute('id',"nota");
+    nota.innerText="Nota:";
+    bodyCardBack.appendChild(nota);
+
+    var profesor=document.createElement("h2");
+    profesor.classList.add("alejate");
+    profesor.setAttribute('id',"profesor");
+    profesor.innerText="Profesor:";
+    bodyCardBack.appendChild(profesor);
+
+    var btn=document.createElement("button");
+    btn.classList.add("btn");
+    bodyCardBack.appendChild(btn);
+
+    var span=document.createElement("span");
+    span.innerText="Cálculo Diferencial";
+    btn.appendChild(span);
+
+    console.log(containerCard);
 }
 });
