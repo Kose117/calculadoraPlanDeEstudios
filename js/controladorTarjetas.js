@@ -1,4 +1,5 @@
 /*  
+
 var containerCard=document.querySelector(".container-card");
 var cardFather=document.querySelector(".card-father");
 var card=document.querySelector(".card");
@@ -12,12 +13,12 @@ var nota=document.querySelector("#nota");
 var profesor=document.querySelector("#profesor");  
 var btn=document.querySelector(".btn"); 
 */
+
 window.addEventListener("load", function(){
 
 var btnAnadir = this.document.querySelector("#boton");
 btnAnadir.addEventListener("click",crearTarjetas)
-{
-        
+{       
 }
 function crearTarjetas()
 {
@@ -83,7 +84,8 @@ function crearTarjetas()
     var span=document.createElement("span");
     span.innerText="Cálculo Diferencial";
     btn.appendChild(span);
-
+    
     console.log(containerCard);
 }
 });
+ 
