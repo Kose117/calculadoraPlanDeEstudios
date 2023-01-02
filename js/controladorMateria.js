@@ -24,9 +24,6 @@ window.addEventListener("load", function(){
     var btnAgregar=this.document.querySelector("#bt2");
     var btnEliminar=this.document.querySelector("#bt1");
     
-    
-    
-    
     for (var i = 0; i < btnsMaterias.length; i++){
         btnsMaterias.item(i).addEventListener("click", function(){
             document.getElementsByClassName("popup")[0].classList.add("active")
