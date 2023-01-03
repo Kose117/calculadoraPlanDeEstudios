@@ -1,4 +1,5 @@
 /*  
+
 var containerCard=document.querySelector(".container-card");
 var cardFather=document.querySelector(".card-father");
 var card=document.querySelector(".card");
@@ -12,12 +13,12 @@ var nota=document.querySelector("#nota");
 var profesor=document.querySelector("#profesor");  
 var btn=document.querySelector(".btn"); 
 */
+
 window.addEventListener("load", function(){
 
 var btnAnadir = this.document.querySelector("#boton");
 btnAnadir.addEventListener("click",crearTarjetas)
-{
-        
+{       
 }
 function crearTarjetas()
 {
@@ -78,12 +79,27 @@ function crearTarjetas()
 
     var btn=document.createElement("button");
     btn.classList.add("btn");
+    btn.setAttribute('id','btn-abrir-popup');
     bodyCardBack.appendChild(btn);
 
     var span=document.createElement("span");
     span.innerText="Cálculo Diferencial";
     btn.appendChild(span);
-
+    
     console.log(containerCard);
+    
 }
+/*SANTI MIERDAAAA NO ENTIENDO NADAAAA */
+    var btnAbrirPopup = this.document.getElementById('btn-abrir-popup'),
+	overlay = this.document.querySelector(".overlay"),
+	popup = this.document.querySelector(".popup"),
+	btnCerrarPopup = this.document.getElementById('btn-cerrar-popup');
+
+    btnAbrirPopup?.addEventListener('click', function(){
+	overlay.classList.add('active');
+	popup.classList.add('active');
+    console.log(overlay);
 });
+
+});
+ 
