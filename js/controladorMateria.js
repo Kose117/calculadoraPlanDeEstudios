@@ -1,12 +1,12 @@
 "using strict"
 
-var clases
+let clases;
 fetch("../archivos/clases.json")
     .then(response => response.json())
     .then(data =>{
         clases = data;
     });
-const materias=new Map();
+export const materias=new Map();
 
 window.addEventListener("load", function(){
 
@@ -29,7 +29,7 @@ window.addEventListener("load", function(){
             document.getElementsByClassName("popup")[0].classList.add("active")
             btnCerrar.classList.add("active");
             overlay.classList.add("active");
-            abrir_materia(this.id, clases[this.id]);
+            abrir_materia(this.id, clases);
         });
     }
     
@@ -41,8 +41,10 @@ window.addEventListener("load", function(){
             tabla_requisitos.rows[0].remove();
         }
     });
-    
-    function abrir_materia(id, materia){
+
+    //funciones
+    function abrir_materia(id, clases){
+        const materia = clases[id];
         nombre_materia.value = materia.nombre;
         codigo.value = id;
         creditos.value = materia.creditos;
@@ -117,7 +119,7 @@ window.addEventListener("load", function(){
     }
     
     function agregar_fila(tabla, tipo, ...contenido){
-        var fila = "";
+        let fila = "";
         contenido.forEach(element => {
             fila += `<${tipo}>${element}</${tipo}>`;
         });
