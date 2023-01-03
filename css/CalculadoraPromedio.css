@@ -256,7 +256,7 @@ body
 	width: 600px;
 	transition: .3s ease all;
 	transform: scale(0.7);
-	opacity: 0;
+	opacity: 1;
     position: relative;
 }
 .popup .btn-cerrar-popup {
