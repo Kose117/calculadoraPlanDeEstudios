@@ -250,13 +250,12 @@ body
 	background: green;
 	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
 	border-radius: 3px;
-	font-family: 'Montserrat', sans-serif;
 	padding: 20px;
 	text-align: center;
 	width: 600px;
 	transition: .3s ease all;
 	transform: scale(0.7);
-	opacity: 0;
+	opacity: 1;
     position: relative;
 }
 .popup .btn-cerrar-popup {
