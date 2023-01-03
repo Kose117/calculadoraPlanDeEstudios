@@ -1,6 +1,6 @@
 "using strict"
 
-var clases
+let clases;
 fetch("../archivos/clases.json")
     .then(response => response.json())
     .then(data =>{
@@ -9,22 +9,22 @@ fetch("../archivos/clases.json")
 
 window.addEventListener("load", function(){
 
-    var btnsMaterias = this.document.getElementsByClassName("btn-materias");
-    var overlay = this.document.querySelector(".overlay");
-    var btnCerrar = this.document.querySelector("#cerrar");
-    var nombre_materia = this.document.querySelector("#nombre-materia");
-    var codigo = this.document.querySelector("#codigo");
-    var creditos = this.document.querySelector("#creditos");
-    var tipo = this.document.querySelector("#tipo");
-    var tabla_requisitos = this.document.querySelector("#preRequi");
+    const btnsMaterias = this.document.getElementsByClassName("btn-materias");
+    const overlay = this.document.querySelector(".overlay");
+    const btnCerrar = this.document.querySelector("#cerrar");
+    const nombre_materia = this.document.querySelector("#nombre-materia");
+    const codigo = this.document.querySelector("#codigo");
+    const creditos = this.document.querySelector("#creditos");
+    const tipo = this.document.querySelector("#tipo");
+    const tabla_requisitos = this.document.querySelector("#preRequi");
    
 
-    for (var i = 0; i < btnsMaterias.length; i++){
+    for (let i = 0; i < btnsMaterias.length; i++){
         btnsMaterias.item(i).addEventListener("click", function(){
             document.getElementsByClassName("popup")[0].classList.add("active")
             btnCerrar.classList.add("active");
             overlay.classList.add("active");
-            abrir_materia(this.id, clases[this.id]);
+            abrir_materia(this.id, clases);
         });
     }
     
@@ -37,7 +37,9 @@ window.addEventListener("load", function(){
         }
     });
 
-    function abrir_materia(id, materia){
+    //funciones
+    function abrir_materia(id, clases){
+        const materia = clases[id];
         nombre_materia.value = materia.nombre;
         codigo.value = id;
         creditos.value = materia.creditos;
@@ -59,7 +61,7 @@ window.addEventListener("load", function(){
     }
     
     function agregar_fila(tabla, tipo, ...contenido){
-        var fila = "";
+        let fila = "";
         contenido.forEach(element => {
             fila += `<${tipo}>${element}</${tipo}>`;
         });
