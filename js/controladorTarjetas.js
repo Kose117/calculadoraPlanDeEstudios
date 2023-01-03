@@ -79,6 +79,7 @@ function crearTarjetas()
 
     var btn=document.createElement("button");
     btn.classList.add("btn");
+    btn.setAttribute('id','btn-abrir-popup');
     bodyCardBack.appendChild(btn);
 
     var span=document.createElement("span");
@@ -86,6 +87,19 @@ function crearTarjetas()
     btn.appendChild(span);
     
     console.log(containerCard);
+    
 }
+/*SANTI MIERDAAAA NO ENTIENDO NADAAAA */
+    var btnAbrirPopup = this.document.getElementById('btn-abrir-popup'),
+	overlay = this.document.querySelector(".overlay"),
+	popup = this.document.querySelector(".popup"),
+	btnCerrarPopup = this.document.getElementById('btn-cerrar-popup');
+
+    btnAbrirPopup?.addEventListener('click', function(){
+	overlay.classList.add('active');
+	popup.classList.add('active');
+    console.log(overlay);
+});
+
 });
  

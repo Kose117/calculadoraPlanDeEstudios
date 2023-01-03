@@ -9,33 +9,38 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">      
     <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&family=Poppins&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c15a751039.js" crossorigin="anonymous"></script>
-    <script type="module" src="../js/controladorTarjetas.js"></script>
 </head>
 <body>
     <button id="boton" style="left: 300px; top:10px; position: absolute;">click</button>
-        <!-- Menu -->
+    <!-- Menu -->
+</div>
+<label for="btn-menu" class="icono-menu"><i class="fa-solid fa-bars"></i></label>
+<input type="checkbox" id="btn-menu">
+
+<div id="container-menu">
+    <div id="menu">
+        <nav>
+            <a href="#">Añadir Materias</a>
+            <a href="CalculadoraPromedio.html">Calculadora Promedio</a>
+            <a href="materia.html">Plan de estudios</a>
+            <a href="#">Guapo Joselito</a>
+            <a href="#">Ñya</a>
+        </nav>
+        <label for="btn-menu"><i class="fas fa-times"></i></label>
     </div>
-    <label for="btn-menu" class="icono-menu"><i class="fa-solid fa-bars"></i></label>
-    <input type="checkbox" id="btn-menu">
-    
-    <div id="container-menu">
-        <div id="menu">
-            <nav>
-                <a href="#">Añadir Materias</a>
-                <a href="CalculadoraPromedio.html">Calculadora Promedio</a>
-                <a href="materia.html">Plan de estudios</a>
-                <a href="#">Guapo Joselito</a>
-                <a href="#">Ñya</a>
-            </nav>
-            <label for="btn-menu"><i class="fas fa-times"></i></label>
-        </div>
+</div>
+<!-- tarjetas -->
+<main >
+    <div class="container-card"></div>
+    <div class="contenedor">
+        
+        <div class="overlay" id="overlay">
+            <div class="popup" id="popup">
+                <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+            </div>
+		</div>
     </div>
-    <!-- tarjetas -->
-    <main >
-        <div class="container-card">
-            
-            
-        </div>
-    </main>
+</main>
+<script type="module" src="../js/controladorTarjetas.js"></script>
 </body>
 </html>
