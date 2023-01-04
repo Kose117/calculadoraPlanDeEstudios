@@ -342,7 +342,7 @@ body
 
 .contenido{
     display: grid;
-    grid-template-columns: repeat(3,245px);
+    grid-template-columns: repeat(3,1fr);
     grid-auto-rows: 50px;
     
 }
@@ -369,6 +369,8 @@ body
     display: table-cell; 
     text-align: center;
     vertical-align: middle; 
+    border-right :black 1px solid;
+    border-bottom:black 1px solid;
 }
 .agregar{
     display: grid;
