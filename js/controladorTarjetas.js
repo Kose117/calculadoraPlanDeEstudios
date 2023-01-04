@@ -5,7 +5,7 @@
 // console.log({materias});
 
 window.addEventListener("load", function(){
-
+/*---------------------------------crear tarjetas---------------------------------*/ 
     let btnAnadir = document.querySelector("#boton");
     btnAnadir.addEventListener("click", crearTarjetas);
 
@@ -23,7 +23,7 @@ window.addEventListener("load", function(){
         
         let cardFront=document.createElement("div");
         cardFront.classList.add("card-front");
-        cardFront.style.backgroundImage= "url('../imagenes/mapu.jpg')";;
+        cardFront.style.backgroundImage= "url('../imagenes/formula.png')";;
         card.appendChild(cardFront);
 
         let bg=document.createElement("div");
@@ -41,7 +41,7 @@ window.addEventListener("load", function(){
 
         let cardBack=document.createElement("div");
         cardBack.classList.add("card-back");
-        cardBack.style.backgroundImage= "url('../imagenes/sorpresa.jpg')";;
+        cardBack.style.backgroundImage= "url('../imagenes/')";;
         card.appendChild(cardBack);
 
         let bodyCardBack=document.createElement("div");
@@ -90,11 +90,69 @@ window.addEventListener("load", function(){
         for (let index = 0; index < btnAbrirPopup.length; index++) {
             btnAbrirPopup[index].addEventListener('click', function(){
                 overlay.classList.add('active');
-                console.log(popup);
-            });
+	            popup.classList.add('active');
+                
+                });
         }
     }
+    let btnCerrar = this.document.querySelector("#btn-cerrar-popup");
+    btnCerrar.addEventListener("click", function(){
+        document.getElementsByClassName("popup")[0].classList.remove("active");
+        overlay.classList.remove("active");
+        btnCerrar.classList.remove("active");
+    });
+    /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
+    let contenido=document.querySelector(".contenido");
+    let btnAgregarGrande=this.document.querySelector("#btnAgregarGrande");
+    let btnAgregar=this.document.querySelector("#btnAgregar");
+    let divAgregar=this.document.querySelector(".agregar");
+    btnAgregarGrande.addEventListener("click",crearFilas)
+    function crearFilas()
+    {
+        divAgregar.remove();
+        
+        let casilla=document.createElement("div");
+        casilla.classList.add("conte");
+        contenido.appendChild(casilla);
+        
+        let casilla1=document.createElement("div");
+        casilla1.classList.add("conte");
+        contenido.appendChild(casilla1);
+        
+        let casilla2=document.createElement("div");
+        casilla2.classList.add("conte");
+        contenido.appendChild(casilla2);
+        
+        divAgregar=document.createElement("div");
+        divAgregar.classList.add("agregar")
+        contenido.appendChild(divAgregar);
+        
+        btnAgregarGrande=document.createElement("button");
+        btnAgregarGrande.classList.add("btnAgregar");
+        btnAgregarGrande.setAttribute('id',"btnAgregarGrande");
+        divAgregar.appendChild(btnAgregarGrande);
+        
+        let btnAgregarGrandeSpan=document.createElement("span");
+        btnAgregarGrandeSpan.classList.add("btnAgregarGrandeSpan");
+        btnAgregarGrandeSpan.innerText="AgregarGrande";
+        btnAgregarGrande.appendChild(btnAgregarGrandeSpan);
+        
+        btnAgregar=document.createElement("button");
+        btnAgregar.classList.add("btnAgregar");
+        btnAgregar.setAttribute('id',"btnAgregar");
+        divAgregar.appendChild(btnAgregar);
+        btnAgregarGrande.addEventListener("click",crearFilas)
 
-    /* TODO: SANTI MIERDAAAA NO ENTIENDO NADAAAA */
+        let btnAgregarSpan=document.createElement("span");
+        btnAgregarSpan.classList.add("btnAgregarSpan");
+        btnAgregarSpan.innerText="Agregar";
+        btnAgregar.appendChild(btnAgregarSpan);
+
+        let tamañoDefinitiva=document.querySelector(".definitiv");
+        let estilodefinitiva = window.getComputedStyle(tamañoDefinitiva);
+        let tamdefinitiva = parseInt(estilodefinitiva.getPropertyValue('height'));  
+        tamañoDefinitiva.style.height=tamdefinitiva+50+"px";
+    }
+
 });
  
