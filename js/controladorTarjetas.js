@@ -106,29 +106,41 @@ window.addEventListener("load", function(){
     let btnAgregarGrande=this.document.querySelector("#btnAgregarGrande");
     let btnAgregar=this.document.querySelector("#btnAgregar");
     let divAgregar=this.document.querySelector(".agregar");
-    btnAgregarGrande.addEventListener("click",crearFilas)
-    function crearFilas()
+    btnAgregarGrande.addEventListener("click",crearFilasConBoton);
+    btnAgregar.addEventListener("click",crearFilas);
+    function crearFilasConBoton()
     {
         divAgregar.remove();
         
         let casilla=document.createElement("div");
         casilla.classList.add("conte");
+        casilla.setAttribute('contentEditable',"true");
         contenido.appendChild(casilla);
         
         let casilla1=document.createElement("div");
         casilla1.classList.add("conte");
+        casilla1.setAttribute('contentEditable',"true");
         contenido.appendChild(casilla1);
         
         let casilla2=document.createElement("div");
         casilla2.classList.add("conte");
         contenido.appendChild(casilla2);
         
+        let botonNotas=document.createElement("button");
+        botonNotas.classList.add("btn","btnNotas","btn-animacion");
+        casilla2.appendChild(botonNotas);
+
+        let spanbotonNotas=document.createElement("span");
+        spanbotonNotas.classList.add("spanNotas");
+        spanbotonNotas.innerText="4.5";
+        botonNotas.appendChild(spanbotonNotas);
+        
         divAgregar=document.createElement("div");
-        divAgregar.classList.add("agregar")
+        divAgregar.classList.add("btn","agregar")
         contenido.appendChild(divAgregar);
         
         btnAgregarGrande=document.createElement("button");
-        btnAgregarGrande.classList.add("btnAgregar");
+        btnAgregarGrande.classList.add("btn","btnAgregarGrande","btn-animacion");
         btnAgregarGrande.setAttribute('id',"btnAgregarGrande");
         divAgregar.appendChild(btnAgregarGrande);
         
@@ -138,21 +150,82 @@ window.addEventListener("load", function(){
         btnAgregarGrande.appendChild(btnAgregarGrandeSpan);
         
         btnAgregar=document.createElement("button");
-        btnAgregar.classList.add("btnAgregar");
+        btnAgregar.classList.add("btn","btnAgregar","btn-animacion");
         btnAgregar.setAttribute('id',"btnAgregar");
         divAgregar.appendChild(btnAgregar);
-        btnAgregarGrande.addEventListener("click",crearFilas)
-
+        
         let btnAgregarSpan=document.createElement("span");
         btnAgregarSpan.classList.add("btnAgregarSpan");
         btnAgregarSpan.innerText="Agregar";
         btnAgregar.appendChild(btnAgregarSpan);
-
+        
         let tamañoDefinitiva=document.querySelector(".definitiv");
         let estilodefinitiva = window.getComputedStyle(tamañoDefinitiva);
         let tamdefinitiva = parseInt(estilodefinitiva.getPropertyValue('height'));  
         tamañoDefinitiva.style.height=tamdefinitiva+50+"px";
+        
+        btnAgregarGrande.addEventListener("click",crearFilasConBoton)
+        btnAgregar.addEventListener("click",crearFilas);
     }
+    function crearFilas()
+    {
+        divAgregar.remove();
+        
+        let casilla=document.createElement("div");
+        casilla.classList.add("conte");
+        casilla.setAttribute('contentEditable',"true");
+        contenido.appendChild(casilla);
+        
+        let casilla1=document.createElement("div");
+        casilla1.classList.add("conte");
+        casilla1.setAttribute('contentEditable',"true");
+        contenido.appendChild(casilla1);
+        
+        let casilla2=document.createElement("div");
+        casilla2.classList.add("conte");
+        casilla2.setAttribute('contentEditable',"true");
+        contenido.appendChild(casilla2);
+        
+        let spanbotonNotas=document.createElement("span");
+        spanbotonNotas.classList.add("spanNotas");
+        spanbotonNotas.innerText="4.5";
+        casilla2.appendChild(spanbotonNotas);
+        
+        divAgregar=document.createElement("div");
+        divAgregar.classList.add("agregar")
+        contenido.appendChild(divAgregar);
+        
+        btnAgregarGrande=document.createElement("button");
+        btnAgregarGrande.classList.add("btn","btnAgregarGrande","btn-animacion");
+        btnAgregarGrande.setAttribute('id',"btnAgregarGrande");
+        divAgregar.appendChild(btnAgregarGrande);
+        
+        let btnAgregarGrandeSpan=document.createElement("span");
+        btnAgregarGrandeSpan.classList.add("btnAgregarGrandeSpan");
+        btnAgregarGrandeSpan.innerText="AgregarGrande";
+        btnAgregarGrande.appendChild(btnAgregarGrandeSpan);
+        
+        btnAgregar=document.createElement("button");
+        btnAgregar.classList.add("btn",'btnAgregar',"btn-animacion");
+        btnAgregar.setAttribute('id',"btnAgregar");
+        divAgregar.appendChild(btnAgregar);
+        
+        let btnAgregarSpan=document.createElement("span");
+        btnAgregarSpan.classList.add("btnAgregarSpan");
+        btnAgregarSpan.innerText="Agregar";
+        btnAgregar.appendChild(btnAgregarSpan);
+        
+        let tamañoDefinitiva=document.querySelector(".definitiv");
+        let estilodefinitiva = window.getComputedStyle(tamañoDefinitiva);
+        let tamdefinitiva = parseInt(estilodefinitiva.getPropertyValue('height'));  
+        tamañoDefinitiva.style.height=tamdefinitiva+50+"px";
+        
+        btnAgregarGrande.addEventListener("click",crearFilasConBoton)
+        btnAgregar.addEventListener("click",crearFilas);
 
+        
+         
+        
+    }
+    
 });
- 

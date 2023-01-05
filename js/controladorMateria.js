@@ -82,23 +82,48 @@ window.addEventListener("load", function(){
     }
     
     btnAgregar.addEventListener("click",function (){
+       
         if(btnAgregar.textContent=="Agregar")
         {
+            clases[codigo.value].nota=nota.value;
+            clases[codigo.value].profesor=profe.value;
+            clases[codigo.value].semestre=semestre.value;
             materias.set(codigo.value,clases[codigo.value]);
            
             btnAgregar.textContent="Editar";
             btnEliminar.textContent="Eliminar";
+            
+            semestre.setAttribute('readonly','true');
+            profe.setAttribute('readonly','true');
+            nota.setAttribute('readonly','true');
         }
         else if(btnAgregar.textContent=="Editar")
         {
-            
+            semestre.removeAttribute('readonly');
+            profe.removeAttribute('readonly');
+            nota.removeAttribute('readonly');
+            btnAgregar.textContent="Guardar";
+        }
+        else if(btnAgregar.textContent=="Guardar")
+        {
+            semestre.setAttribute('readonly','true');
+            profe.setAttribute('readonly','true');
+            nota.setAttribute('readonly','true');
+            btnAgregar.textContent="Editar";
+            clases[codigo.value].nota=nota.value;
+            clases[codigo.value].profesor=profe.value;
+            clases[codigo.value].semestre=semestre.value;
+            materias.set(codigo.value,clases[codigo.value]);
         }
     });
 
     btnEliminar.addEventListener("click",function elimi(){
         if(btnEliminar.textContent=="Editar")
         {
-            
+            semestre.removeAttribute('readonly');
+            profe.removeAttribute('readonly');
+            nota.removeAttribute('readonly');
+            btnEliminar.textContent="Guardar";
         }
         else if(btnEliminar.textContent=="Eliminar")
         {
@@ -106,6 +131,18 @@ window.addEventListener("load", function(){
             
             btnAgregar.textContent="Agregar";
             btnEliminar.textContent="Editar";
+
+            semestre.setAttribute('readonly','true');
+            profe.setAttribute('readonly','true');
+            nota.setAttribute('readonly','true');
+        }
+        else if(btnEliminar.textContent=="Guardar")
+        {
+            semestre.setAttribute('readonly','true');
+            profe.setAttribute('readonly','true');
+            nota.setAttribute('readonly','true');
+            btnEliminar.textContent="Editar";
+            
         }
     });
 

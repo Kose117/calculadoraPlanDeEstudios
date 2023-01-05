@@ -106,21 +106,23 @@ body
     border-radius: 20px;
 }
 /* ---------- Botones ---------- */
-.btn{
-    position: absolute;
+.btn-abrir-popup{
     width: 200px;
     height: 60px;
     font-size: 16px;
     font-weight: bolder;
     border-radius: 5px;
-    transition: .3s ease all;
     background-color: #ffffff;
     border: 2px solid black;
+    margin: 30px;
+    position: absolute;
+}
+.btn{
     padding: 0;
+    transition: .3s ease all;
     overflow:hidden;
     cursor: pointer;
-    margin: 30px;
-   
+
 }
 
 .btn span{
@@ -128,21 +130,21 @@ body
     position: relative;
 }
 
-.btn::after {
+.btn-abrir-popup::after {
 	content: "";
 	width: 1px;
 	height: 1px;
-	background: none;
+	background: red;
 	position: absolute;
 	z-index: 1;
-	top: 50%;
-	left: 50%;
 	transition: .3s ease-in-out all;
 	border-radius: 100px;
+	top: 50%;
+	left: 50%;
 	transform-origin: center;
 }
 
-.btn:hover::after {
+.btn-abrir-popup:hover::after {
 	transform: scale(400);
     background: rgba(215, 36, 125, 0.404)
 }
@@ -358,33 +360,84 @@ body
     align-items: center;
     display: flex;  
     background-color: #f1faff;
+    overflow:auto
 }
+.conte::-webkit-scrollbar{
+    height: 8px;
+}    
 
+.conte::-webkit-scrollbar-thumb{
+    background-color: black;
+    border-radius: 3px;
+}
 
 .definitiv
 {
-    width: 25%;
+    width: 1fr;
     height: 50px;
     background-color: aqua;
-    display: table-cell; 
-    text-align: center;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
     vertical-align: middle; 
-    border-right :black 1px solid;
-    border-bottom:black 1px solid;
+    border-right :black 2px solid;
+    border-bottom:black 2px solid;
+    border-left:black 1px solid;
+    overflow: auto;   
+}
+.definitiv::-webkit-scrollbar{
+    height: 8px;
+}    
+
+.definitiv::-webkit-scrollbar-thumb{
+    background-color: black;
+    border-radius: 3px;
 }
 .agregar{
     display: grid;
     grid-template-columns: repeat(2,1fr);
+    position: relative;
 }
-.btnAgregar
+.btnAgregar,.btnAgregarGrande,.btnNotas
 {
     justify-content: center;
     height: 50px;
     align-items: center;
-    display: flex; 
     height: 100%; 
     width: 100%;
+    display: flex;
+    position: relative;
 }
+.btnAgregar,.btnAgregarGrande{
+    
+    font-size: 14px;
+    font-weight: bolder;
+    border-left-color:transparent;
+    background-color: #ffffff;
+    
+}
+.btnNotas
+{
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 20px;
+}
+.btn-animacion::after {
+    position: absolute;
+	content: "";
+	width: 2px;
+	height: 2px;
+	z-index: 1;
+	transition: .4s ease-in-out all;
+	border-radius: 100px;
+	transform-origin: center;
+}
+
+.btn-animacion:hover::after {
+	transform: scale(200);
+    background: rgba(215, 36, 125, 0.404)
+}
+
 
 
 
