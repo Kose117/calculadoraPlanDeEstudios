@@ -78,7 +78,7 @@ window.addEventListener("load", function(){
         // console.log(containerCard);    
         let btnAbrirPopup = document.getElementsByClassName('btn-abrir-popup'),
             overlay = document.querySelector(".overlay"),
-            popup = document.querySelector(".popup"),
+            popup = document.querySelector(".popup-father"),
             btnCerrarPopup = document.getElementsByClassName('btn-cerrar-popup');
     
         // btnAbrirPopup?.addEventListener('click', function(){
