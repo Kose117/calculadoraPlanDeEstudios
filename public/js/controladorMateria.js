@@ -1,7 +1,7 @@
 "using strict"
 
 let clases;
-fetch("../archivos/clases.json")
+fetch("../db/clases.json")
     .then(response => response.json())
     .then(data =>{
         clases = data;

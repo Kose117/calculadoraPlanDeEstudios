@@ -3,7 +3,7 @@
 }
 
 :root{
-    --bg-plan-estudios: url(../imagenes/planDeEstudios.jpg);
+    --bg-plan-estudios: url(../images/planDeEstudios.jpg);
     --width-bg: 1440px;
     --height-bg: 1024px;
     --width-btn-materias: 142px;
@@ -266,7 +266,7 @@
     position: absolute;
     top:50%;
     left: 50%;
-    background-image: url(../imagenes/papelFondo.jpg);
+    background-image: url(../images/papelFondo.jpg);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
     width: 30%;
     height: 80%;

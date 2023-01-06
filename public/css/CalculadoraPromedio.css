@@ -254,11 +254,11 @@ body
     transition:500ms ease-in-out;
     
 }
-.popup-father:hover .popup
+/* .popup-father:hover .popup
 {
     transform:rotateY(-90deg);
     
-}
+} */
 
  .popup-father.active{
     opacity: 1;
