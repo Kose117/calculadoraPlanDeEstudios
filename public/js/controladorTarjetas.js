@@ -23,7 +23,7 @@ window.addEventListener("load", function(){
         
         let cardFront=document.createElement("div");
         cardFront.classList.add("card-front");
-        cardFront.style.backgroundImage= "url('../imagenes/formula.png')";;
+        cardFront.style.backgroundImage= "url('../images/formula.png')";;
         card.appendChild(cardFront);
 
         let bg=document.createElement("div");
@@ -41,7 +41,7 @@ window.addEventListener("load", function(){
 
         let cardBack=document.createElement("div");
         cardBack.classList.add("card-back");
-        cardBack.style.backgroundImage= "url('../imagenes/')";;
+        cardBack.style.backgroundImage= "url('../images/')";;
         card.appendChild(cardBack);
 
         let bodyCardBack=document.createElement("div");
