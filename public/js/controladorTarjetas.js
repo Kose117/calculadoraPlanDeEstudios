@@ -94,22 +94,17 @@ window.addEventListener("load", function(){
                 });
         }
     }
-    /* por algun motivo no me deja usar la clase para hacer que ambos botones de cerrar funcionen
-    , por lo que tuve que usar 2 distintos, y ademas no entiendo porque cuando uso el segundo boton de cerrar
-    hace que se devuelva pero desaparezca todo por arte de magia*/
-    let btnCerrar1 = this.document.querySelector("#btn-cerrar-popup1");
-    btnCerrar1.addEventListener("click", function(){
+    let btnsCerrar = this.document.getElementsByClassName("btn-cerrar-popup");
+    btnsCerrar[0].addEventListener("click", function(){
 
         overlay.classList.remove("active");
-        btnCerrar1.classList.remove("active");
-
+        this.classList.remove("active");
     });
-    let btnCerrar2 = this.document.querySelector("#btn-cerrar-popup2");
-    btnCerrar2.addEventListener("click", function(){
+    btnsCerrar[1].addEventListener("click", function(){
         overlay.classList.remove("active");
-        btnCerrar2.classList.remove("active");
-        popup.classList.remove("active");
-        bodyPopupFront.remove('active');
+        this.classList.remove("active");
+        // popup.classList.remove("active");
+        
     });
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
