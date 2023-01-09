@@ -78,8 +78,7 @@ window.addEventListener("load", function(){
         // console.log(containerCard);    
         let btnAbrirPopup = document.getElementsByClassName('btn-abrir-popup'),
             overlay = document.querySelector(".overlay"),
-            popup = document.querySelector(".popup-father"),
-            btnCerrarPopup = document.getElementsByClassName('btn-cerrar-popup');
+            popup = document.querySelector(".popup-father");
     
         // btnAbrirPopup?.addEventListener('click', function(){
         //     overlay.classList.add('active');
@@ -95,12 +94,24 @@ window.addEventListener("load", function(){
                 });
         }
     }
-    let btnCerrar = this.document.querySelector("#btn-cerrar-popup");
-    btnCerrar.addEventListener("click", function(){
-        document.getElementsByClassName("popup")[0].classList.remove("active");
+    /* por algun motivo no me deja usar la clase para hacer que ambos botones de cerrar funcionen
+    , por lo que tuve que usar 2 distintos, y ademas no entiendo porque cuando uso el segundo boton de cerrar
+    hace que se devuelva pero desaparezca todo por arte de magia*/
+    let btnCerrar1 = this.document.querySelector("#btn-cerrar-popup1");
+    btnCerrar1.addEventListener("click", function(){
+
         overlay.classList.remove("active");
-        btnCerrar.classList.remove("active");
+        btnCerrar1.classList.remove("active");
+
     });
+    let btnCerrar2 = this.document.querySelector("#btn-cerrar-popup2");
+    btnCerrar2.addEventListener("click", function(){
+        overlay.classList.remove("active");
+        btnCerrar2.classList.remove("active");
+        popup.classList.remove("active");
+        bodyPopupFront.remove('active');
+    });
+    
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
     let contenido=document.querySelector(".contenido");
     let btnAgregarGrande=this.document.querySelector("#btnAgregarGrande");
@@ -108,6 +119,7 @@ window.addEventListener("load", function(){
     let divAgregar=this.document.querySelector(".agregar");
     btnAgregarGrande.addEventListener("click",crearFilasConBoton);
     btnAgregar.addEventListener("click",crearFilas);
+    
     function crearFilasConBoton()
     {
         divAgregar.remove();
@@ -134,6 +146,7 @@ window.addEventListener("load", function(){
         spanbotonNotas.classList.add("spanNotas");
         spanbotonNotas.innerText="4.5";
         botonNotas.appendChild(spanbotonNotas);
+        botonNotas.addEventListener("click",girar);
         
         divAgregar=document.createElement("div");
         divAgregar.classList.add("btn","agregar")
@@ -221,11 +234,13 @@ window.addEventListener("load", function(){
         tamañoDefinitiva.style.height=tamdefinitiva+50+"px";
         
         btnAgregarGrande.addEventListener("click",crearFilasConBoton)
-        btnAgregar.addEventListener("click",crearFilas);
-
-        
-         
-        
+        btnAgregar.addEventListener("click",crearFilas);    
     }
     
+    let bodyPopupFront=document.querySelector(".body-popup-front");
+    function girar()
+    {
+        popup.classList.add('active');
+        bodyPopupFront.classList.add('active');
+    }
 });
