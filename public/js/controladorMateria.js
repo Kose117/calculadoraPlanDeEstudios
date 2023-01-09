@@ -162,6 +162,4 @@ window.addEventListener("load", function(){
         });
         tabla.insertRow(-1).innerHTML = fila;
     }
-    
-    
 });
