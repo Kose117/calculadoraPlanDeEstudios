@@ -90,40 +90,37 @@ window.addEventListener("load", function(){
             btnAbrirPopup[index].addEventListener('click', function(){
                 overlay.classList.add('active');
 	            popup.classList.add('active');
-                
-                });
+            });
         }
     }
-    /* por algun motivo no me deja usar la clase para hacer que ambos botones de cerrar funcionen
-    , por lo que tuve que usar 2 distintos, y ademas no entiendo porque cuando uso el segundo boton de cerrar
-    hace que se devuelva pero desaparezca todo por arte de magia*/
-    let btnCerrar1 = this.document.querySelector("#btn-cerrar-popup1");
-    btnCerrar1.addEventListener("click", function(){
-
+    let bodyPopupFront=document.querySelector(".body-popup-front");
+    let bodyPopupRight=document.querySelector(".body-popup-right");
+    let btnsCerrar = this.document.getElementsByClassName("btn-cerrar-popup");
+    btnsCerrar[0].addEventListener("click", function(){
+        
         overlay.classList.remove("active");
-        btnCerrar1.classList.remove("active");
-
+        this.classList.remove("active");
+        
     });
-    let btnCerrar2 = this.document.querySelector("#btn-cerrar-popup2");
-    btnCerrar2.addEventListener("click", function(){
+    btnsCerrar[1].addEventListener("click", function(){
         overlay.classList.remove("active");
-        btnCerrar2.classList.remove("active");
+        this.classList.remove("active");
         popup.classList.remove("active");
-        bodyPopupFront.remove('active');
+        bodyPopupFront.classList.remove("active");
+        bodyPopupRight.classList.remove("active");
     });
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
     let contenido=document.querySelector(".contenido");
     let btnAgregarGrande=this.document.querySelector("#btnAgregarGrande");
     let btnAgregar=this.document.querySelector("#btnAgregar");
-    let divAgregar=this.document.querySelector(".agregar");
+    let btnEliminar=this.document.querySelector("#btnEliminar");
+    btnEliminar.addEventListener("click",EliminarFilas);
     btnAgregarGrande.addEventListener("click",crearFilasConBoton);
     btnAgregar.addEventListener("click",crearFilas);
     
     function crearFilasConBoton()
     {
-        divAgregar.remove();
-        
         let casilla=document.createElement("div");
         casilla.classList.add("conte");
         casilla.setAttribute('contentEditable',"true");
@@ -148,42 +145,13 @@ window.addEventListener("load", function(){
         botonNotas.appendChild(spanbotonNotas);
         botonNotas.addEventListener("click",girar);
         
-        divAgregar=document.createElement("div");
-        divAgregar.classList.add("btn","agregar")
-        contenido.appendChild(divAgregar);
-        
-        btnAgregarGrande=document.createElement("button");
-        btnAgregarGrande.classList.add("btn","btnAgregarGrande","btn-animacion");
-        btnAgregarGrande.setAttribute('id',"btnAgregarGrande");
-        divAgregar.appendChild(btnAgregarGrande);
-        
-        let btnAgregarGrandeSpan=document.createElement("span");
-        btnAgregarGrandeSpan.classList.add("btnAgregarGrandeSpan");
-        btnAgregarGrandeSpan.innerText="AgregarGrande";
-        btnAgregarGrande.appendChild(btnAgregarGrandeSpan);
-        
-        btnAgregar=document.createElement("button");
-        btnAgregar.classList.add("btn","btnAgregar","btn-animacion");
-        btnAgregar.setAttribute('id',"btnAgregar");
-        divAgregar.appendChild(btnAgregar);
-        
-        let btnAgregarSpan=document.createElement("span");
-        btnAgregarSpan.classList.add("btnAgregarSpan");
-        btnAgregarSpan.innerText="Agregar";
-        btnAgregar.appendChild(btnAgregarSpan);
-        
         let tamañoDefinitiva=document.querySelector(".definitiv");
         let estilodefinitiva = window.getComputedStyle(tamañoDefinitiva);
         let tamdefinitiva = parseInt(estilodefinitiva.getPropertyValue('height'));  
         tamañoDefinitiva.style.height=tamdefinitiva+50+"px";
-        
-        btnAgregarGrande.addEventListener("click",crearFilasConBoton)
-        btnAgregar.addEventListener("click",crearFilas);
     }
     function crearFilas()
     {
-        divAgregar.remove();
-        
         let casilla=document.createElement("div");
         casilla.classList.add("conte");
         casilla.setAttribute('contentEditable',"true");
@@ -204,43 +172,27 @@ window.addEventListener("load", function(){
         spanbotonNotas.innerText="4.5";
         casilla2.appendChild(spanbotonNotas);
         
-        divAgregar=document.createElement("div");
-        divAgregar.classList.add("agregar")
-        contenido.appendChild(divAgregar);
-        
-        btnAgregarGrande=document.createElement("button");
-        btnAgregarGrande.classList.add("btn","btnAgregarGrande","btn-animacion");
-        btnAgregarGrande.setAttribute('id',"btnAgregarGrande");
-        divAgregar.appendChild(btnAgregarGrande);
-        
-        let btnAgregarGrandeSpan=document.createElement("span");
-        btnAgregarGrandeSpan.classList.add("btnAgregarGrandeSpan");
-        btnAgregarGrandeSpan.innerText="AgregarGrande";
-        btnAgregarGrande.appendChild(btnAgregarGrandeSpan);
-        
-        btnAgregar=document.createElement("button");
-        btnAgregar.classList.add("btn",'btnAgregar',"btn-animacion");
-        btnAgregar.setAttribute('id',"btnAgregar");
-        divAgregar.appendChild(btnAgregar);
-        
-        let btnAgregarSpan=document.createElement("span");
-        btnAgregarSpan.classList.add("btnAgregarSpan");
-        btnAgregarSpan.innerText="Agregar";
-        btnAgregar.appendChild(btnAgregarSpan);
-        
         let tamañoDefinitiva=document.querySelector(".definitiv");
         let estilodefinitiva = window.getComputedStyle(tamañoDefinitiva);
         let tamdefinitiva = parseInt(estilodefinitiva.getPropertyValue('height'));  
-        tamañoDefinitiva.style.height=tamdefinitiva+50+"px";
-        
-        btnAgregarGrande.addEventListener("click",crearFilasConBoton)
-        btnAgregar.addEventListener("click",crearFilas);    
+        tamañoDefinitiva.style.height=tamdefinitiva+50+"px";  
     }
-    
-    let bodyPopupFront=document.querySelector(".body-popup-front");
+    /*santi si vez esto solo se me ocurre una forma de eliminar las filas, y es hacer un contador general, y el numero que salga ponerselo de id
+    a las casillas, y eliminar los ultimos 3 id de las casillas y asi, no se si creas que hay una mejor manera*/
+    function EliminarFilas()
+    {
+        let tamañoDefinitiva=document.querySelector(".definitiv");
+        let estilodefinitiva = window.getComputedStyle(tamañoDefinitiva);
+        let tamdefinitiva = parseInt(estilodefinitiva.getPropertyValue('height'));  
+        if(tamdefinitiva>50)
+        {
+            tamañoDefinitiva.style.height=tamdefinitiva-50+"px"; 
+        }
+    }
     function girar()
     {
         popup.classList.add('active');
         bodyPopupFront.classList.add('active');
+        bodyPopupRight.classList.add('active');
     }
 });
