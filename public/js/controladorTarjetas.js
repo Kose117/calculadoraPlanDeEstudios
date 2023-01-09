@@ -1,8 +1,5 @@
 
-// import './controladorMateria';
-
-
-// console.log({materias});
+import { agregar_fila } from "../helpers/functions.js";
 
 window.addEventListener("load", function(){
 /*---------------------------------crear tarjetas---------------------------------*/ 
@@ -111,74 +108,31 @@ window.addEventListener("load", function(){
     });
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
-    let contenido=document.querySelector(".contenido");
+    let tabla=document.querySelector("#tabla-materias");
     let btnAgregarGrande=this.document.querySelector("#btnAgregarGrande");
     let btnAgregar=this.document.querySelector("#btnAgregar");
     let btnEliminar=this.document.querySelector("#btnEliminar");
-    btnEliminar.addEventListener("click",EliminarFilas);
-    btnAgregarGrande.addEventListener("click",crearFilasConBoton);
-    btnAgregar.addEventListener("click",crearFilas);
-    
-    function crearFilasConBoton()
-    {
-        let casilla=document.createElement("div");
-        casilla.classList.add("conte");
-        casilla.setAttribute('contentEditable',"true");
-        contenido.appendChild(casilla);
-        
-        let casilla1=document.createElement("div");
-        casilla1.classList.add("conte");
-        casilla1.setAttribute('contentEditable',"true");
-        contenido.appendChild(casilla1);
-        
-        let casilla2=document.createElement("div");
-        casilla2.classList.add("conte");
-        contenido.appendChild(casilla2);
-        
-        let botonNotas=document.createElement("button");
-        botonNotas.classList.add("btn","btnNotas","btn-animacion");
-        casilla2.appendChild(botonNotas);
 
-        let spanbotonNotas=document.createElement("span");
-        spanbotonNotas.classList.add("spanNotas");
-        spanbotonNotas.innerText="4.5";
-        botonNotas.appendChild(spanbotonNotas);
-        botonNotas.addEventListener("click",girar);
-        
-        let tamañoDefinitiva=document.querySelector(".definitiv");
-        let estilodefinitiva = window.getComputedStyle(tamañoDefinitiva);
-        let tamdefinitiva = parseInt(estilodefinitiva.getPropertyValue('height'));  
-        tamañoDefinitiva.style.height=tamdefinitiva+50+"px";
-    }
-    function crearFilas()
-    {
-        let casilla=document.createElement("div");
-        casilla.classList.add("conte");
-        casilla.setAttribute('contentEditable',"true");
-        contenido.appendChild(casilla);
-        
-        let casilla1=document.createElement("div");
-        casilla1.classList.add("conte");
-        casilla1.setAttribute('contentEditable',"true");
-        contenido.appendChild(casilla1);
-        
-        let casilla2=document.createElement("div");
-        casilla2.classList.add("conte");
-        casilla2.setAttribute('contentEditable',"true");
-        contenido.appendChild(casilla2);
-        
-        let spanbotonNotas=document.createElement("span");
-        spanbotonNotas.classList.add("spanNotas");
-        spanbotonNotas.innerText="4.5";
-        casilla2.appendChild(spanbotonNotas);
-        
-        let tamañoDefinitiva=document.querySelector(".definitiv");
-        let estilodefinitiva = window.getComputedStyle(tamañoDefinitiva);
-        let tamdefinitiva = parseInt(estilodefinitiva.getPropertyValue('height'));  
-        tamañoDefinitiva.style.height=tamdefinitiva+50+"px";  
-    }
-    /*santi si vez esto solo se me ocurre una forma de eliminar las filas, y es hacer un contador general, y el numero que salga ponerselo de id
-    a las casillas, y eliminar los ultimos 3 id de las casillas y asi, no se si creas que hay una mejor manera*/
+    btnEliminar.addEventListener("click",EliminarFilas);
+
+    btnAgregarGrande.addEventListener("click", () => {
+
+        agregar_fila(tabla, 'td', '', '',
+            `<button class="btn btnNotas btn-animacion"><span class="spanNotas">5</span></button>`
+        );
+
+        const btns = this.document.getElementsByClassName('btn btnNotas btn-animacion');
+
+        for (let index = 0; index < btns.length; index++) {
+            btns[index].addEventListener('click', girar);
+        }
+
+    });
+
+    btnAgregar.addEventListener("click", () => {
+        agregar_fila(tabla, 'td', '', '', '5');
+    });
+    
     function EliminarFilas()
     {
         let tamañoDefinitiva=document.querySelector(".definitiv");
@@ -189,8 +143,8 @@ window.addEventListener("load", function(){
             tamañoDefinitiva.style.height=tamdefinitiva-50+"px"; 
         }
     }
-    function girar()
-    {
+
+    const girar = () => {
         popup.classList.add('active');
         bodyPopupFront.classList.add('active');
         bodyPopupRight.classList.add('active');

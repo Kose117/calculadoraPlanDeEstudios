@@ -1,5 +1,7 @@
 "using strict"
 
+import { agregar_fila } from "../helpers/functions.js";
+
 let clases;
 fetch("../db/clases.json")
     .then(response => response.json())
@@ -153,13 +155,5 @@ window.addEventListener("load", function(){
                 agregar_fila(tabla_requisitos, "td", clases[codigo].nombre, codigo);
             });
         }
-    }
-    
-    function agregar_fila(tabla, tipo, ...contenido){
-        let fila = "";
-        contenido.forEach(element => {
-            fila += `<${tipo}>${element}</${tipo}>`;
-        });
-        tabla.insertRow(-1).innerHTML = fila;
     }
 });
