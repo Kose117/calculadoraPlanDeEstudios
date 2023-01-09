@@ -103,7 +103,7 @@ window.addEventListener("load", function(){
     btnsCerrar[1].addEventListener("click", function(){
         overlay.classList.remove("active");
         this.classList.remove("active");
-        // popup.classList.remove("active");
+        popup.classList.remove("active");
         
     });
     
@@ -236,6 +236,6 @@ window.addEventListener("load", function(){
     function girar()
     {
         popup.classList.add('active');
-        bodyPopupFront.classList.add('active');
+        // bodyPopupFront.classList.add('active');
     }
 });
