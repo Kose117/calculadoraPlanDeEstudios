@@ -104,44 +104,47 @@ window.addEventListener("load", function(){
             
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
-    let tabla=document.querySelector("#tabla-materias");
+    let tabla=document.querySelector("#tabla-materias"),
+        rIndex;
 
+    const updateLastRowEvents = (table) => {
+        const row = table.rows[table.rows.length-1];
+        row.addEventListener("click", () => {
+            for(var i = 1; i < table.rows.length; i++) {
+                table.rows[i].style.backgroundColor = "";
+            }
+            rIndex = row.rowIndex;
+
+            row.style.backgroundColor = "lightblue";
+        })
+    }
 
     let btnAgregarGrande=this.document.querySelector("#btnAgregarGrande");
     let btnAgregar=this.document.querySelector("#btnAgregar");
     let btnEliminar=this.document.querySelector("#btnEliminar");
 
-    btnEliminar.addEventListener("click",EliminarFilas);
-
+    
     btnAgregarGrande.addEventListener("click", () => {
-
+        
         agregar_fila(tabla, 'td contenteditable="true"', '', '',
-            `<button class="btn btnNotas btn-animacion"><span class="spanNotas">5</span></button>`
+        `<button class="btn btnNotas btn-animacion"><span class="spanNotas">5</span></button>`
         );
-
+        
         const btns = this.document.getElementsByClassName('btn btnNotas btn-animacion');
-
-        for (let index = 0; index < btns.length; index++) {
-            btns[index].addEventListener('click', girar);
-        }
-
-        updateRowEvents();
-    });
-
-    btnAgregar.addEventListener("click", () => {
-        agregar_fila(tabla, 'td contenteditable="true"', '', '', '5');
+        btns[btns.length-1].addEventListener('click', girar);
+        
+        updateLastRowEvents(tabla);
     });
     
-    function EliminarFilas()
-    {
-        let tamañoDefinitiva=document.querySelector(".definitiv");
-        let estilodefinitiva = window.getComputedStyle(tamañoDefinitiva);
-        let tamdefinitiva = parseInt(estilodefinitiva.getPropertyValue('height'));  
-        if(tamdefinitiva>50)
-        {
-            tamañoDefinitiva.style.height=tamdefinitiva-50+"px"; 
-        }
-    }
+    btnAgregar.addEventListener("click", () => {
+        agregar_fila(tabla, 'td contenteditable="true"', '', '', '5');
+        
+        updateLastRowEvents(tabla);
+    });
+    
+    btnEliminar.addEventListener("click", () => {
+        tabla.deleteRow(rIndex);
+    });
 
     const girar = () => {
         popup.classList.add('active');

@@ -382,18 +382,23 @@ table {
 th {
     border:black 2px solid;
     height: 40px;
+    background-color: lightgrey;
+}
+
+tr:hover {
+    background-color: ghostwhite;
 }
 
 td{
     border:black 2px solid;
     width: 25%;
-    background-color: #f1faff;
     overflow: auto;
     height: 40px;
 }
 
-#definitiva{
-    height: auto
+td#definitiva{
+    height: auto;
+    background-color: #f1faff;
 }
 
 .agregar{
