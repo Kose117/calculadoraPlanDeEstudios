@@ -90,6 +90,7 @@ window.addEventListener("load", function(){
             });
         }
     }
+
     let bodyPopupFront=document.querySelector(".body-popup-front");
     let bodyPopupRight=document.querySelector(".body-popup-right");
     let btnsCerrar = this.document.getElementsByClassName("btn-cerrar-popup");
@@ -106,9 +107,12 @@ window.addEventListener("load", function(){
         bodyPopupFront.classList.remove("active");
         bodyPopupRight.classList.remove("active");
     });
+            
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
     let tabla=document.querySelector("#tabla-materias");
+
+
     let btnAgregarGrande=this.document.querySelector("#btnAgregarGrande");
     let btnAgregar=this.document.querySelector("#btnAgregar");
     let btnEliminar=this.document.querySelector("#btnEliminar");
@@ -127,10 +131,13 @@ window.addEventListener("load", function(){
             btns[index].addEventListener('click', girar);
         }
 
+        updateRowEvents();
     });
 
     btnAgregar.addEventListener("click", () => {
         agregar_fila(tabla, 'td', '', '', '5');
+
+        updateRowEvents();
     });
     
     function EliminarFilas()
