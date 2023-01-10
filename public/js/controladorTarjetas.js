@@ -104,11 +104,11 @@ window.addEventListener("load", function(){
             
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
-    let tabla=document.querySelector("#tabla-materias"),
-        rIndex;
+    let tabla = document.querySelector("#tabla-materias"),
+        rIndex = -1;
 
-    const updateLastRowEvents = (table) => {
-        const row = table.rows[table.rows.length-1];
+    const updateLastRowEvents = (table, index=table.rows.length-1) => {
+        const row = table.rows[index];
         row.addEventListener("click", () => {
             for(var i = 1; i < table.rows.length; i++) {
                 table.rows[i].style.backgroundColor = "";
@@ -126,8 +126,8 @@ window.addEventListener("load", function(){
     
     btnAgregarGrande.addEventListener("click", () => {
         
-        agregar_fila(tabla, 'td contenteditable="true"', '', '',
-        `<button class="btn btnNotas btn-animacion"><span class="spanNotas">5</span></button>`
+        agregar_fila(tabla, 'td contenteditable="true"', ['', '',
+            `<button class="btn btnNotas btn-animacion"><span class="spanNotas">5</span></button>`]
         );
         
         const btns = this.document.getElementsByClassName('btn btnNotas btn-animacion');
@@ -137,13 +137,16 @@ window.addEventListener("load", function(){
     });
     
     btnAgregar.addEventListener("click", () => {
-        agregar_fila(tabla, 'td contenteditable="true"', '', '', '5');
+        agregar_fila(tabla, 'td contenteditable="true"', ['', '', '5']);
         
         updateLastRowEvents(tabla);
     });
     
     btnEliminar.addEventListener("click", () => {
+        if (tabla.rows.length <= 2) 
+            return
         tabla.deleteRow(rIndex);
+        rIndex = -1;
     });
 
     const girar = () => {

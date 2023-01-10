@@ -150,9 +150,9 @@ window.addEventListener("load", function(){
 
     function agregar_lista_requisitos(header, codigos){
         if (codigos.length != 0){
-            agregar_fila(tabla_requisitos, "th", header, "Codigo");
+            agregar_fila(tabla_requisitos, "th", [header, "Codigo"]);
             codigos.forEach(codigo => {
-                agregar_fila(tabla_requisitos, "td", clases[codigo].nombre, codigo);
+                agregar_fila(tabla_requisitos, "td", [clases[codigo].nombre, codigo]);
             });
         }
     }

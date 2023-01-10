@@ -383,6 +383,7 @@ th {
     border:black 2px solid;
     height: 40px;
     background-color: lightgrey;
+    width: 25%;
 }
 
 tr:hover {
@@ -392,7 +393,6 @@ tr:hover {
 td{
     border:black 2px solid;
     width: 25%;
-    overflow: auto;
     height: 40px;
 }
 
