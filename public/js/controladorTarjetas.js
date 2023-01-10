@@ -65,7 +65,6 @@ window.addEventListener("load", function(){
 
         let btn=document.createElement("button");
         btn.classList.add("btn",'btn-abrir-popup');
-        // btn.setAttribute('id','btn-abrir-popup');
         bodyCardBack.appendChild(btn);
 
         let span=document.createElement("span");
@@ -77,16 +76,10 @@ window.addEventListener("load", function(){
             overlay = document.querySelector(".overlay"),
             popup = document.querySelector(".popup-father");
     
-        // btnAbrirPopup?.addEventListener('click', function(){
-        //     overlay.classList.add('active');
-        //     popup.classList.add('active');
-        //     console.log(overlay);
-        // });
-    
         for (let index = 0; index < btnAbrirPopup.length; index++) {
             btnAbrirPopup[index].addEventListener('click', function(){
                 overlay.classList.add('active');
-	            popup.classList.add('active');
+	            document.getElementsByClassName("popup-father")[0].classList.add("active")
             });
         }
     }
@@ -94,16 +87,17 @@ window.addEventListener("load", function(){
     let bodyPopupFront=document.querySelector(".body-popup-front");
     let bodyPopupRight=document.querySelector(".body-popup-right");
     let btnsCerrar = this.document.getElementsByClassName("btn-cerrar-popup");
+    
     btnsCerrar[0].addEventListener("click", function(){
-        
         overlay.classList.remove("active");
         this.classList.remove("active");
-        
+        document.getElementsByClassName("popup-father")[0].classList.remove("active")
     });
     btnsCerrar[1].addEventListener("click", function(){
         overlay.classList.remove("active");
         this.classList.remove("active");
         popup.classList.remove("active");
+        document.getElementsByClassName("popup-father")[0].classList.remove("active")
         bodyPopupFront.classList.remove("active");
         bodyPopupRight.classList.remove("active");
     });
@@ -121,7 +115,7 @@ window.addEventListener("load", function(){
 
     btnAgregarGrande.addEventListener("click", () => {
 
-        agregar_fila(tabla, 'td', '', '',
+        agregar_fila(tabla, 'td contenteditable="true"', '', '',
             `<button class="btn btnNotas btn-animacion"><span class="spanNotas">5</span></button>`
         );
 
@@ -135,9 +129,7 @@ window.addEventListener("load", function(){
     });
 
     btnAgregar.addEventListener("click", () => {
-        agregar_fila(tabla, 'td', '', '', '5');
-
-        updateRowEvents();
+        agregar_fila(tabla, 'td contenteditable="true"', '', '', '5');
     });
     
     function EliminarFilas()
