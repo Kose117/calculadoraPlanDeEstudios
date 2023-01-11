@@ -91,44 +91,67 @@ window.addEventListener("load", function(){
     btnsCerrar[0].addEventListener("click", function(){
         overlay.classList.remove("active");
         this.classList.remove("active");
-        document.getElementsByClassName("popup-father")[0].classList.remove("active")
+        document.getElementsByClassName("popup-father")[0].classList.remove("active");
+        clearSelection(tabla);
     });
+
     btnsCerrar[1].addEventListener("click", function(){
         overlay.classList.remove("active");
         this.classList.remove("active");
         popup.classList.remove("active");
-        document.getElementsByClassName("popup-father")[0].classList.remove("active")
+        document.getElementsByClassName("popup-father")[0].classList.remove("active");
         bodyPopupFront.classList.remove("active");
         bodyPopupRight.classList.remove("active");
+        clearSelection(tabla);
     });
             
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
     let tabla = document.querySelector("#tabla-materias"),
         rIndex = -1;
+    
+    const hasFocus = element => (element === document.activeElement);
+    
+    const clearSelection = (table) => {
+        for(var i = 1; i < table.rows.length; i++) {
+            table.rows[i].style.backgroundColor = "";
+        }
+        rIndex = -1;
+    }
 
     const updateLastRowEvents = (table, index=table.rows.length-1) => {
         const row = table.rows[index];
         row.addEventListener("click", () => {
-            for(var i = 1; i < table.rows.length; i++) {
-                table.rows[i].style.backgroundColor = "";
-            }
+            clearSelection(table);
+            if (hasFocus(document.getElementById('definitiva')))
+                return
             rIndex = row.rowIndex;
 
             row.style.backgroundColor = "lightblue";
-        })
+            
+        });
     }
 
-    let btnAgregarGrande=this.document.querySelector("#btnAgregarGrande");
-    let btnAgregar=this.document.querySelector("#btnAgregar");
-    let btnEliminar=this.document.querySelector("#btnEliminar");
+    const btnAgregarGrande=this.document.querySelector("#btnAgregarGrande");
+    const btnAgregar=this.document.querySelector("#btnAgregar");
+    const btnEliminar=this.document.querySelector("#btnEliminar");
 
-    
+    const addDefinitiva = (table, nota = 0) => {
+        const definitiva = this.document.createElement('td');
+        definitiva.contentEditable = 'true';
+        definitiva.id = 'definitiva';
+        definitiva.rowSpan = '100%';
+        definitiva.textContent = nota;
+        table.rows[1].appendChild(definitiva);
+    }
+
     btnAgregarGrande.addEventListener("click", () => {
         
         agregar_fila(tabla, 'td contenteditable="true"', ['', '',
-            `<button class="btn btnNotas btn-animacion"><span class="spanNotas">5</span></button>`]
+            `<button class="btn btnNotas btn-animacion"><span class="spanNotas">0</span></button>`]
         );
+
+        if (tabla.rows.length == 2) addDefinitiva(tabla);
         
         const btns = this.document.getElementsByClassName('btn btnNotas btn-animacion');
         btns[btns.length-1].addEventListener('click', girar);
@@ -137,15 +160,22 @@ window.addEventListener("load", function(){
     });
     
     btnAgregar.addEventListener("click", () => {
-        agregar_fila(tabla, 'td contenteditable="true"', ['', '', '5']);
+        agregar_fila(tabla, 'td contenteditable="true"', ['', '', '0']);
+
+        if (tabla.rows.length == 2) addDefinitiva(tabla);
         
         updateLastRowEvents(tabla);
     });
     
     btnEliminar.addEventListener("click", () => {
-        if (tabla.rows.length <= 2) 
+        if (tabla.rows.length <= 1) 
             return
-        tabla.deleteRow(rIndex);
+        if (rIndex == 1){
+            const notaDefinitiva = this.document.querySelector('#definitiva').textContent;
+            tabla.deleteRow(rIndex);
+            addDefinitiva(tabla, notaDefinitiva);
+        }
+        else tabla.deleteRow(rIndex);
         rIndex = -1;
     });
 
