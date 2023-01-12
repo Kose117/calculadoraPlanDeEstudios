@@ -21,6 +21,9 @@ app.get('/plan-de-estudios', (req, res) => {
 app.get('/calculadora-promedio', (req, res) => {
     res.render('calculadora-promedio');
 });
+app.get('/cubo', (req, res) => {
+    res.render('cubo');
+});
 
 app.get('*', (req, res) => {
     res.send('404 | not found')
