@@ -3,11 +3,11 @@
 import { agregar_fila } from "../helpers/functions.js";
 
 let clases;
-fetch("../db/clases.json")
+
+fetch("/json/clases")
     .then(response => response.json())
-    .then(data =>{
-        clases = data;
-    });
+    .then(data => clases = data);
+
 export const materias=new Map();
 
 window.addEventListener("load", function(){
@@ -57,7 +57,7 @@ window.addEventListener("load", function(){
         agregar_lista_requisitos("pre-requisitos", materia.pre_requisitos);
         agregar_lista_requisitos("co-requisitos", materia.co_requisitos);
         if (materia.pre_requisitos == 0 && materia.co_requisitos == 0){
-            agregar_fila(tabla_requisitos, "td", "Esta materia no tiene requisitos");
+            agregar_fila(tabla_requisitos, "td", ["Esta materia no tiene requisitos"]);
         }
         if(materia.nota=="")
         {
