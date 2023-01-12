@@ -386,6 +386,10 @@ th {
     width: 25%;
 }
 
+tr{
+    pointer-events: none;
+}
+
 tr:hover {
     background-color: ghostwhite;
 }
@@ -394,11 +398,13 @@ td{
     border:black 2px solid;
     width: 25%;
     height: 40px;
+    pointer-events: auto;
 }
 
 td#definitiva{
     height: auto;
     background-color: #f1faff;
+    pointer-events: none;
 }
 
 .agregar{
