@@ -1,6 +1,3 @@
-*{
-    font-family: "Poppins", sans-serif;
-}
 
 :root{
     --bg-plan-estudios: url(../images/planDeEstudios.jpg);
@@ -11,6 +8,10 @@
     --left-btn-materias: 67px;
     --space-between-semesters: 159px;
     --space-between-years: 177px;
+}
+
+*{
+    font-family: "Poppins", sans-serif;
 }
 
 @media (min-width: 1440px){

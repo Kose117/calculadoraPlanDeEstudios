@@ -1,7 +1,8 @@
+
 :root {
     --tamanoCubo: 210px;
     --tamanoLinterna: 41px;
-    --colorLinterna:rgb(202, 82, 235);
+    --colorLinterna:rgb(82, 187, 235);
     --colorLinternaPrendida:yellow;
 }
 
@@ -9,6 +10,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 body {

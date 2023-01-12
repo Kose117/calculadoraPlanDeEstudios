@@ -11,8 +11,13 @@ const calculadoraPromedioGet = (req, res) => {
     res.render('calculadora-promedio');
 }
 
+const cubeGet = (req, res) => {
+    res.render('cubo');
+}
+
 module.exports = {
     mainGet,
     planEstudiosGet,
-    calculadoraPromedioGet
+    calculadoraPromedioGet,
+    cubeGet
 }
