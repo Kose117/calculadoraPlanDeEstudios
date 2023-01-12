@@ -1,0 +1,20 @@
+{
+    "semestres":{
+        "1":[],
+        "2":[],
+        "3":[],
+        "4":[],
+        "5":[],
+        "6":[],
+        "7":[],
+        "8":[]
+    },
+    "carrera":"Ingeniería de sistemas",
+    "semestre-actual":0,
+    "creditos-aprobados-NFF":0,
+    "creditos-aprobados-enfasis":0,
+    "creditos-aprobados-electivas":0,
+    "creditos-aprobados-complementarias":0,
+    "creditos-aprobados":0,
+    "promedio-general":0
+}
