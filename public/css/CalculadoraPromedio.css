@@ -13,29 +13,32 @@
 }
 body
 {
-    background: #f1faff;
+    /* background: #f1faff; */
+    background: #000;
 }
 /* ---------- Contenedor cartas ---------- */
 .container-card
 {
     max-width: 1400px;
     margin: auto;
-    margin-top: 70px;
+    margin-top: 10%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: rgba(35, 33, 33, 0.5);
     border-radius: 7px;
     perspective: 1000px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 400px));
-    gap: 10px;
+    grid-template-columns: repeat(3, minmax(30%, 35%));
+    column-gap: 5%;
+    row-gap: 15%;
 }
 /* ---------- Carta padre, es necesaria para que evitar un error ---------- */
 .card-father
 {
     margin: 20px;
     perspective: 1000px;
+    /* desactivar lo de abajo para ponerle reflejo a las cartas */
+    -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, rgba(0,0,0,0.2));
 }
 .card-father:hover .card
 {
@@ -160,7 +163,7 @@ body
     line-height: 16px;
     top: 20px;
     left: 15px;
-    color: black;
+    color: rgb(255, 255, 255);
     transition: .3s;
     cursor: pointer;
 }

@@ -7,6 +7,7 @@ window.addEventListener("load", function(){
     let btnCubo= document.querySelector("#boton-cubo");
     btnAnadir.addEventListener("click", crearTarjetas);
     btnCubo.addEventListener("click", crearCubo);
+    
     let containerCard=document.querySelector(".container-card");
     const template=this.document.querySelector("#cubo-template").content;
     const fragmente=this.document.createDocumentFragment();
