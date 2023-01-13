@@ -3,12 +3,21 @@ import { agregar_fila } from "../helpers/functions.js";
 
 window.addEventListener("load", function(){
 /*---------------------------------crear tarjetas---------------------------------*/ 
-    let btnAnadir = document.querySelector("#boton");
+    let btnAnadir = document.querySelector("#boton-tarjeta");
+    let btnCubo= document.querySelector("#boton-cubo");
     btnAnadir.addEventListener("click", crearTarjetas);
-
+    btnCubo.addEventListener("click", crearCubo);
+    let containerCard=document.querySelector(".container-card");
+    const template=this.document.querySelector("#cubo-template").content;
+    const fragmente=this.document.createDocumentFragment();
+    function crearCubo()
+    {
+        const clone=template.cloneNode(true);
+        fragmente.appendChild(clone);
+        containerCard.appendChild(fragmente);
+    }
     function crearTarjetas()
     {
-        let containerCard=document.querySelector(".container-card");
                         
         let cardFather=document.createElement("div");
         cardFather.classList.add("card-father");

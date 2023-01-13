@@ -5,6 +5,12 @@
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
 }
+:root {
+    --tamanoCubo: 210px;
+    --tamanoLinterna: 41px;
+    --colorLinterna:rgb(82, 187, 235);
+    --colorLinternaPrendida:yellow;
+}
 body
 {
     background: #f1faff;
@@ -466,8 +472,207 @@ td#definitiva{
 	transform: scale(200);
     background: rgba(215, 36, 125, 0.404)
 }
+/* ------------------------ */
+.cubo {
+    position: relative;
+    Width: var(--tamanoCubo);
+    height: var(--tamanoCubo);
+    transform-style: preserve-3d;
+    transform: rotateX(-360deg);
+    animation: animate 12s linear infinite;
+    cursor: pointer;
 
 
+}
+
+@keyframes animate {
+    0% {
+        transform: rotateX(-20deg) rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateX(-20deg) rotateY(360deg);
+    }
+}
+
+
+.cubo:hover #frente {
+    transform: translateX(calc(var(--tamanoCubo)/2)) rotateY(90deg) rotateX(-90deg) translateY(calc(var(--tamanoCubo)/-2)) translateZ(calc(var(--tamanoCubo)/2));
+
+}
+
+.cubo:hover #atras {
+    transform: translateX(calc(var(--tamanoCubo)/-2)) rotateY(-90deg) rotateX(-90deg) translateY(calc(var(--tamanoCubo)/-2)) translateZ(calc(var(--tamanoCubo)/2));
+
+}
+
+.cubo:hover #derecha {
+    transform: translateZ(calc(var(--tamanoCubo)/2)) rotateX(-90deg) translateY(calc(var(--tamanoCubo)/-2)) translateZ(calc(var(--tamanoCubo)/2));
+
+}
+
+.cubo:hover #izquierda {
+    transform: translateZ(calc(var(--tamanoCubo)/-2)) rotateY(180deg) rotateX(-90deg) translateY(calc(var(--tamanoCubo)/-2)) translateZ(calc(var(--tamanoCubo)/2));
+
+}
+
+.cubo:hover #arriba {
+    transform: rotateX(90deg) translateZ(calc(var(--tamanoCubo)*10));
+
+}
+.cubo:hover #botonCubo
+{
+    top: calc(var(--tamanoCubo)/4);
+}
+
+.caras {
+    transition: all 800ms;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#151515, #00ec00);
+    transform: rotateY(calc(90deg*var(--i)))translateZ(calc(var(--tamanoCubo)/2));
+    color: aliceblue;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: calc(var(--tamanoCubo)/7);
+}
+
+#abajo {
+    transform: rotateX(90deg) translateZ(calc(var(--tamanoCubo)/-2));
+    background: #00ec00;
+}
+
+#frente {
+
+    transform: translateX(calc(var(--tamanoCubo)/2)) rotateY(90deg);
+}
+
+#atras {
+    transform: translateX(calc(var(--tamanoCubo)/-2)) rotateY(-90deg);
+}
+
+#derecha {
+    transform: translateZ(calc(var(--tamanoCubo)/2));
+}
+
+#izquierda {
+
+    transform: translateZ(calc(var(--tamanoCubo)/-2)) rotateY(180deg);
+
+}
+
+#arriba {
+    background: #222;
+    transform: rotateX(90deg) translateZ(calc(var(--tamanoCubo)/2));
+}
+
+#abajo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--tamanoCubo);
+    height: var(--tamanoCubo);
+    background: #0f0;
+    transform: translateZ(calc(var(--tamanoCubo)/-3));
+    filter: blur(20px);
+    box-shadow: 0 0 120px rgba(0, 255, 0, 0.2),
+        0 0 200px rgba(0, 255, 0, 0.4),
+        0 0 300px rgba(0, 255, 0, 0.6),
+        0 0 400px rgba(0, 255, 0, 0.8),
+        0 0 500px rgba(0, 255, 0, 1), ;
+}
+
+/* ----------------------botonCubo----------------------- */
+.botonCubo {
+    top: calc(var(--tamanoLinterna)*3.5);;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: anima 5s linear infinite;
+    transition: all 1s;
+}
+
+@keyframes anima {
+    0% {
+        transform: rotateY(360deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+.botonCubo div {
+    transform-style: preserve-3d;
+}
+
+.botonCubo div.bloque span {
+    position: absolute;
+    left: calc(50% - calc(var(--tamanoLinterna)/1));
+    width: calc(var(--tamanoLinterna)*2);
+    height: calc(var(--tamanoLinterna)/1);
+    background: var(--colorLinterna);
+    transform: rotateY(calc(90deg*var(--i))) translateZ(calc(var(--tamanoLinterna)/1));
+    transition: 0.5s;
+}
+
+.botonCubo:hover div.bloque span {
+    background: yellow;
+    filter: drop-shadow(0 0 50px yellow);
+}
+
+.botonCubo div.texto span {
+    position: absolute;
+    width: 100%;
+    height: calc(var(--tamanoLinterna)/1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(calc(90deg*var(--i))) translateZ(calc(var(--tamanoLinterna)*1.5));
+    cursor: pointer;
+    color: #fff;
+    font-size: calc(var(--tamanoLinterna)/2);
+    text-transform: uppercase;
+    line-height: 1em;
+    -webkit-text-stroke: 1px #000;
+    transform-style: preserve-3d;
+}
+
+.botonCubo div.texto span:nth-child(4) {
+    font-size: calc(var(--tamanoLinterna)/2.2);
+}
+
+.botonCubo div.texto span::before {
+    content: attr(data-text);
+    position: absolute;
+    bottom: 7px;
+    transform-origin: bottom;
+    transform: rotateX(-90deg);
+    color: rgba(0, 0, 0, 0.1);
+    -webkit-text-stroke: 0px #000;
+    filter: blur(5px);
+}
+
+.botonCubo div.texto span::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--tamanoLinterna)/1);
+    width: calc(var(--tamanoLinterna)*3.6);
+    height: calc(var(--tamanoLinterna)*0.6);
+    background: var(--colorLinterna);
+    transform: rotateX(-90deg);
+    transition: 0.5s;
+}
+
+.botonCubo:hover div.texto span::after {
+    background: var(--colorLinternaPrendida);
+    filter: drop-shadow(0 0 50px var(--colorLinternaPrendida));
+}
 
 
 

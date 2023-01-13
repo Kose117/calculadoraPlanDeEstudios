@@ -1,20 +1,20 @@
 
-:root {
-    --tamanoCubo: 210px;
-    --tamanoLinterna: 41px;
-    --colorLinterna:rgb(82, 187, 235);
-    --colorLinternaPrendida:yellow;
-}
 
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    
     font-family: "Poppins", sans-serif;
 }
 
 body {
     background-color: #000;
+}
+:root {
+    --tamanoCubo: 210px;
+    --tamanoLinterna: 41px;
+    --colorLinterna:rgb(82, 187, 235);
+    --colorLinternaPrendida:yellow;
 }
 
 .cubo {
@@ -66,7 +66,7 @@ body {
     transform: rotateX(90deg) translateZ(calc(var(--tamanoCubo)*10));
 
 }
-.cubo:hover #boton
+.cubo:hover #botonCubo
 {
     top: calc(var(--tamanoCubo)/4);
 }
@@ -134,8 +134,8 @@ body {
         0 0 500px rgba(0, 255, 0, 1), ;
 }
 
-/* ----------------------boton----------------------- */
-.boton {
+/* ----------------------botonCubo----------------------- */
+.botonCubo {
     top: calc(var(--tamanoLinterna)*3.5);;
     position: relative;
     transform-style: preserve-3d;
@@ -153,11 +153,11 @@ body {
     }
 }
 
-.boton div {
+.botonCubo div {
     transform-style: preserve-3d;
 }
 
-.boton div.bloque span {
+.botonCubo div.bloque span {
     position: absolute;
     left: calc(50% - calc(var(--tamanoLinterna)/1));
     width: calc(var(--tamanoLinterna)*2);
@@ -167,12 +167,12 @@ body {
     transition: 0.5s;
 }
 
-.boton:hover div.bloque span {
+.botonCubo:hover div.bloque span {
     background: yellow;
     filter: drop-shadow(0 0 50px yellow);
 }
 
-.boton div.texto span {
+.botonCubo div.texto span {
     position: absolute;
     width: 100%;
     height: calc(var(--tamanoLinterna)/1);
@@ -189,11 +189,11 @@ body {
     transform-style: preserve-3d;
 }
 
-.boton div.texto span:nth-child(4) {
+.botonCubo div.texto span:nth-child(4) {
     font-size: calc(var(--tamanoLinterna)/2.2);
 }
 
-.boton div.texto span::before {
+.botonCubo div.texto span::before {
     content: attr(data-text);
     position: absolute;
     bottom: 7px;
@@ -204,7 +204,7 @@ body {
     filter: blur(5px);
 }
 
-.boton div.texto span::after {
+.botonCubo div.texto span::after {
     content: '';
     position: absolute;
     top: calc(var(--tamanoLinterna)/1);
@@ -215,7 +215,7 @@ body {
     transition: 0.5s;
 }
 
-.boton:hover div.texto span::after {
+.botonCubo:hover div.texto span::after {
     background: var(--colorLinternaPrendida);
     filter: drop-shadow(0 0 50px var(--colorLinternaPrendida));
 }

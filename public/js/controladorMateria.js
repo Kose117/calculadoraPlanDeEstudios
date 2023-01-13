@@ -79,8 +79,6 @@ window.addEventListener("load", function(){
         }
         //Impresion
         console.log(materias)
-           
-        
     }
     
     btnAgregar.addEventListener("click",function (){
