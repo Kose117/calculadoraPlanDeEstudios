@@ -16,7 +16,15 @@ const clasesJsonGet = (req, res) => {
 }
 
 const clasesJsonPut = (req, res) => {
+    const { codigo, semestre, profesor, nota } = req.body;
+    const clases = readDB('./public/json/clases.json');
 
+    clases[codigo].semestre = semestre;
+    clases[codigo].profesor = profesor;
+    clases[codigo].nota = nota;
+
+    saveDB('./public/json/clases.json', clases);
+    res.json({msg: 'La información de su clase se guardo correctamente'});
 }
 
 const materiasJsonGet = (req, res) => {

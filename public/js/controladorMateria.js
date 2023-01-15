@@ -1,31 +1,43 @@
 "using strict"
 
+import { getJson, putClase } from "../helpers/requests.js";
 import { agregar_fila } from "../helpers/functions.js";
 
-let clases;
 
-fetch("/json/clases")
-    .then(response => response.json())
-    .then(data => clases = data);
 
-export const materias=new Map();
+export const materias = new Map();
 
-window.addEventListener("load", function(){
-
-    var btnsMaterias = this.document.getElementsByClassName("btn-materias");
-    var overlay = this.document.querySelector(".overlay");
-    var btnCerrar = this.document.querySelector("#cerrar");
-    var nombre_materia = this.document.querySelector("#nombre-materia");
-    var codigo = this.document.querySelector("#codigo");
-    var creditos = this.document.querySelector("#creditos");
-    var tipo = this.document.querySelector("#tipo");
-    var tabla_requisitos = this.document.querySelector("#preRequi");
-    var nota=this.document.querySelector("#nota");
-    var profe=this.document.querySelector("#profesor");
-    var semestre=this.document.querySelector("#semestre");
-    var btnAgregar=this.document.querySelector("#bt2");
-    var btnEliminar=this.document.querySelector("#bt1");
+window.addEventListener("load", async() => {
     
+    const clases = await getJson('/json/clases');
+
+    var btnsMaterias = document.getElementsByClassName("btn-materias");
+    var overlay = document.querySelector(".overlay");
+    var btnCerrar = document.querySelector("#cerrar");
+    var nombre_materia = document.querySelector("#nombre-materia");
+    var codigo = document.querySelector("#codigo");
+    var creditos = document.querySelector("#creditos");
+    var tipo = document.querySelector("#tipo");
+    var tabla_requisitos = document.querySelector("#preRequi");
+    var nota = document.querySelector("#nota");
+    var profe = document.querySelector("#profesor");
+    var semestre = document.querySelector("#semestre");
+    var btnAgregar = document.querySelector("#bt2");
+    var btnEliminar = document.querySelector("#bt1");
+    
+    const guardarMateria = async(codigo, num_semestre, profesor, mi_nota) => {
+        semestre.setAttribute('readonly','true');
+        profe.setAttribute('readonly','true');
+        nota.setAttribute('readonly','true');
+
+        clases[codigo].nota=mi_nota;
+        clases[codigo].profesor=profesor;
+        clases[codigo].semestre=num_semestre;
+
+        materias.set(codigo,clases[codigo]);
+        await putClase(codigo, num_semestre, profesor, mi_nota)
+    }
+
     for (var i = 0; i < btnsMaterias.length; i++){
         btnsMaterias.item(i).addEventListener("click", function(){
             document.getElementsByClassName("popup")[0].classList.add("active")
@@ -59,74 +71,52 @@ window.addEventListener("load", function(){
         if (materia.pre_requisitos == 0 && materia.co_requisitos == 0){
             agregar_fila(tabla_requisitos, "td", ["Esta materia no tiene requisitos"]);
         }
-        if(materia.nota=="")
-        {
-            nota.value=0;
+        if(materia.nota==""){
+            nota.value = 0;
         }
-        if(materia.profesor=="")
-        {
-            profe.value="No asignado";
+        if(materia.profesor==""){
+            profe.value = "No asignado";
         }
-        if(materia.semestre=="")
-        {
-            semestre.value="No asignado";
+        if(materia.semestre==""){
+            semestre.value = "No asignado";
         }
-        if(!materias.has(codigo.value))
-        {
-            btnAgregar.textContent="Agregar";
-            btnEliminar.textContent="Editar";
+        if(!materias.has(codigo.value)){
+            btnAgregar.textContent = "Agregar";
+            btnEliminar.textContent = "Editar";
             
         }
         //Impresion
-        console.log(materias)
+        // console.log(materias)
     }
     
-    btnAgregar.addEventListener("click",function (){
+    btnAgregar.addEventListener("click", () => {
        
-        if(btnAgregar.textContent=="Agregar")
-        {
-            clases[codigo.value].nota=nota.value;
-            clases[codigo.value].profesor=profe.value;
-            clases[codigo.value].semestre=semestre.value;
-            materias.set(codigo.value,clases[codigo.value]);
-           
-            btnAgregar.textContent="Editar";
-            btnEliminar.textContent="Eliminar";
+        if(btnAgregar.textContent == "Agregar"){
+            guardarMateria(codigo.value, semestre.value, profe.value, nota.value);
             
-            semestre.setAttribute('readonly','true');
-            profe.setAttribute('readonly','true');
-            nota.setAttribute('readonly','true');
-        }
-        else if(btnAgregar.textContent=="Editar")
-        {
+            btnAgregar.textContent = "Editar";
+            btnEliminar.textContent = "Eliminar";
+
+        }else if(btnAgregar.textContent=="Editar"){
             semestre.removeAttribute('readonly');
             profe.removeAttribute('readonly');
             nota.removeAttribute('readonly');
+
             btnAgregar.textContent="Guardar";
-        }
-        else if(btnAgregar.textContent=="Guardar")
-        {
-            semestre.setAttribute('readonly','true');
-            profe.setAttribute('readonly','true');
-            nota.setAttribute('readonly','true');
+
+        } else if(btnAgregar.textContent=="Guardar"){
+            guardarMateria(codigo.value, semestre.value, profe.value, nota.value);
             btnAgregar.textContent="Editar";
-            clases[codigo.value].nota=nota.value;
-            clases[codigo.value].profesor=profe.value;
-            clases[codigo.value].semestre=semestre.value;
-            materias.set(codigo.value,clases[codigo.value]);
         }
     });
 
     btnEliminar.addEventListener("click",function elimi(){
-        if(btnEliminar.textContent=="Editar")
-        {
+        if(btnEliminar.textContent=="Editar"){
             semestre.removeAttribute('readonly');
             profe.removeAttribute('readonly');
             nota.removeAttribute('readonly');
             btnEliminar.textContent="Guardar";
-        }
-        else if(btnEliminar.textContent=="Eliminar")
-        {
+        }else if(btnEliminar.textContent=="Eliminar"){
             materias.delete(codigo.value,clases[codigo.value]);
             
             btnAgregar.textContent="Agregar";
@@ -135,14 +125,10 @@ window.addEventListener("load", function(){
             semestre.setAttribute('readonly','true');
             profe.setAttribute('readonly','true');
             nota.setAttribute('readonly','true');
-        }
-        else if(btnEliminar.textContent=="Guardar")
-        {
-            semestre.setAttribute('readonly','true');
-            profe.setAttribute('readonly','true');
-            nota.setAttribute('readonly','true');
-            btnEliminar.textContent="Editar";
+        }else if(btnEliminar.textContent=="Guardar"){
+            guardarMateria(codigo.value, semestre.value, profe.value, nota.value);
             
+            btnEliminar.textContent="Editar";
         }
     });
 

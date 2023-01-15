@@ -1,7 +1,7 @@
 
 import { agregar_fila } from "../helpers/functions.js";
 
-window.addEventListener("load", function(){
+window.addEventListener("load", async() => {
 /*---------------------------------crear tarjetas---------------------------------*/ 
     let btnAnadir = document.querySelector("#boton-tarjeta");
     let btnCubo= document.querySelector("#boton-cubo");
@@ -9,16 +9,16 @@ window.addEventListener("load", function(){
     btnCubo.addEventListener("click", crearCubo);
     
     let containerCard=document.querySelector(".container-card");
-    const template=this.document.querySelector("#cubo-template").content;
-    const fragmente=this.document.createDocumentFragment();
-    function crearCubo()
-    {
+    const template=document.querySelector("#cubo-template").content;
+    const fragmente=document.createDocumentFragment();
+
+    function crearCubo() {
         const clone=template.cloneNode(true);
         fragmente.appendChild(clone);
         containerCard.appendChild(fragmente);
     }
-    function crearTarjetas()
-    {
+    
+    function crearTarjetas() {
                         
         let cardFather=document.createElement("div");
         cardFather.classList.add("card-father");
@@ -48,7 +48,7 @@ window.addEventListener("load", function(){
 
         let cardBack=document.createElement("div");
         cardBack.classList.add("card-back");
-        cardBack.style.backgroundImage= "url('../images/')";;
+        // cardBack.style.backgroundImage= "url('../images/')";
         card.appendChild(cardBack);
 
         let bodyCardBack=document.createElement("div");
@@ -96,7 +96,7 @@ window.addEventListener("load", function(){
 
     let bodyPopupFront=document.querySelector(".body-popup-front");
     let bodyPopupRight=document.querySelector(".body-popup-right");
-    let btnsCerrar = this.document.getElementsByClassName("btn-cerrar-popup");
+    let btnsCerrar = document.getElementsByClassName("btn-cerrar-popup");
     
     btnsCerrar[0].addEventListener("click", function(){
         overlay.classList.remove("active");
@@ -142,12 +142,12 @@ window.addEventListener("load", function(){
         });
     }
 
-    const btnAgregarGrande=this.document.querySelector("#btnAgregarGrande");
-    const btnAgregar=this.document.querySelector("#btnAgregar");
-    const btnEliminar=this.document.querySelector("#btnEliminar");
+    const btnAgregarGrande=document.querySelector("#btnAgregarGrande");
+    const btnAgregar=document.querySelector("#btnAgregar");
+    const btnEliminar=document.querySelector("#btnEliminar");
 
     const addDefinitiva = (table, nota = 0) => {
-        const definitiva = this.document.createElement('td');
+        const definitiva = document.createElement('td');
         definitiva.contentEditable = 'true';
         definitiva.id = 'definitiva';
         definitiva.rowSpan = '100%';
@@ -163,7 +163,7 @@ window.addEventListener("load", function(){
 
         if (tabla.rows.length == 2) addDefinitiva(tabla);
         
-        const btns = this.document.getElementsByClassName('btn btnNotas btn-animacion');
+        const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
         btns[btns.length-1].addEventListener('click', girar);
         
         updateLastRowEvents(tabla);
@@ -181,7 +181,7 @@ window.addEventListener("load", function(){
         if (tabla.rows.length <= 1) 
             return
         if (rIndex == 1){
-            const notaDefinitiva = this.document.querySelector('#definitiva').textContent;
+            const notaDefinitiva = document.querySelector('#definitiva').textContent;
             tabla.deleteRow(rIndex);
             addDefinitiva(tabla, notaDefinitiva);
         }

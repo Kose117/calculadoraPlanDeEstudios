@@ -15,6 +15,7 @@ const cubeGet = (req, res) => {
     res.render('cubo');
 }
 
+
 module.exports = {
     mainGet,
     planEstudiosGet,
