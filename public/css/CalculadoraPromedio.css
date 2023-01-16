@@ -15,15 +15,18 @@ body
 {
     /* background: #f1faff; */
     background: #000;
+    
 }
 /* ---------- Contenedor cartas ---------- */
 .container-card
 {
+    width: 100vw;
+    height: 100vh;
     max-width: 1400px;
     margin: auto;
-    margin-top: 10%;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     border-radius: 7px;
     perspective: 1000px;
@@ -274,8 +277,8 @@ body
 .popup
 {
     position: absolute;
-    width: 800px;
-    height: 400px;
+    width: 50vw;
+    height: 55vh;
     transform-style: preserve-3d; 
     transition:all 800ms ;  
     
@@ -299,12 +302,12 @@ body
     transform-style: preserve-3d;
 }
 .popup-front{
-    transform: translateZ(400px);
+    transform: translateZ(25vw);
 }
 .popup-right
 {
     
-    left: 400px;
+    left: 25vw;
     transform:rotateY(90deg);
 }
 .body-popup-front, .body-popup-right
@@ -675,6 +678,31 @@ td#definitiva{
 .botonCubo:hover div.texto span::after {
     background: var(--colorLinternaPrendida);
     filter: drop-shadow(0 0 50px var(--colorLinternaPrendida));
+}
+/*------------------------------------------------------------*/
+.container-general
+{
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory; 
+    position: absolute;
+    
+} 
+section
+{
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#uno
+{
+    color: #fff;
 }
 
 
