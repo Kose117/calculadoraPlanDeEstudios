@@ -27,15 +27,30 @@ const clasesJsonPut = (req, res) => {
     res.json({msg: 'La información de su clase se guardo correctamente'});
 }
 
-const materiasJsonGet = (req, res) => {
+const carreraJsonGet = (req, res) => {
     res.json(readDB('./public/json/mi-carrera.json'));
 }
 
-const materiasJsonPut = (req, res) => {
+const carreraJsonPut = (req, res) => {
+    const { codigo } = req.body;
+    const clases = readDB('./public/json/clases.json');
+    const clase = clases[codigo];
 
+    clase.id = codigo;
+    clase.nota = {};
+    clase.aprobada = false;
+
+    const carrera = readDB('./public/json/mi-carrera.json');
+
+    (carrera.semestres["1"] === undefined)
+        ?carrera.semestres["1"] = [clase]
+        :carrera.semestres["1"].push(clase);
+
+    saveDB('./public/json/mi-carrera.json', carrera);
+    res.json({msg: 'La información de su clase se guardo correctamente'});
 }
 
-const materiasRespaldoJsonGet = (req, res) => {
+const clasesRespaldoJsonGet = (req, res) => {
     res.json(readDB('./database/clases-respaldo.json'));
 }
 
@@ -43,7 +58,7 @@ const materiasRespaldoJsonGet = (req, res) => {
 module.exports = {
     clasesJsonGet,
     clasesJsonPut,
-    materiasJsonGet,
-    materiasJsonPut,
-    materiasRespaldoJsonGet
+    carreraJsonGet,
+    carreraJsonPut,
+    clasesRespaldoJsonGet
 };
