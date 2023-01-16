@@ -6,16 +6,62 @@ window.addEventListener("load", async() => {
     let btnAnadir = document.querySelector("#boton-tarjeta");
     let btnCubo= document.querySelector("#boton-cubo");
     btnAnadir.addEventListener("click", crearTarjetas);
-    btnCubo.addEventListener("click", crearCubo);
+    btnCubo.addEventListener("click", creacion);
     
-    let containerCard=document.querySelector(".container-card");
-    const template=document.querySelector("#cubo-template").content;
-    const fragmente=document.createDocumentFragment();
+    const templateCubo=document.querySelector("#cubo-template").content;
+    let containerGeneral=document.querySelector(".container-general");
+    
+    let containerCard=document.querySelector(".containerCard");
+    
+    let contadorContainer=0;
+    let contadorCubos=0;
+    
+    let btnMostrarcartas=document.getElementsByClassName(".botonCubo");
+    let a=document.querySelector("#boton-a")
+    a.addEventListener("click",mm);
+    function mm(){
+        containerCard.classList.add('active');
+    }
+        for (let index = 0; index < btnMostrarcartas.length; index++) {
+            btnMostrarcartas[index].addEventListener('click', function(){
+                containerCard.classList.add('active');
+            });
+    }
 
-    function crearCubo() {
-        const clone=template.cloneNode(true);
+    function creacion()
+    {
+        if(contadorCubos<3)
+        {
+            let containerCubos=document.getElementById(`${contadorContainer}`);
+            crearCubo(containerCubos);
+            contadorCubos=contadorCubos+1;
+        }
+        else{
+            contadorCubos=0;
+            contadorContainer++;
+            crearContainer(contadorContainer);
+            let containerCubos=document.getElementById(`${contadorContainer}`);
+            crearCubo(containerCubos);
+            contadorCubos=contadorCubos+1;
+        }
+    }
+    console.log(containerGeneral);
+    function crearContainer(contador)
+    {
+        let seccion=document.createElement("section");
+        containerGeneral.appendChild(seccion);
+
+        let contenedor=document.createElement("div");
+        contenedor.classList.add("container-cubo")
+        contenedor.setAttribute('id',`${contador}`);
+        
+        seccion.appendChild(contenedor);
+    }
+    function crearCubo(containerCubos) {
+        const fragmente=document.createDocumentFragment();
+        const clone=templateCubo.cloneNode(true);
         fragmente.appendChild(clone);
-        containerCard.appendChild(fragmente);
+        containerCubos?.appendChild(fragmente);
     }
     
     function crearTarjetas() {
@@ -42,7 +88,6 @@ window.addEventListener("load", async() => {
         cardFront.append(bodyCardFront);
 
         let nombreClase=document.createElement("h1");
-        nombreClase.setAttribute('id',"Nombreclase");
         nombreClase.innerText="Calculo integral";
         bodyCardFront.appendChild(nombreClase);
 
@@ -57,19 +102,16 @@ window.addEventListener("load", async() => {
 
         let clase=document.createElement("h1");
         clase.classList.add("alejate");
-        clase.setAttribute('id',"clase");
         clase.innerText="Clase";
         bodyCardBack.appendChild(clase);
 
         let nota=document.createElement("h2");
         nota.classList.add("alejate");
-        nota.setAttribute('id',"nota");
         nota.innerText="Nota:";
         bodyCardBack.appendChild(nota);
 
         let profesor=document.createElement("h2");
         profesor.classList.add("alejate");
-        profesor.setAttribute('id',"profesor");
         profesor.innerText="Profesor:";
         bodyCardBack.appendChild(profesor);
 
@@ -83,8 +125,7 @@ window.addEventListener("load", async() => {
         
         // console.log(containerCard);    
         let btnAbrirPopup = document.getElementsByClassName('btn-abrir-popup'),
-            overlay = document.querySelector(".overlay"),
-            popup = document.querySelector(".popup-father");
+            overlay = document.querySelector(".overlay");
     
         for (let index = 0; index < btnAbrirPopup.length; index++) {
             btnAbrirPopup[index].addEventListener('click', function(){
