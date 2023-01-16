@@ -13,6 +13,9 @@ export const putJson = async(path, body) => {
     ).json();
 }
 
-export const putClase = async(codigo, semestre = "No asignado", profesor = "No asignado", nota = 0) => {
-    return await putJson('/json/clases', {codigo, semestre, profesor, nota});
+export const putClase = async(codigo, semestre = 0, profesor = "", nota = 0) => {
+    const msgs = [];
+    msgs.push(await putJson('/json/clases', {codigo, semestre, profesor, nota}));
+    msgs.push(await putJson('/json/carrera', {codigo}));
+    return {msgs};
 }
