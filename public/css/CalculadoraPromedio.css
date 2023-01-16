@@ -15,6 +15,7 @@ body
 {
     /* background: #f1faff; */
     background: #000;
+    
 }
 /* ---------- Contenedor cartas ---------- */
 .container-card
@@ -675,6 +676,30 @@ td#definitiva{
 .botonCubo:hover div.texto span::after {
     background: var(--colorLinternaPrendida);
     filter: drop-shadow(0 0 50px var(--colorLinternaPrendida));
+}
+/*------------------------------------------------------------*/
+.container-general
+{
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory; 
+    position: absolute;
+} 
+section
+{
+    width: 100vw;
+    height: 100vh;
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+}
+#uno
+{
+    color: #fff;
 }
 
 

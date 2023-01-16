@@ -12,8 +12,8 @@
     <script type="module" src="../js/controladorTarjetas.js"></script>
 </head>
 <body>
-    <button id="boton-tarjeta" class="btn" style="left: 300px; top:10px; position: absolute;">Crear tarjeta</button>
-    <button id="boton-cubo" class="btn" style="left: 400px; top:10px; position: absolute;">Crear cubo</button>
+    <button id="boton-tarjeta" class="btn" style="left: 300px; top:30px; position: absolute;z-index: 4;">Crear tarjeta</button>
+    <button id="boton-cubo" class="btn" style="left: 400px; top:30px; position: absolute;z-index: 4;">Crear cubo</button>
     <!-- Menu -->
 </div>
 <label for="btn-menu" class="icono-menu"><i class="fa-solid fa-bars"></i></label>
@@ -22,58 +22,65 @@
 {{> menu }}
 <!-- tarjetas -->
 <main >
-    <div class="container-card"></div>
-
-    <div class="overlay" id="overlay">
-        <div class="popup-father">
-            <div class="popup" id="popup">
-                <div id="cara popup-front" class="cara popup-front">
-                    <div class="body-popup-front">
-                        <div class="agregar">
-                            <button id="btnAgregarGrande" class="btn btnAgregar btn-animacion"><span class="btnAgregarGrandeSpan">AgregarGrande</span></button>
-                            <button id="btnAgregar" class="btn btnAgregar btn-animacion" ><span class="btnAgregarSpan">Agregar</span></button>
-                            <button id="btnEliminar" class="btn btnAgregar btn-animacion" ><span class="btnAgregarSpan">Eliminar</span></button>
+    <div class="container-general">
+        <section>
+            <div class="container-card"></div>
+            <div class="overlay" id="overlay">
+                <div class="popup-father">
+                    <div class="popup" id="popup">
+                        <div id="cara popup-front" class="cara popup-front">
+                            <div class="body-popup-front">
+                                <div class="agregar">
+                                    <button id="btnAgregarGrande" class="btn btnAgregar btn-animacion"><span class="btnAgregarGrandeSpan">AgregarGrande</span></button>
+                                    <button id="btnAgregar" class="btn btnAgregar btn-animacion" ><span class="btnAgregarSpan">Agregar</span></button>
+                                    <button id="btnEliminar" class="btn btnAgregar btn-animacion" ><span class="btnAgregarSpan">Eliminar</span></button>
+                                </div>
+                                <a href="#" id="btn-cerrar-popup1" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+                                <div class="cuerpo-tabla">
+                                    <table id="tabla-materias">
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>%</th>
+                                            <th>Notas</th>
+                                            <th>Definitiva</th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <a href="#" id="btn-cerrar-popup1" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
-                        <div class="cuerpo-tabla">
-                            <table id="tabla-materias">
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>%</th>
-                                    <th>Notas</th>
-                                    <th>Definitiva</th>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="cara popup-right">
-                    <div class="body-popup-right">
-                        <a href="#" id="btn-cerrar-popup2" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
-                        <div class="agregar2">
-                            <button id="btnAgregar2" class="btn btnAgregar btn-animacion" ><span class="btnAgregarSpan">Agregar</span></button>
-                            <button id="btnEliminar2" class="btn btnAgregar btn-animacion" ><span class="btnAgregarSpan">Eliminar</span></button>
-                        </div>
-                        <div class="cuerpo-tabla">
-                            <table id="tabla-materias">
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>%</th>
-                                    <th>Notas</th>
-                                    <th>Definitiva</th>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td id="definitiva" rowspan="100%">0</td>
-                                </tr>
-                            </table>
+                        <div class="cara popup-right">
+                            <div class="body-popup-right">
+                                <a href="#" id="btn-cerrar-popup2" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+                                <div class="agregar2">
+                                    <button id="btnAgregar2" class="btn btnAgregar btn-animacion" ><span class="btnAgregarSpan">Agregar</span></button>
+                                    <button id="btnEliminar2" class="btn btnAgregar btn-animacion" ><span class="btnAgregarSpan">Eliminar</span></button>
+                                </div>
+                                <div class="cuerpo-tabla">
+                                    <table id="tabla-materias">
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>%</th>
+                                            <th>Notas</th>
+                                            <th>Definitiva</th>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td id="definitiva" rowspan="100%">0</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+           
+        </section>
+        <section id="uno">
+            <h1>asd</h1>
+        </section>
     </div>
 
     <template id="cubo-template">
