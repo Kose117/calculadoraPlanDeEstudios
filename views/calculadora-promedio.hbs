@@ -13,7 +13,6 @@
 </head>
 <body>
     <button id="boton-tarjeta" class="btn" style="left: 300px; top:30px; position: absolute;z-index: 40;">Crear tarjeta</button>
-    <button id="boton-a" class="btn" style="left: 500px; top:30px; position: absolute;z-index: 40;">Mostrar cartas</button>
     <button id="boton-cubo" class="btn" style="left: 400px; top:30px; position: absolute;z-index: 40;">Crear cubo</button>
     <!-- Menu -->
 <label for="btn-menu" class="icono-menu"><i class="fa-solid fa-bars"></i></label>
@@ -22,9 +21,6 @@
 {{> menu }}
 <!-- tarjetas -->
 <main >
-    <div class="containerCard-papa">
-        <div class="containerCard"></div>
-    </div>
     <div class="overlay" id="overlay">
         <div class="popup-father">
             <div class="popup" id="popup">
@@ -76,6 +72,12 @@
             </div>
         </div>
     </div>
+    
+    <div class="containerCard-papa">
+        <a href="#" id="btn-cerrar-popup3" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+        <div class="containerCard"></div>
+    </div>
+
     <div class="container-general">
         <section>
             <div class="container-cubo" id="0"></div>

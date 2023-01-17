@@ -16,18 +16,8 @@ window.addEventListener("load", async() => {
     let contadorContainer=0;
     let contadorCubos=0;
     
-    let btnMostrarcartas=document.getElementsByClassName(".botonCubo");
-    let a=document.querySelector("#boton-a")
-    a.addEventListener("click",mm);
-    function mm(){
-        containerCard.classList.add('active');
-    }
-        for (let index = 0; index < btnMostrarcartas.length; index++) {
-            btnMostrarcartas[index].addEventListener('click', function(){
-                containerCard.classList.add('active');
-            });
-    }
-
+    let btnMostrarcartas=document.getElementsByClassName("botonCubo");
+    
     function creacion()
     {
         if(contadorCubos<3)
@@ -45,7 +35,6 @@ window.addEventListener("load", async() => {
             contadorCubos=contadorCubos+1;
         }
     }
-    console.log(containerGeneral);
     function crearContainer(contador)
     {
         let seccion=document.createElement("section");
@@ -62,6 +51,13 @@ window.addEventListener("load", async() => {
         const clone=templateCubo.cloneNode(true);
         fragmente.appendChild(clone);
         containerCubos?.appendChild(fragmente);
+
+        for (let index = 0; index < btnMostrarcartas.length; index++) {
+            btnMostrarcartas[index].addEventListener('click', function(){
+                containerCard.classList.add('active');
+                document.getElementsByClassName("container-cubo")[0].classList.add("active")
+            });
+        }
     }
     
     function crearTarjetas() {
@@ -122,8 +118,7 @@ window.addEventListener("load", async() => {
         let span=document.createElement("span");
         span.innerText="Cálculo Diferencial";
         btn.appendChild(span);
-        
-        // console.log(containerCard);    
+           
         let btnAbrirPopup = document.getElementsByClassName('btn-abrir-popup'),
             overlay = document.querySelector(".overlay");
     
@@ -154,6 +149,10 @@ window.addEventListener("load", async() => {
         bodyPopupFront.classList.remove("active");
         bodyPopupRight.classList.remove("active");
         clearSelection(tabla);
+    });
+    btnsCerrar[2].addEventListener("click", function(){
+        containerCard.classList.remove("active");
+        document.getElementsByClassName("container-cubo")[0].classList.remove("active");
     });
             
     
