@@ -4,9 +4,9 @@
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -15,9 +15,9 @@
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -26,9 +26,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -37,9 +37,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -48,9 +48,9 @@
         "creditos":2,
         "departamento":"Industrial",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -59,9 +59,9 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -70,9 +70,9 @@
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "1295"
         ],
@@ -83,9 +83,9 @@
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -94,9 +94,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "33698"
         ],
@@ -107,9 +107,9 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -118,9 +118,9 @@
         "creditos":2,
         "departamento":"Industrial",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "33763"
         ],
@@ -131,9 +131,9 @@
         "creditos":2,
         "departamento":"Electrónica",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "33698"
         ],
@@ -144,9 +144,9 @@
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "1297"
         ],
@@ -159,9 +159,9 @@
         "creditos":4,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "33699",
             "33518"
@@ -175,9 +175,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "33699"
         ],
@@ -188,9 +188,9 @@
         "creditos":4,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "33698"
         ],
@@ -201,9 +201,9 @@
         "creditos":2,
         "departamento":"Centro de formación teológica",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "33733"
         ],
@@ -214,9 +214,9 @@
         "creditos":3,
         "departamento":"Física",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -225,9 +225,9 @@
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "1297",
             "1290"
@@ -239,9 +239,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "33699",
             "33518"
@@ -253,9 +253,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "4075"
         ],
@@ -268,9 +268,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "34816"
         ],
@@ -281,9 +281,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "34805"
         ],
@@ -294,9 +294,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "34580"
         ],
@@ -309,9 +309,9 @@
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "1297",
             "1290"
@@ -323,9 +323,9 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "33518",
             "33699"
@@ -337,9 +337,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "4082",
             "34803",
@@ -353,9 +353,9 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "4085",
             "34809",
@@ -369,9 +369,9 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "34801",
             "4196"
@@ -383,9 +383,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "34801",
             "33700",
@@ -399,9 +399,9 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "34806",
             "4190",
@@ -415,9 +415,9 @@
         "creditos":2,
         "departamento":"Industrial",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "1290",
             "33732"
@@ -430,9 +430,9 @@
         "creditos":2,
         "departamento":"Centro de formación teológica",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "34810"
         ],
@@ -444,9 +444,9 @@
         "creditos":3,
         "departamento":"Matemáticas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "1300"
         ],
@@ -458,9 +458,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "4196"
         ],
@@ -472,9 +472,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "34807",
             "34808",
@@ -490,9 +490,9 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "34803",
             "34806",
@@ -506,9 +506,9 @@
         "creditos":2,
         "departamento":"Filosofía",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -518,9 +518,9 @@
         "creditos":2,
         "departamento":"Filosofía",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -530,9 +530,9 @@
         "creditos":2,
         "departamento":"Derecho",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[],
         "co_requisitos":[]
     },
@@ -542,9 +542,9 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "34810"
         ],
@@ -556,9 +556,9 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Énfasis",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "4082",
             "34803"
@@ -571,9 +571,9 @@
         "creditos":3,
         "departamento":"Sistemas",
         "tipo":"Énfasis",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[
             "34810",
             "31339"
@@ -588,9 +588,9 @@
         "creditos":2,
         "departamento":"Sistemas",
         "tipo":"Núcleo fundamental",
-        "semestre":"",
+        "semestre":0,
         "profesor":"",
-        "nota":"",
+        "nota":0,
         "pre_requisitos":[],
         "co_requisitos":[]
     }

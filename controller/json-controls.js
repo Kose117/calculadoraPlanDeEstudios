@@ -32,7 +32,7 @@ const carreraJsonGet = (req, res) => {
 }
 
 const carreraJsonPut = (req, res) => {
-    const { codigo } = req.body;
+    const { codigo, semestre } = req.body;
     const clases = readDB('./public/json/clases.json');
     const clase = clases[codigo];
 
@@ -41,10 +41,11 @@ const carreraJsonPut = (req, res) => {
     clase.aprobada = false;
 
     const carrera = readDB('./public/json/mi-carrera.json');
-
-    (carrera.semestres["1"] === undefined)
-        ?carrera.semestres["1"] = [clase]
-        :carrera.semestres["1"].push(clase);
+    if (semestre != '0'){
+        (carrera.semestres[semestre] === undefined)
+            ?carrera.semestres[semestre] = [clase]
+            :carrera.semestres[semestre].push(clase);
+    }
 
     saveDB('./public/json/mi-carrera.json', carrera);
     res.json({msg: 'La información de su clase se guardo correctamente'});

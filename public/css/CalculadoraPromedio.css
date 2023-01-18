@@ -67,7 +67,7 @@ body
     margin: 20px;
     perspective: 1000px;
     /* desactivar lo de abajo para ponerle reflejo a las cartas */
-    -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, rgba(0,0,0,0.2));
+    /* -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, rgba(0,0,0,0.2)); */
 }
 .card-father:hover .card
 {

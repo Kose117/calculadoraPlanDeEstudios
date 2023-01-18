@@ -9,6 +9,7 @@ export const materias = new Map();
 window.addEventListener("load", async() => {
     
     const clases = await getJson('/json/clases');
+    // await getJson('/json/carrera') para leer el archivo carrera
 
     var btnsMaterias = document.getElementsByClassName("btn-materias");
     var overlay = document.querySelector(".overlay");

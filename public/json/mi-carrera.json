@@ -1,32 +1,5 @@
 {
-    "semestres": {
-        "1": [
-            {
-                "nombre": "Cálculo diferencial",
-                "creditos": 3,
-                "departamento": "Matemáticas",
-                "tipo": "Núcleo fundamental",
-                "semestre": "1",
-                "profesor": "Moises",
-                "nota": {},
-                "pre_requisitos": [],
-                "co_requisitos": [],
-                "id": "1295"
-            },
-            {
-                "nombre": "Cálculo diferencial",
-                "creditos": 3,
-                "departamento": "Matemáticas",
-                "tipo": "Núcleo fundamental",
-                "semestre": "1",
-                "profesor": "Moises",
-                "nota": {},
-                "pre_requisitos": [],
-                "co_requisitos": [],
-                "id": "1295"
-            }
-        ]
-    },
+    "semestres": {},
     "carrera": "Ingeniería de sistemas",
     "semestre-actual": 0,
     "creditos-aprobados-NFF": 0,

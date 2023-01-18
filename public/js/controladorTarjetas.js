@@ -1,5 +1,6 @@
 
 import { agregar_fila } from "../helpers/functions.js";
+import { putClase } from "../helpers/requests.js";
 
 window.addEventListener("load", async() => {
 /*---------------------------------crear tarjetas---------------------------------*/ 
