@@ -140,15 +140,15 @@ window.addEventListener("load", async() => {
         this.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
         clearSelection(tabla);
-        bodyPopupFront.classList.remove("active");
-        bodyPopupRight.classList.remove("active");
     });
-
+    
     btnsCerrar[1].addEventListener("click", function(){
         overlay.classList.remove("active");
         this.classList.remove("active");
         popup.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
+        bodyPopupFront.classList.remove("active");
+        bodyPopupRight.classList.remove("active");
         clearSelection(tabla);
     });
     btnsCerrar[2].addEventListener("click", function(){
