@@ -52,9 +52,15 @@ const carreraJsonPut = (req, res) => {
     
     const carrera = readDB('./public/json/mi-carrera.json');
     if (semestre != '0'){
-        (carrera.semestres[semestre] === undefined)
-        ?carrera.semestres[semestre] = [clase]
-        :carrera.semestres[semestre].push(clase);
+        if (carrera.semestres[semestre] === undefined){
+            carrera.semestres[semestre] = [clase];
+        } else {
+            const index = carrera.semestres[semestre].findIndex(element => codigo == element.id);
+            console.log({index});
+            (index == -1)
+                ?carrera.semestres[semestre].push(clase)
+                :carrera.semestres[semestre][index] = clase;
+        }
         saveDB('./public/json/mi-carrera.json', carrera);
         res.json({msg: 'La información de su clase se guardo correctamente'});
     } else {
@@ -67,7 +73,7 @@ const carreraJsonDelete = (req, res) => {
     
     const carrera = readDB('./public/json/mi-carrera.json');
     if (carrera.semestres[semestre] !== undefined){
-        const index = carrera.semestres[semestre].findIndex(element => codigo === element.id);
+        const index = carrera.semestres[semestre].findIndex(element => codigo == element.id);
         carrera.semestres[semestre].splice(index);
         saveDB('./public/json/mi-carrera.json', carrera);
         res.json({msg: 'La información de su clase se eliminó correctamente'});
