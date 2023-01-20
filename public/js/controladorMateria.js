@@ -1,15 +1,13 @@
 "using strict"
 
-import { getJson, putClase } from "../helpers/requests.js";
+import { getJson, putClase, delClase } from "../helpers/requests.js";
 import { agregar_fila } from "../helpers/functions.js";
 
 
-export const materias = new Map();
-
 window.addEventListener("load", async() => {
     
-    const clases = await getJson('/json/clases');
-    // await getJson('/json/carrera') para leer el archivo carrera
+    const clases = await (await getJson('/json/clases')).json();
+    // await (await getJson('/json/carrera')).json() para leer el archivo carrera
 
     var btnsMaterias = document.getElementsByClassName("btn-materias");
     var overlay = document.querySelector(".overlay");
@@ -35,8 +33,8 @@ window.addEventListener("load", async() => {
         clases[codigo].nota=mi_nota;
         clases[codigo].profesor=profesor;
         clases[codigo].semestre=num_semestre;
+        clases[codigo].registro = true;
 
-        materias.set(codigo, clases[codigo]);
         console.log(await putClase(codigo, num_semestre, profesor, mi_nota));
     }
 
@@ -46,17 +44,21 @@ window.addEventListener("load", async() => {
         nota.removeAttribute('readonly');
     }
 
-    const eliminarMateira = async(codigo) => {
+    const eliminarMateira = async(codigo, num_semestre) => {
         semestre.setAttribute('readonly','true');
         profe.setAttribute('readonly','true');
         nota.setAttribute('readonly','true');
 
-        clases[codigo].nota=0;
-        clases[codigo].profesor="";
-        clases[codigo].semestre=0;
+        semestre.value = '';
+        profe.value = '';
+        nota.value = 0;
 
-        await putClase(codigo);
-        materias.delete(codigo, clases[codigo]);
+        clases[codigo].nota = 0;
+        clases[codigo].profesor = "";
+        clases[codigo].semestre = 0;
+        clases[codigo].registro = false;
+
+        console.log(await delClase(codigo, num_semestre));
     }
 
     for (var i = 0; i < btnsMaterias.length; i++){
@@ -93,16 +95,16 @@ window.addEventListener("load", async() => {
         if (materia.pre_requisitos == 0 && materia.co_requisitos == 0){
             agregar_fila(tabla_requisitos, "td", ["Esta materia no tiene requisitos"]);
         }
-        if(materia.semestre==0){
+        if(materia.semestre == 0){
             semestre.value = '';
         }
-        if(!materias.has(codigo.value)){
+        if(materia.registro){
+            btnAgregar.textContent = "Editar";
+            btnEliminar.textContent = "Eliminar";
+        } else {
             btnAgregar.textContent = "Agregar";
             btnEliminar.textContent = "Editar";
-            
         }
-        //Impresion
-        // console.log(materias)
     }
     
     btnAgregar.addEventListener("click", () => {
@@ -132,14 +134,10 @@ window.addEventListener("load", async() => {
             btnEliminar.textContent="Guardar";
 
         }else if(btnEliminar.textContent=="Eliminar"){
-            materias.delete(codigo.value,clases[codigo.value]);
+            eliminarMateira(codigo.value, semestre.value);
             
             btnAgregar.textContent="Agregar";
             btnEliminar.textContent="Editar";
-
-            semestre.setAttribute('readonly','true');
-            profe.setAttribute('readonly','true');
-            nota.setAttribute('readonly','true');
 
         }else if(btnEliminar.textContent=="Guardar"){
             guardarMateria(codigo.value, semestre.value, profe.value, nota.value);

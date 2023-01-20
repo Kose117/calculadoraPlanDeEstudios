@@ -3,8 +3,8 @@ const { Router } = require('express');
 const { check } = require('express-validator')
 
 const {
-    clasesJsonGet, clasesJsonPut,
-    carreraJsonGet, carreraJsonPut,
+    clasesJsonGet, clasesJsonPut, clasesJsonDelete,
+    carreraJsonGet, carreraJsonPut, carreraJsonDelete,
     clasesRespaldoJsonGet
 } = require('../controller/json-controls');
 const { validate_params } = require('../middlewares/validate-params');
@@ -21,9 +21,24 @@ router.put('/clases', [
     validate_params
 ], clasesJsonPut);
 
+router.delete('/clases', [
+    check('codigo', 'El código de materia es obligatorio').not().isEmpty(),
+    validate_params
+], clasesJsonDelete);
+
 router.get('/carrera', carreraJsonGet);
 
-router.put('/carrera', carreraJsonPut);
+router.put('/carrera', [
+    check('codigo', 'El código de materia es obligatorio').not().isEmpty(),
+    check('semestre', 'El semestre tiene que ser un entero positivo').notEmpty().isInt({min:0}),
+    validate_params
+], carreraJsonPut);
+
+router.delete('/carrera', [
+    check('codigo', 'El código de materia es obligatorio').not().isEmpty(),
+    check('semestre', 'El semestre tiene que ser un entero positivo').notEmpty().isInt({min:0}),
+    validate_params
+], carreraJsonDelete);
 
 router.get('/clases-respaldo', clasesRespaldoJsonGet);
 
