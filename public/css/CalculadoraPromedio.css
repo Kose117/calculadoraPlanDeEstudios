@@ -48,7 +48,7 @@ body
 }
 .containerCard-papa
 {
-	position: absolute;
+	position: relative;
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -56,31 +56,34 @@ body
 	align-items: center;
 	justify-content: center;
 	display: flex;
-}
-.containerCard
-{
-    
-    height: 100vh;
-    width: 120vw;
-    overflow-y: auto;
-    top:-200%;
     opacity: 0;
+    top:-200%;
+    transition:800ms ease-in-out;  
     transform:translate(-0%,-0%) scale(0.1);
     position: absolute;
 }
-.containerCard.active{
+.containerCard-papa.active
+{
     z-index: 6;
     opacity: 1;
     top: 0%;
     transform:translate(-0%,-0%) scale(1);
     transition: transform 300ms cubic-bezier(0.30,0.89,0.43,1.19);
-} 
+}
+.containerCard
+{
+    height: 100vh;
+    width: 120vw;
+    overflow-y: auto;
+}
+
 /* mira como poner esa mierda bien xdd */
 #btn-cerrar-popup3
 {
-    right: 40xp;
+    top: 5%;
     z-index: 10;
-    position: absolute;
+    position: fixed;
+    left: 95%;
 }
 
 /* ---------- Carta padre, es necesaria para que evitar un error ---------- */
@@ -330,8 +333,8 @@ body
 .popup
 {
     position: absolute;
-    width: 50vw;
-    height: 55vh;
+    width: 45vw;
+    height: 50vh;
     transform-style: preserve-3d; 
     transition:all 800ms ;  
     
@@ -355,12 +358,12 @@ body
     transform-style: preserve-3d;
 }
 .popup-front{
-    transform: translateZ(25vw);
+    transform: translateZ(22.5vw);
 }
 .popup-right
 {
     
-    left: 25vw;
+    left: 22.5vw;
     transform:rotateY(90deg);
 }
 .body-popup-front, .body-popup-right
@@ -409,11 +412,7 @@ body
 .btn-cerrar-popup.active{
     transition: .3s;
 }
-#btn-cerrar-popup3
-{
-    left: 50%;
-    z-index: 10;
-}
+
 
 
 /*------------------Cuerpo tabla------------------*/
@@ -604,6 +603,18 @@ td#definitiva{
     align-items: center;
     display: flex;
     font-size: calc(var(--tamanoCubo)/7);
+    animation: colorChange 5s linear infinite;
+}
+@keyframes colorChange
+{
+    0%
+    {
+        filter: hue-rotate(0deg) ;
+    }
+    100%
+    {
+        filter: hue-rotate(360deg);
+    }
 }
 
 #abajo {
@@ -645,11 +656,12 @@ td#definitiva{
     background: #0f0;
     transform: translateZ(calc(var(--tamanoCubo)/-3));
     filter: blur(20px);
-    box-shadow: 0 0 120px rgba(0, 255, 0, 0.2),
+    box-shadow: 
+        0 0 120px rgba(0, 255, 0, 0.2),
         0 0 200px rgba(0, 255, 0, 0.4),
         0 0 300px rgba(0, 255, 0, 0.6),
         0 0 400px rgba(0, 255, 0, 0.8),
-        0 0 500px rgba(0, 255, 0, 1), ;
+        0 0 500px rgba(0, 255, 0, 1);
 }
 
 /* ----------------------botonCubo----------------------- */
@@ -657,17 +669,18 @@ td#definitiva{
     top: calc(var(--tamanoLinterna)*3.5);;
     position: relative;
     transform-style: preserve-3d;
-    animation: anima 5s linear infinite;
+    animation: anima 7s linear infinite ;
     transition: all 1s;
+    
 }
 
 @keyframes anima {
     0% {
-        transform: rotateY(360deg);
+        transform: rotateY(-360deg);
     }
 
     100% {
-        transform: rotateY(0deg);
+        transform: rotateY(360);
     }
 }
 
@@ -682,12 +695,27 @@ td#definitiva{
     height: calc(var(--tamanoLinterna)/1);
     background: var(--colorLinterna);
     transform: rotateY(calc(90deg*var(--i))) translateZ(calc(var(--tamanoLinterna)/1));
-    transition: 0.5s;
+    transition:800ms ease-in-out; 
+    animation: colorChange 5s linear infinite;
 }
 
 .botonCubo:hover div.bloque span {
-    background: yellow;
-    filter: drop-shadow(0 0 50px yellow);
+    animation: colorChanges 5s linear infinite;
+    background: var(--colorLinternaPrendida);
+    filter: drop-shadow(0 0 50px var(--colorLinternaPrendida)) hue-rotate(360deg);
+}
+@keyframes colorChanges
+{
+    0%
+    {
+        transition:800ms ease-in-out; 
+        filter: drop-shadow(0 0 50px 0) hue-rotate(0deg) ;
+    }
+    100%
+    {
+        transition:800ms ease-in-out; 
+        filter: drop-shadow(0 0 50px 0) hue-rotate(360deg) ;
+    }
 }
 
 .botonCubo div.texto span {
@@ -730,12 +758,14 @@ td#definitiva{
     height: calc(var(--tamanoLinterna)*0.6);
     background: var(--colorLinterna);
     transform: rotateX(-90deg);
-    transition: 0.5s;
+    animation: colorChange 5s linear infinite;
+    transition:800ms ease-in-out; 
 }
 
 .botonCubo:hover div.texto span::after {
     background: var(--colorLinternaPrendida);
-    filter: drop-shadow(0 0 50px var(--colorLinternaPrendida));
+    filter: drop-shadow(0 0 50px var(--colorLinternaPrendida)) hue-rotate(360deg);
+    animation: colorChanges 5s linear infinite;
 }
 /*------------------------------------------------------------*/
 .container-general

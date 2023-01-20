@@ -11,7 +11,7 @@ window.addEventListener("load", async() => {
     
     const templateCubo=document.querySelector("#cubo-template").content;
     let containerGeneral=document.querySelector(".container-general");
-    
+    let containerCardPapa=document.querySelector(".containerCard-papa");
     let containerCard=document.querySelector(".containerCard");
     
     let contadorContainer=0;
@@ -55,7 +55,7 @@ window.addEventListener("load", async() => {
 
         for (let index = 0; index < btnMostrarcartas.length; index++) {
             btnMostrarcartas[index].addEventListener('click', function(){
-                containerCard.classList.add('active');
+                containerCardPapa.classList.add('active');
                 document.getElementsByClassName("container-cubo")[0].classList.add("active")
             });
         }
@@ -140,6 +140,8 @@ window.addEventListener("load", async() => {
         this.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
         clearSelection(tabla);
+        bodyPopupFront.classList.remove("active");
+        bodyPopupRight.classList.remove("active");
     });
 
     btnsCerrar[1].addEventListener("click", function(){
@@ -147,12 +149,10 @@ window.addEventListener("load", async() => {
         this.classList.remove("active");
         popup.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
-        bodyPopupFront.classList.remove("active");
-        bodyPopupRight.classList.remove("active");
         clearSelection(tabla);
     });
     btnsCerrar[2].addEventListener("click", function(){
-        containerCard.classList.remove("active");
+        containerCardPapa.classList.remove('active');
         document.getElementsByClassName("container-cubo")[0].classList.remove("active");
     });
             
@@ -209,7 +209,7 @@ window.addEventListener("load", async() => {
         
         updateLastRowEvents(tabla);
     });
-    
+
     btnAgregar.addEventListener("click", () => {
         agregar_fila(tabla, 'td contenteditable="true"', ['', '', '0']);
 
