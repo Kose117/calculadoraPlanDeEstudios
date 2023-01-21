@@ -47,18 +47,19 @@ window.addEventListener("load", async() => {
         
         seccion.appendChild(contenedor);
     }
+    
     function crearCubo(containerCubos) {
         const fragmente=document.createDocumentFragment();
         const clone=templateCubo.cloneNode(true);
         fragmente.appendChild(clone);
         containerCubos?.appendChild(fragmente);
-
         for (let index = 0; index < btnMostrarcartas.length; index++) {
             btnMostrarcartas[index].addEventListener('click', function(){
                 containerCardPapa.classList.add('active');
-                document.getElementsByClassName("container-cubo")[0].classList.add("active")
+                containerGeneral.classList.add("active");
             });
         }
+       
     }
     
     function crearTarjetas() {
@@ -153,7 +154,7 @@ window.addEventListener("load", async() => {
     });
     btnsCerrar[2].addEventListener("click", function(){
         containerCardPapa.classList.remove('active');
-        document.getElementsByClassName("container-cubo")[0].classList.remove("active");
+        containerGeneral.classList.remove("active");
     });
             
     
