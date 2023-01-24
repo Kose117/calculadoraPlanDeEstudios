@@ -15,14 +15,15 @@
 //     title: 'Se agregó correctamente'
 //   })
 
-// const error=Swal.fire({
-//     icon: 'warning',
-//     title: '¡Agregue un semestre valido!',
-//     confirmButtonText: 'Solo numeros :)',
-//     buttonsStyling:false,
-//     customClass: {
-//         popup: 'error',
-//         confirmButton: 'confirm-error',
-//         icon: 'icon-error',
-//         title:'title-error'
-// }})
+const error=Swal.fire({
+    icon: 'warning',
+    title: '¡Agregue un semestre valido!',
+    confirmButtonText: 'Solo numeros :)',
+    buttonsStyling:false,
+    customClass: {
+        popup: 'error',
+        confirmButton: 'confirm-error',
+        icon: 'icon-error',
+        title:'title-error',
+
+}})

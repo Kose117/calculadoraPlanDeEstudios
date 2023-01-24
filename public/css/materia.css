@@ -56,17 +56,14 @@
     cursor: pointer;
     position: absolute;
 }
-.btn-materias
-{
 
-}
 
 .btn-materias span{
     z-index: 2;
     position: relative;
 }
 
-.confirm-error::after {
+.confirm-error::after,.btn-materias::after {
 	content: "";
 	width: 1px;
 	height: 1px;
@@ -80,7 +77,7 @@
 	transform-origin: center;
 }
 
-.confirm-error:hover::after {
+.confirm-error:hover::after,.btn-materias:hover::after {
 	transform: scale(400);
     background: rgba(141, 137, 139, 0.404)
 	/*aca puedes cambiar el color de los botones, yo no tengo ni idea de que putas poner xd
@@ -565,14 +562,15 @@
 {
     background-image: url(../images/papelFondo.jpg) !important;
     border-radius: 2% !important;
-    border: black 2px solid !important;
+    border: black 3px solid !important;
     position: relative !important;
-    height: 65%;
+    min-height: 70%;
     
 }
+
 .confirm-error
 {
-    top: 71%;
+    top: 72%;
 }
 .icon-error
 {
@@ -581,10 +579,12 @@
     border-color: 
     #Ffe900 !important;
     background-color: white;
+    padding: 1%;
 }
 .title-error
 {
     color: #1e1e1f !important;
     top: -30%;
+    padding: 5% !important;
 }
 
