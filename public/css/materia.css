@@ -558,6 +558,7 @@
         transform: rotate(360deg);
     }
 }
+/* ---------------------------popup----------------------------- */
 .error
 {
     background-image: url(../images/papelFondo.jpg) !important;

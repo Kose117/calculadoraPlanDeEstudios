@@ -23,8 +23,8 @@ body {
 	max-width: 1300px;
 	margin: auto;
 	z-index: 15;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	border-radius: 7px;
 	perspective: 1000px;
 	display: grid;
@@ -472,14 +472,16 @@ td#definitiva {
 	transform: rotateX(-360deg);
 	animation: animate 12s linear infinite;
 	cursor: pointer;
+	
+	
 }
 @keyframes animate {
 	0% {
-		transform: rotateX(-20deg)/*rotateY(0deg)*/
-		;
+		transform: rotateX(-20deg) rotateY(0deg)
+		
 	}
 	100% {
-		transform: rotateX(-20deg)/*rotateY(360deg)*/
+		transform: rotateX(-20deg) rotateY(360deg)
 		;
 	}
 }
@@ -520,7 +522,8 @@ td#definitiva {
 }
 @keyframes colorChange {
 	0% {
-		filter: hue-rotate(0deg);
+		filter: hue-rotate(0deg) 
+		rotate;
 	}
 	100% {
 		filter: hue-rotate(360deg);
@@ -562,11 +565,11 @@ td#definitiva {
 
 .botonCubo {
 	top: calc(var(--tamanoLinterna)*3.5);
-	;
 	position: relative;
 	transform-style: preserve-3d;
 	animation: anima 7s linear infinite;
 	transition: all 1s;
+	
 }
 @keyframes anima {
 	0% {
