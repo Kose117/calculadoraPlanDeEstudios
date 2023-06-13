@@ -339,20 +339,24 @@ body {
 .body-popup-front.active {
 	opacity: 0;
 }
-/*------------------Boton de cerrar------------------*/
+/*------------------Boton de cerrar y regresar------------------*/
 
-.btn-cerrar-popup {
+.btn-cerrar-popup,#regresar {
 	font-size: 28px;
 	position: fixed;
 	left: 100%;
 	transition: .3s ease all;
 	color: #BBBBBB;
 }
-.btn-cerrar-popup:hover {
+.btn-cerrar-popup:hover,#regresar:hover {
 	color: #000;
 }
 .btn-cerrar-popup.active {
 	transition: .3s;
+}
+#regresar
+{
+	left: -5%;
 }
 /*------------------Cuerpo tabla------------------*/
 

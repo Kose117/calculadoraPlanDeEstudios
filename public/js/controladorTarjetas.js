@@ -135,12 +135,13 @@ window.addEventListener("load", async() => {
     let bodyPopupFront=document.querySelector(".body-popup-front");
     let bodyPopupRight=document.querySelector(".body-popup-right");
     let btnsCerrar = document.getElementsByClassName("btn-cerrar-popup");
+    let btnIzquierda= document.getElementById("regresar");
     
     btnsCerrar[0].addEventListener("click", function(){
         overlay.classList.remove("active");
         this.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
-        clearSelection(tabla);
+       
     });
     
     btnsCerrar[1].addEventListener("click", function(){
@@ -150,43 +151,40 @@ window.addEventListener("load", async() => {
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
         bodyPopupFront.classList.remove("active");
         bodyPopupRight.classList.remove("active");
-        clearSelection(tabla);
+       
     });
     btnsCerrar[2].addEventListener("click", function(){
         containerCardPapa.classList.remove('active');
         containerGeneral.classList.remove("active");
     });
-            
+    btnIzquierda.addEventListener("click",function()
+    {
+        popup.classList.remove("active");
+        bodyPopupRight.classList.remove("active");
+        bodyPopupFront.classList.remove("active");
+        document.getElementsByClassName("popup-father")[0].classList.add("active") 
+    })       
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
-    let tabla = document.querySelector("#tabla-materias"),
-        rIndex = -1;
-    
+    const tables = [document.querySelector("#tabla-materias"), document.querySelector("#tabla-materias2")];
+    let rIndex = -1;
+
     const hasFocus = element => (element === document.activeElement);
-    
-    const clearSelection = (table) => {
-        for(var i = 1; i < table.rows.length; i++) {
-            table.rows[i].style.backgroundColor = "";
-        }
-        rIndex = -1;
-    }
 
-    const updateLastRowEvents = (table, index=table.rows.length-1) => {
+
+    const updateLastRowEvents = (table, index = table.rows.length - 1) => {
         const row = table.rows[index];
+      
         row.addEventListener("click", () => {
-            clearSelection(table);
-            if (hasFocus(document.getElementById('definitiva')))
-                return
-            rIndex = row.rowIndex;
-
-            row.style.backgroundColor = "lightblue";
-            
+          
+          if (hasFocus(document.getElementById('definitiva'))) {
+            return;
+          }
+          rIndex = row.rowIndex;
+          row.style.backgroundColor = "lightblue";
         });
-    }
-
-    const btnAgregarGrande=document.querySelector("#btnAgregarGrande");
-    const btnAgregar=document.querySelector("#btnAgregar");
-    const btnEliminar=document.querySelector("#btnEliminar");
+      };
+      
 
     const addDefinitiva = (table, nota = 0) => {
         const definitiva = document.createElement('td');
@@ -197,38 +195,94 @@ window.addEventListener("load", async() => {
         table.rows[1].appendChild(definitiva);
     }
 
+    const actualizarPorcentajes = (table) => {
+        const rowCount = table.rows.length - 1; // Excluir la fila de encabezado
+      
+        let totalPorcentaje = 0;
+        for (let i = 1; i < table.rows.length; i++) {
+            const row = table.rows[i];
+            const porcentajeCell = row.cells[1]; // Índice 1 corresponde a la columna de porcentajes
+            const porcentaje = (100 / rowCount).toFixed(2);
+            porcentajeCell.textContent = porcentaje;
+            totalPorcentaje += parseFloat(porcentaje);
+        }
+      };
+      
+      const agregarFila = (table, cellContent, cellValues) => {
+        const row = table.insertRow(-1);
+        for (let i = 0; i < cellValues.length; i++) {
+            const cell = row.insertCell(i);
+            cell.setAttribute('contenteditable', 'true');
+            cell.innerHTML = cellContent;
+            cell.textContent = cellValues[i];
+        }
+        actualizarPorcentajes(table);
+    };
+
+    const btnAgregar = document.querySelector("#btnAgregar");
+    const btnEliminar = document.querySelector("#btnEliminar");
+    const btnAgregar2 = document.querySelector("#btnAgregar2");
+    const btnEliminar2 = document.querySelector("#btnEliminar2");
+
+    btnAgregar.addEventListener("click", () => {
+        const table = tables[0];
+        agregarFila(table, 'td contenteditable="true"', ['', '', '0']);
+
+        if (table.rows.length == 2) addDefinitiva(table);
+
+        updateLastRowEvents(table);
+    });
+
+    btnEliminar.addEventListener("click", () => {
+        const table = tables[0];
+        if (table.rows.length <= 1)
+            return;
+        if (rIndex == 1) {
+            const notaDefinitiva = document.querySelector('#definitiva').textContent;
+            table.deleteRow(rIndex);
+            addDefinitiva(table, notaDefinitiva);
+        } else {
+            table.deleteRow(rIndex);
+        }
+        rIndex = -1;
+    });
+
+    btnAgregar2.addEventListener("click", () => {
+        const table = tables[1];
+        agregarFila(table, 'td contenteditable="true"', ['', '', '0']);
+
+        if (table.rows.length == 2) addDefinitiva(table);
+
+        updateLastRowEvents(table);
+    });
+
+    btnEliminar2.addEventListener("click", () => {
+        const table = tables[1];
+        if (table.rows.length <= 1)
+            return;
+        if (rIndex == 1) {
+            const notaDefinitiva = document.querySelector('#definitiva').textContent;
+            table.deleteRow(rIndex);
+            addDefinitiva(table, notaDefinitiva);
+        } else {
+            table.deleteRow(rIndex);
+        }
+        rIndex = -1;
+    });
+    
     btnAgregarGrande.addEventListener("click", () => {
         
-        agregar_fila(tabla, 'td contenteditable="true"', ['', '',
+        agregar_fila(tables[0], 'td contenteditable="true"', ['', '',
             `<button class="btn btnNotas btn-animacion"><span class="spanNotas">0</span></button>`]
         );
 
-        if (tabla.rows.length == 2) addDefinitiva(tabla);
+        if (tables[0].rows.length == 2) addDefinitiva(tables[0]);
         
         const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
         btns[btns.length-1].addEventListener('click', girar);
         
-        updateLastRowEvents(tabla);
-    });
-
-    btnAgregar.addEventListener("click", () => {
-        agregar_fila(tabla, 'td contenteditable="true"', ['', '', '0']);
-
-        if (tabla.rows.length == 2) addDefinitiva(tabla);
-        
-        updateLastRowEvents(tabla);
-    });
-    
-    btnEliminar.addEventListener("click", () => {
-        if (tabla.rows.length <= 1) 
-            return
-        if (rIndex == 1){
-            const notaDefinitiva = document.querySelector('#definitiva').textContent;
-            tabla.deleteRow(rIndex);
-            addDefinitiva(tabla, notaDefinitiva);
-        }
-        else tabla.deleteRow(rIndex);
-        rIndex = -1;
+        updateLastRowEvents(tables[0]);
+        actualizarPorcentajes(tables[0]);
     });
 
     const girar = () => {
