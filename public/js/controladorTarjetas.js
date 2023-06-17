@@ -163,27 +163,33 @@ window.addEventListener("load", async() => {
         bodyPopupRight.classList.remove("active");
         bodyPopupFront.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.add("active") 
+        tables[1].rows[rIndex].style.backgroundColor = "white";
+        rIndex = -1;
     })       
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
     const tables = [document.querySelector("#tabla-materias"), document.querySelector("#tabla-materias2")];
-    let rIndex = -1;
+    let rIndexs = [-1, -1];
 
     const hasFocus = element => (element === document.activeElement);
 
 
-    const updateLastRowEvents = (table, index = table.rows.length - 1) => {
-        const row = table.rows[index];
+    const updateLastRowEvents = (i, index = tables[i].rows.length - 1) => {
+        const row = tables[i].rows[index];
       
         row.addEventListener("click", () => {
           
-          if (hasFocus(document.getElementById('definitiva'))) {
-            return;
-          }
-          rIndex = row.rowIndex;
-          row.style.backgroundColor = "lightblue";
+            if (hasFocus(document.getElementById('definitiva'))) {
+                return;
+            }
+            const row_tmp = tables[i].rows[rIndexs[i]];
+            if (row_tmp) {
+                row_tmp.style.backgroundColor = "white";
+            }
+            rIndexs[i] = row.rowIndex;
+            row.style.backgroundColor = "lightblue";
         });
-      };
+    };
       
 
     const addDefinitiva = (table, nota = 0) => {
@@ -230,21 +236,21 @@ window.addEventListener("load", async() => {
 
         if (table.rows.length == 2) addDefinitiva(table);
 
-        updateLastRowEvents(table);
+        updateLastRowEvents(0);
     });
 
     btnEliminar.addEventListener("click", () => {
         const table = tables[0];
         if (table.rows.length <= 1)
             return;
-        if (rIndex == 1) {
+        if (rIndexs[0] == 1) {
             const notaDefinitiva = document.querySelector('#definitiva').textContent;
-            table.deleteRow(rIndex);
+            table.deleteRow(rIndexs[0]);
             addDefinitiva(table, notaDefinitiva);
         } else {
-            table.deleteRow(rIndex);
+            table.deleteRow(rIndexs[0]);
         }
-        rIndex = -1;
+        rIndexs[0] = -1;
     });
 
     btnAgregar2.addEventListener("click", () => {
@@ -253,21 +259,21 @@ window.addEventListener("load", async() => {
 
         if (table.rows.length == 2) addDefinitiva(table);
 
-        updateLastRowEvents(table);
+        updateLastRowEvents(1);
     });
 
     btnEliminar2.addEventListener("click", () => {
         const table = tables[1];
         if (table.rows.length <= 1)
             return;
-        if (rIndex == 1) {
+        if (rIndexs[1] == 1) {
             const notaDefinitiva = document.querySelector('#definitiva').textContent;
-            table.deleteRow(rIndex);
+            table.deleteRow(rIndexs[1]);
             addDefinitiva(table, notaDefinitiva);
         } else {
-            table.deleteRow(rIndex);
+            table.deleteRow(rIndexs[1]);
         }
-        rIndex = -1;
+        rIndexs[1] = -1;
     });
     
     btnAgregarGrande.addEventListener("click", () => {
@@ -281,7 +287,7 @@ window.addEventListener("load", async() => {
         const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
         btns[btns.length-1].addEventListener('click', girar);
         
-        updateLastRowEvents(tables[0]);
+        updateLastRowEvents(0);
         actualizarPorcentajes(tables[0]);
     });
 
@@ -289,5 +295,7 @@ window.addEventListener("load", async() => {
         popup.classList.add('active');
         bodyPopupFront.classList.add('active');
         bodyPopupRight.classList.add('active');
+        tables[0].rows[rIndexs[0]].style.backgroundColor = 'white';
+        rIndexs[0] = -1;
     }
 });
