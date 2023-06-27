@@ -192,12 +192,12 @@ window.addEventListener("load", async() => {
     };
       
 
-    const addDefinitiva = (table, nota = 0) => {
+    const addDefinitiva = (table, nota) => {
         const definitiva = document.createElement('td');
         definitiva.contentEditable = 'true';
         definitiva.id = 'definitiva';
         definitiva.rowSpan = '100%';
-        definitiva.textContent = nota;
+        definitiva.textContent = nota !== undefined ? nota : '0';
         table.rows[1].appendChild(definitiva);
     }
 
@@ -298,4 +298,25 @@ window.addEventListener("load", async() => {
         tables[0].rows[rIndexs[0]].style.backgroundColor = 'white';
         rIndexs[0] = -1;
     }
+    /*---------------------------------Calculos tabla---------------------------------*/ 
+    const calcularNotas = (table) => {
+        const rowCount = table.rows.length;
+        let acumulador = 0;
+      
+        for (let i = 1; i < rowCount; i++) {
+          const row = table.rows[i];
+          const notasCell = parseFloat(row.cells[1].textContent); // Índice 1 corresponde a la columna de notas
+          const porcentajeCell = parseFloat(row.cells[2].textContent); // Índice 2 corresponde a la columna de porcentaje
+      
+          const notaCalculada = (notasCell / 100) * porcentajeCell;
+          acumulador += notaCalculada;
+          console.log("acumula:"+acumulador);
+        }
+      
+        addDefinitiva(table, acumulador.toFixed(2));
+      };
+      
+      calcularNotas(tables[0]);
+      
 });
+  
