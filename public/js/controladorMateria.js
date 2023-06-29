@@ -2,6 +2,7 @@
 
 import { getJson, putClase, delClase } from "../helpers/requests.js";
 import { agregar_fila } from "../helpers/functions.js";
+import { error_alerta } from "./sweetAlert.js";
 
 
 window.addEventListener("load", async() => {
@@ -24,8 +25,10 @@ window.addEventListener("load", async() => {
     var btnEliminar = document.querySelector("#bt1");
     
     const guardarMateria = async(codigo, num_semestre, profesor, mi_nota) => {
-        if (num_semestre==='') num_semestre=0;
-        if (mi_nota==='') mi_nota=0;
+        if (num_semestre === '') num_semestre = 0;
+
+        if (mi_nota === '') mi_nota = 0;
+        
         semestre.setAttribute('readonly','true');
         profe.setAttribute('readonly','true');
         nota.setAttribute('readonly','true');
@@ -108,42 +111,76 @@ window.addEventListener("load", async() => {
     }
     
     btnAgregar.addEventListener("click", () => {
-       
-        if(btnAgregar.textContent == "Agregar"){
-            guardarMateria(codigo.value, semestre.value, profe.value, nota.value);
+
+        try {
+            if (btnAgregar.textContent == "Editar") {
+                editarMateria();
+    
+                btnAgregar.textContent = "Guardar";
+    
+            } else {
+                console.log('aaaa');
+                if (semestre.value === '')
+                    semestre.value = 1;
+
+                semestre.value = parseInt(semestre.value);
+                nota.value = parseInt(nota.value);
+
+                if (semestre.value === 'NaN' || parseInt(semestre.value) <= 0)
+                    throw new Error("El semestre debe ser positivio y mayor a 0");
+                else if (nota.value === 'NaN' || parseInt(nota.value) < 0 || parseInt(nota.value) > 5)
+                    throw new Error("La nota debe ser positiva y menor a 5");
+
+                console.log(semestre.value, nota.value)
+
+                guardarMateria(codigo.value, semestre.value, profe.value, nota.value);
+                
+                if (btnAgregar.textContent == "Agregar")
+                    btnEliminar.textContent = "Eliminar";
+                
+                btnAgregar.textContent = "Editar";
+
+            } 
             
-            btnAgregar.textContent = "Editar";
-            btnEliminar.textContent = "Eliminar";
-
-        }else if(btnAgregar.textContent=="Editar"){
-            editarMateria();
-
-            btnAgregar.textContent="Guardar";
-
-        } else if(btnAgregar.textContent=="Guardar"){
-            guardarMateria(codigo.value, semestre.value, profe.value, nota.value);
-
-            btnAgregar.textContent="Editar";
+        } catch (error) {
+            error_alerta(error);
         }
+       
     });
 
     btnEliminar.addEventListener("click", () => {
-        if(btnEliminar.textContent=="Editar"){
+        if (btnEliminar.textContent === "Editar") {
             editarMateria();
 
-            btnEliminar.textContent="Guardar";
+            btnEliminar.textContent = "Guardar";
 
-        }else if(btnEliminar.textContent=="Eliminar"){
+        } else if(btnEliminar.textContent === "Eliminar") {
             eliminarMateira(codigo.value, semestre.value);
             
-            btnAgregar.textContent="Agregar";
-            btnEliminar.textContent="Editar";
+            btnAgregar.textContent = "Agregar";
+            btnEliminar.textContent = "Editar";
 
-        }else if(btnEliminar.textContent=="Guardar"){
-            guardarMateria(codigo.value, semestre.value, profe.value, nota.value);
+        } else if(btnEliminar.textContent === "Guardar") {
+            try {
+                if (semestre.value === '')
+                    semestre.value = 1;
+
+                semestre.value = parseInt(semestre.value);
+                nota.value = parseInt(nota.value);
+
+                if (semestre.value === 'NaN' || parseInt(semestre.value) <= 0)
+                    throw new Error("El semestre debe ser positivio y mayor a 0");
+                else if (nota.value === 'NaN' || parseInt(nota.value) < 0 || parseInt(nota.value) > 5)
+                    throw new Error("La nota debe ser positiva y menor a 5");
+
+                guardarMateria(codigo.value, semestre.value, profe.value, nota.value);
+                
+                btnAgregar.textContent = "Editar";
+                btnEliminar.textContent = "Eliminar";
+            } catch (error) {
+                error_alerta(error);
+            }
             
-            btnAgregar.textContent="Editar";
-            btnEliminar.textContent="Eliminar";
         }
     });
 

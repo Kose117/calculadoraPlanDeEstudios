@@ -1,6 +1,6 @@
 
 import { agregar_fila } from "../helpers/functions.js";
-import { putClase } from "../helpers/requests.js";
+
 
 window.addEventListener("load", async() => {
 /*---------------------------------crear tarjetas---------------------------------*/ 
@@ -19,15 +19,12 @@ window.addEventListener("load", async() => {
     
     let btnMostrarcartas=document.getElementsByClassName("botonCubo");
     
-    function creacion()
-    {
-        if(contadorCubos<3)
-        {
+    function creacion() {
+        if (contadorCubos<3) {
             let containerCubos=document.getElementById(`${contadorContainer}`);
             crearCubo(containerCubos);
             contadorCubos=contadorCubos+1;
-        }
-        else{
+        } else {
             contadorCubos=0;
             contadorContainer++;
             crearContainer(contadorContainer);
@@ -36,8 +33,8 @@ window.addEventListener("load", async() => {
             contadorCubos=contadorCubos+1;
         }
     }
-    function crearContainer(contador)
-    {
+
+    function crearContainer(contador) {
         let seccion=document.createElement("section");
         containerGeneral.appendChild(seccion);
 
@@ -54,7 +51,7 @@ window.addEventListener("load", async() => {
         fragmente.appendChild(clone);
         containerCubos?.appendChild(fragmente);
         for (let index = 0; index < btnMostrarcartas.length; index++) {
-            btnMostrarcartas[index].addEventListener('click', function(){
+            btnMostrarcartas[index].addEventListener('click', () => {
                 containerCardPapa.classList.add('active');
                 containerGeneral.classList.add("active");
             });
@@ -298,23 +295,24 @@ window.addEventListener("load", async() => {
         tables[0].rows[rIndexs[0]].style.backgroundColor = 'white';
         rIndexs[0] = -1;
     }
+    
     /*---------------------------------Calculos tabla---------------------------------*/ 
     const calcularNotas = (table) => {
         const rowCount = table.rows.length;
         let acumulador = 0;
       
         for (let i = 1; i < rowCount; i++) {
-          const row = table.rows[i];
-          const notasCell = parseFloat(row.cells[1].textContent); // Índice 1 corresponde a la columna de notas
-          const porcentajeCell = parseFloat(row.cells[2].textContent); // Índice 2 corresponde a la columna de porcentaje
-      
-          const notaCalculada = (notasCell / 100) * porcentajeCell;
-          acumulador += notaCalculada;
-          console.log("acumula:"+acumulador);
+            const row = table.rows[i];
+            const notasCell = parseFloat(row.cells[1].textContent); // Índice 1 corresponde a la columna de notas
+            const porcentajeCell = parseFloat(row.cells[2].textContent); // Índice 2 corresponde a la columna de porcentaje
+        
+            const notaCalculada = (notasCell / 100) * porcentajeCell;
+            acumulador += notaCalculada;
+            console.log("acumula:"+acumulador);
         }
       
         addDefinitiva(table, acumulador.toFixed(2));
-      };
+    };
       
       calcularNotas(tables[0]);
       
