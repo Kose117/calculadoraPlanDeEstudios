@@ -12,8 +12,9 @@
     <script type="module" src="../js/controladorTarjetas.js"></script>
 </head>
 <body>
-    <button id="boton-tarjeta" class="btn" style="left: 300px; top:30px; position: absolute;z-index: 40;">Crear tarjeta</button>
-    <button id="boton-cubo" class="btn" style="left: 400px; top:30px; position: absolute;z-index: 40;">Crear cubo</button>
+    <button id="boton-tarjeta" class="btn" style="left: 100px; top:30px; position: absolute;z-index: 40;">Crear tarjeta</button>
+    <div id="boton-cubo" class="btnCreate from-center">Crear Semestre</div>
+    <div id="ponderado">4.23</div>
     <!-- Menu -->
 <label for="btn-menu" class="icono-menu"><i class="fa-solid fa-bars"></i></label>
 <input type="checkbox" id="btn-menu">
@@ -82,6 +83,26 @@
         </section>
     </div>
     
+    <template id="tarjeta-template">
+        <div class="card-father">
+            <div class="card">
+                <div class="card-front" style="background-image: url(&quot;../images/formula.png&quot;);">
+                    <div class="bg"></div>
+                    <div class="body-card-front"><h1>Calculo integral</h1></div>
+                </div>
+                <div class="card-back">
+                    <div class="body-card-back">
+                        <h1 class="alejate">Clase</h1>
+                        <h2 class="alejate">Nota:</h2>
+                        <h2 class="alejate">Profesor:</h2>
+                        <button class="btn btn-abrir-popup">
+                            <span>Cálculo Diferencial</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
 
     <template id="cubo-template">
         <div class="cubo">

@@ -10,57 +10,71 @@ window.addEventListener("load", async() => {
     let btnAnadir = document.querySelector("#boton-tarjeta");
     let btnCubo= document.querySelector("#boton-cubo");
     btnAnadir.addEventListener("click", crearTarjetas);
-    btnCubo.addEventListener("click", creacion);
+    btnCubo.addEventListener("click", creacionCubos);
     
     
-    const templateCubo=document.querySelector("#cubo-template").content;
+    let templateCubo=document.querySelector("#cubo-template").content;
+    let templateTarjeta=document.querySelector("#tarjeta-template").content;
     let containerGeneral=document.querySelector(".container-general");
     let containerCardPapa=document.querySelector(".containerCard-papa");
     let containerCard=document.querySelector(".containerCard");
+    let btnCreate = document.getElementsByClassName('btnCreate');
+    let fromCenter = document.getElementsByClassName('from-center');
     
-    let contadorContainer=0;
+    
+    let contadorContainerCubos=0;
     let contadorCubos=0;
+    let contadorSemestres=0;
     
-    let btnMostrarcartas=document.getElementsByClassName("botonCubo");
+    const btnMostrarcartas=document.getElementsByClassName("botonCubo");
     
-    function creacion() {
+    function creacionCubos() {
         if (contadorCubos<3) {
-            let containerCubos=document.getElementById(`${contadorContainer}`);
+            let containerCubos=document.getElementById(`${contadorContainerCubos}`);
             crearCubo(containerCubos);
             contadorCubos=contadorCubos+1;
+
         } else {
             contadorCubos=0;
-            contadorContainer++;
-            crearContainer(contadorContainer);
-            let containerCubos=document.getElementById(`${contadorContainer}`);
+            contadorContainerCubos++;
+            crearContainerCubo(contadorContainerCubos);
+            let containerCubos=document.getElementById(`${contadorContainerCubos}`);
             crearCubo(containerCubos);
             contadorCubos=contadorCubos+1;
         }
     }
 
-    function crearContainer(contador) {
+    function crearContainerCubo(contador) {
         let seccion=document.createElement("section");
         containerGeneral.appendChild(seccion);
 
         let contenedor=document.createElement("div");
         contenedor.classList.add("container-cubo")
         contenedor.setAttribute('id',`${contador}`);
-        
+        console.log("a");
         seccion.appendChild(contenedor);
     }
     
     function crearCubo(containerCubos) {
+        contadorSemestres=contadorSemestres+1;
         const fragmente=document.createDocumentFragment();
         const clone=templateCubo.cloneNode(true);
+        const carasCubo = clone.querySelectorAll('.caras');
+        carasCubo.forEach((cara) => {
+            cara.textContent = "Semestre "+(contadorSemestres);
+        });
         fragmente.appendChild(clone);
         containerCubos?.appendChild(fragmente);
         for (let index = 0; index < btnMostrarcartas.length; index++) {
             btnMostrarcartas[index].addEventListener('click', () => {
                 containerCardPapa.classList.add('active');
                 containerGeneral.classList.add("active");
+                btnCreate[0].textContent="Semestre "+(index+1);
+                btnCreate[0].classList.add('active');
+                fromCenter[0].classList.add('active');
+                
             });
         }
-       
     }
     
     function crearTarjetas(valorNombre, valorNota, valorProfesor) {
@@ -160,13 +174,16 @@ window.addEventListener("load", async() => {
     btnsCerrar[2].addEventListener("click", () => {
         containerCardPapa.classList.remove('active');
         containerGeneral.classList.remove("active");
+        btnCreate[0].classList.remove('active');
+        fromCenter[0].classList.remove('active');
+        btnCreate[0].textContent="Crear Semestre";
     });
 
     btnIzquierda.addEventListener("click", () => {
         popup.classList.remove("active");
         bodyPopupRight.classList.remove("active");
         bodyPopupFront.classList.remove("active");
-        document.getElementsByClassName("popup-father")[0].classList.add("active"); 
+        document.getElementsByClassName("popup-father")[0].classList.add("active");
     })       
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
