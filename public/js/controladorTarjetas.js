@@ -7,6 +7,7 @@ window.addEventListener("load", async() => {
     let btnAnadir = document.querySelector("#boton-tarjeta");
     let btnCubo= document.querySelector("#boton-cubo");
     
+    
     const templateCubo=document.querySelector("#cubo-template").content;
     let containerGeneral=document.querySelector(".container-general");
     let containerCardPapa=document.querySelector(".containerCard-papa");
@@ -159,7 +160,7 @@ window.addEventListener("load", async() => {
         popup.classList.remove("active");
         bodyPopupRight.classList.remove("active");
         bodyPopupFront.classList.remove("active");
-        document.getElementsByClassName("popup-father")[0].classList.add("active") 
+        document.getElementsByClassName("popup-father")[0].classList.add("active"); 
         tables[1].rows[rIndex].style.backgroundColor = "white";
         rIndex = -1;
     })       
@@ -190,13 +191,25 @@ window.addEventListener("load", async() => {
       
 
     const addDefinitiva = (table, nota) => {
-        const definitiva = document.createElement('td');
-        definitiva.contentEditable = 'true';
-        definitiva.id = 'definitiva';
-        definitiva.rowSpan = '100%';
-        definitiva.textContent = nota !== undefined ? nota : '0';
-        table.rows[1].appendChild(definitiva);
-    }
+        if (table.rows.length > 1) {
+          const definitiva = table.rows[1].querySelector('#definitiva');
+          if (definitiva) {
+            if (nota !== undefined) {
+              definitiva.textContent = nota;
+            }
+          } else {
+            const newDefinitiva = document.createElement('td');
+            newDefinitiva.contentEditable = 'true';
+            newDefinitiva.id = 'definitiva';
+            newDefinitiva.rowSpan = '100%';
+            newDefinitiva.textContent = nota !== undefined ? nota : '0';
+            table.rows[1].appendChild(newDefinitiva);
+          }
+        } else {
+          console.error('La tabla o la fila no están definidas correctamente.');
+        }   
+      }
+      
 
     const actualizarPorcentajes = (table) => {
         const rowCount = table.rows.length - 1; // Excluir la fila de encabezado
@@ -205,7 +218,7 @@ window.addEventListener("load", async() => {
         for (let i = 1; i < table.rows.length; i++) {
             const row = table.rows[i];
             const porcentajeCell = row.cells[1]; // Índice 1 corresponde a la columna de porcentajes
-            const porcentaje = (100 / rowCount).toFixed(2);
+            const porcentaje = (100 / rowCount).toFixed(0);
             porcentajeCell.textContent = porcentaje;
             totalPorcentaje += parseFloat(porcentaje);
         }
@@ -231,7 +244,7 @@ window.addEventListener("load", async() => {
         const table = tables[0];
         agregarFila(table, 'td contenteditable="true"', ['', '', '0']);
 
-        if (table.rows.length == 2) addDefinitiva(table);
+        if (table.rows.length >= 2) calcularNotas(table);
 
         updateLastRowEvents(0);
     });
@@ -254,7 +267,7 @@ window.addEventListener("load", async() => {
         const table = tables[1];
         agregarFila(table, 'td contenteditable="true"', ['', '', '0']);
 
-        if (table.rows.length == 2) addDefinitiva(table);
+        if (table.rows.length >= 2) calcularNotas(table);
 
         updateLastRowEvents(1);
     });
@@ -287,7 +300,7 @@ window.addEventListener("load", async() => {
         updateLastRowEvents(0);
         actualizarPorcentajes(tables[0]);
     });
-
+    
     const girar = () => {
         popup.classList.add('active');
         bodyPopupFront.classList.add('active');
@@ -298,23 +311,40 @@ window.addEventListener("load", async() => {
     
     /*---------------------------------Calculos tabla---------------------------------*/ 
     const calcularNotas = (table) => {
-        const rowCount = table.rows.length;
-        let acumulador = 0;
-      
-        for (let i = 1; i < rowCount; i++) {
+        if (table.rows.length > 0) {
+          const rowCount = table.rows.length;
+          let acumulador = 0;
+          for (let i = 1; i < rowCount; i++) {
             const row = table.rows[i];
-            const notasCell = parseFloat(row.cells[1].textContent); // Índice 1 corresponde a la columna de notas
-            const porcentajeCell = parseFloat(row.cells[2].textContent); // Índice 2 corresponde a la columna de porcentaje
+            if (row.cells.length >= 3) {
+              const notasCell = parseFloat(row.cells[2].textContent); // Índice 1 corresponde a la columna de notas
+              const porcentajeCell = parseFloat(row.cells[1].textContent); // Índice 2 corresponde a la columna de porcentaje
+          
+              const notaCalculada = (notasCell / 100) * porcentajeCell;
+              acumulador += notaCalculada;
+              console.log("acumula:"+acumulador);
+            } else {
+              console.error('La fila no tiene suficientes celdas.');
+            }
+          }
         
-            const notaCalculada = (notasCell / 100) * porcentajeCell;
-            acumulador += notaCalculada;
-            console.log("acumula:"+acumulador);
+          addDefinitiva(table, acumulador.toFixed(2));
+        } else {
+          console.error('La tabla no está definida o no tiene suficientes filas.');
         }
-      
-        addDefinitiva(table, acumulador.toFixed(2));
-    };
-      
-      calcularNotas(tables[0]);
-      
+      }
+    for (const table of tables)
+    {
+        table.addEventListener('input', (event) => {
+        const target = event.target;
+        const cellIndex = target.cellIndex;
+    
+        // Verificar si la celda pertenece a la columna 2
+        if (cellIndex === 2 || cellIndex === 1) {
+            calcularNotas(table);
+        }
+        });
+    } 
+    
 });
   
