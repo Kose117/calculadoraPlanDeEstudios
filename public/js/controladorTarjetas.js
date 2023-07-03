@@ -14,7 +14,7 @@ window.addEventListener("load", async() => {
     
     
     let templateCubo=document.querySelector("#cubo-template").content;
-    let templateTarjeta=document.querySelector("#tarjeta-template").content;
+    // let templateTarjeta=document.querySelector("#tarjeta-template").content;
     let containerGeneral=document.querySelector(".container-general");
     let containerCardPapa=document.querySelector(".containerCard-papa");
     let containerCard=document.querySelector(".containerCard");
@@ -61,25 +61,26 @@ window.addEventListener("load", async() => {
         const clone=templateCubo.cloneNode(true);
         const carasCubo = clone.querySelectorAll('.caras');
         carasCubo.forEach((cara) => {
-            cara.textContent = "Semestre "+(contadorSemestres);
+            cara.textContent = "Semestre " + (contadorSemestres);
         });
+
         fragmente.appendChild(clone);
         containerCubos?.appendChild(fragmente);
+
         for (let index = 0; index < btnMostrarcartas.length; index++) {
             btnMostrarcartas[index].addEventListener('click', () => {
                 containerCardPapa.classList.add('active');
                 containerGeneral.classList.add("active");
-                btnCreate[0].textContent="Semestre "+(index+1);
+                btnCreate[0].textContent = "Semestre " + (index + 1);
                 btnCreate[0].classList.add('active');
                 fromCenter[0].classList.add('active');
-                
             });
         }
     }
     
     function crearTarjetas(valorNombre, valorNota, valorProfesor) {
                         
-        let cardFather=document.createElement("div");
+        let cardFather = document.createElement("div");
         cardFather.classList.add("card-father");
         containerCard.appendChild(cardFather);
         
@@ -152,7 +153,7 @@ window.addEventListener("load", async() => {
     let btnsCerrar = document.getElementsByClassName("btn-cerrar-popup");
     let btnIzquierda= document.getElementById("regresar");
     
-    btnsCerrar[0].addEventListener("click", () => {
+    btnsCerrar[0].addEventListener("click", function() {
         overlay.classList.remove("active");
         this.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
@@ -161,7 +162,7 @@ window.addEventListener("load", async() => {
        
     });
     
-    btnsCerrar[1].addEventListener("click", () => {
+    btnsCerrar[1].addEventListener("click", function() {
         overlay.classList.remove("active");
         this.classList.remove("active");
         popup.classList.remove("active");
@@ -171,7 +172,7 @@ window.addEventListener("load", async() => {
        
     });
 
-    btnsCerrar[2].addEventListener("click", () => {
+    btnsCerrar[2].addEventListener("click", function() {
         containerCardPapa.classList.remove('active');
         containerGeneral.classList.remove("active");
         btnCreate[0].classList.remove('active');
