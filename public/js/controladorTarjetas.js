@@ -7,119 +7,79 @@ window.addEventListener("load", async() => {
     let btnAnadir = document.querySelector("#boton-tarjeta");
     let btnCubo= document.querySelector("#boton-cubo");
     btnAnadir.addEventListener("click", crearTarjetas);
-    btnCubo.addEventListener("click", creacion);
+    btnCubo.addEventListener("click", creacionCubos);
     
     
-    const templateCubo=document.querySelector("#cubo-template").content;
+    let templateCubo=document.querySelector("#cubo-template").content;
+    let templateTarjeta=document.querySelector("#tarjeta-template").content;
     let containerGeneral=document.querySelector(".container-general");
     let containerCardPapa=document.querySelector(".containerCard-papa");
     let containerCard=document.querySelector(".containerCard");
+    let btnCreate = document.getElementsByClassName('btnCreate');
+    let fromCenter = document.getElementsByClassName('from-center');
     
-    let contadorContainer=0;
+    
+    let contadorContainerCubos=0;
     let contadorCubos=0;
+    let contadorSemestres=0;
     
-    let btnMostrarcartas=document.getElementsByClassName("botonCubo");
+    const btnMostrarcartas=document.getElementsByClassName("botonCubo");
     
-    function creacion() {
+    function creacionCubos() {
         if (contadorCubos<3) {
-            let containerCubos=document.getElementById(`${contadorContainer}`);
+            let containerCubos=document.getElementById(`${contadorContainerCubos}`);
             crearCubo(containerCubos);
             contadorCubos=contadorCubos+1;
+
         } else {
             contadorCubos=0;
-            contadorContainer++;
-            crearContainer(contadorContainer);
-            let containerCubos=document.getElementById(`${contadorContainer}`);
+            contadorContainerCubos++;
+            crearContainerCubo(contadorContainerCubos);
+            let containerCubos=document.getElementById(`${contadorContainerCubos}`);
             crearCubo(containerCubos);
             contadorCubos=contadorCubos+1;
         }
     }
 
-    function crearContainer(contador) {
+    function crearContainerCubo(contador) {
         let seccion=document.createElement("section");
         containerGeneral.appendChild(seccion);
 
         let contenedor=document.createElement("div");
         contenedor.classList.add("container-cubo")
         contenedor.setAttribute('id',`${contador}`);
-        
+        console.log("a");
         seccion.appendChild(contenedor);
     }
     
     function crearCubo(containerCubos) {
+        contadorSemestres=contadorSemestres+1;
         const fragmente=document.createDocumentFragment();
         const clone=templateCubo.cloneNode(true);
+        const carasCubo = clone.querySelectorAll('.caras');
+        carasCubo.forEach((cara) => {
+            cara.textContent = "Semestre "+(contadorSemestres);
+        });
         fragmente.appendChild(clone);
         containerCubos?.appendChild(fragmente);
         for (let index = 0; index < btnMostrarcartas.length; index++) {
             btnMostrarcartas[index].addEventListener('click', () => {
                 containerCardPapa.classList.add('active');
                 containerGeneral.classList.add("active");
+                btnCreate[0].textContent="Semestre "+(index+1);
+                btnCreate[0].classList.add('active');
+                fromCenter[0].classList.add('active');
+                
             });
         }
-       
     }
     
     function crearTarjetas() {
-                        
-        let cardFather=document.createElement("div");
-        cardFather.classList.add("card-father");
-        containerCard.appendChild(cardFather);
-        
-        let card=document.createElement("div");
-        card.classList.add("card");
-        cardFather.appendChild(card);
-        
-        let cardFront=document.createElement("div");
-        cardFront.classList.add("card-front");
-        cardFront.style.backgroundImage= "url('../images/formula.png')";;
-        card.appendChild(cardFront);
-
-        let bg=document.createElement("div");
-        bg.classList.add("bg");
-        cardFront.append(bg);
-
-        let bodyCardFront=document.createElement("div");
-        bodyCardFront.classList.add("body-card-front");
-        cardFront.append(bodyCardFront);
-
-        let nombreClase=document.createElement("h1");
-        nombreClase.innerText="Calculo integral";
-        bodyCardFront.appendChild(nombreClase);
-
-        let cardBack=document.createElement("div");
-        cardBack.classList.add("card-back");
-        // cardBack.style.backgroundImage= "url('../images/')";
-        card.appendChild(cardBack);
-
-        let bodyCardBack=document.createElement("div");
-        bodyCardBack.classList.add("body-card-back");
-        cardBack.append(bodyCardBack);
-
-        let clase=document.createElement("h1");
-        clase.classList.add("alejate");
-        clase.innerText="Clase";
-        bodyCardBack.appendChild(clase);
-
-        let nota=document.createElement("h2");
-        nota.classList.add("alejate");
-        nota.innerText="Nota:";
-        bodyCardBack.appendChild(nota);
-
-        let profesor=document.createElement("h2");
-        profesor.classList.add("alejate");
-        profesor.innerText="Profesor:";
-        bodyCardBack.appendChild(profesor);
-
-        let btn=document.createElement("button");
-        btn.classList.add("btn",'btn-abrir-popup');
-        bodyCardBack.appendChild(btn);
-
-        let span=document.createElement("span");
-        span.innerText="Cálculo Diferencial";
-        btn.appendChild(span);
-           
-        let btnAbrirPopup = document.getElementsByClassName('btn-abrir-popup'),
+        const fragmente=document.createDocumentFragment();
+        const clone=templateTarjeta.cloneNode(true);
+        fragmente.appendChild(clone);
+        containerCard?.appendChild(fragmente);         
+        const btnAbrirPopup = document.getElementsByClassName('btn-abrir-popup'),
             overlay = document.querySelector(".overlay");
     
         for (let index = 0; index < btnAbrirPopup.length; index++) {
@@ -154,6 +114,9 @@ window.addEventListener("load", async() => {
     btnsCerrar[2].addEventListener("click", function(){
         containerCardPapa.classList.remove('active');
         containerGeneral.classList.remove("active");
+        btnCreate[0].classList.remove('active');
+        fromCenter[0].classList.remove('active');
+        btnCreate[0].textContent="Crear Semestre";
     });
     btnIzquierda.addEventListener("click",function()
     {
@@ -163,6 +126,7 @@ window.addEventListener("load", async() => {
         document.getElementsByClassName("popup-father")[0].classList.add("active"); 
         tables[1].rows[rIndex].style.backgroundColor = "white";
         rIndex = -1;
+
     })       
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 

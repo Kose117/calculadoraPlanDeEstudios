@@ -10,11 +10,124 @@
 	--tamanoLinterna: 41px;
 	--colorLinterna: rgb(82, 187, 235);
 	--colorLinternaPrendida: yellow;
+	--def: #000; 	
+	--inv: #fff;
 }
 body {
-	/* background: #f1faff; */
+	background: #f1faff;
 	background: #000;
+	height: 100vh;
+	width: 100%;
 }
+
+#ponderado
+{
+	left: 115vh; 
+	top:3vh; 
+	z-index: 40;
+	position: absolute;	
+	padding: 1.2rem 4.2rem;
+	padding-right: 3.1rem;
+	font-size: 1rem;
+	color: var(--inv);
+	letter-spacing: 0.5rem;
+	text-transform: uppercase;
+	border: 1px solid var(--inv);
+}
+.btnCreate {	
+	font-family: 'Playfair Display', serif;
+	position: relative;	
+	padding: 1.4rem 4.2rem;
+	padding-right: 3.1rem;
+	font-size: 1rem;
+	color: var(--inv);
+	letter-spacing: 0.6rem;
+	text-transform: uppercase;
+	transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);	
+	cursor: pointer;
+	user-select: none;
+}
+
+.btnCreate:before, .btnCreate:after {
+	content: '';
+	position: absolute;	
+	transition: inherit;
+	z-index: -1;
+}
+
+.btnCreate:hover {
+	color: var(--def);
+	transition-delay: .5s;
+}
+
+
+.btnCreate:hover:before {
+	transition-delay: 0s;
+}
+
+.btnCreate:hover:after {
+	background: var(--inv);
+	transition-delay: .35s;
+}
+
+.btnCreate.active {
+	color: var(--def);
+	transition-delay: .5s;
+	cursor: default;
+}
+
+.btnCreate.active:before {
+	transition-delay: 0s;
+}
+
+.btnCreate.active:after {
+	background: var(--inv);
+	transition-delay: .35s;
+}
+.from-center
+{
+	left: 55vh; 
+	top:3vh; 
+	position: absolute;
+	z-index: 40;
+}
+.from-center:before {
+	top: 0;
+	left: 50%;
+	height: 100%;
+	width: 0;
+	border: 1px solid var(--inv);
+	border-left: 0;
+	border-right: 0;
+}
+
+.from-center:after {
+	bottom: 0;
+	left: 0;
+	height: 0;
+	width: 100%;
+	background: var(--inv);
+}
+
+.from-center:hover:before {
+	left: 0;
+	width: 100%;
+}
+
+.from-center:hover:after {
+	top: 0;
+	height: 100%;
+}
+.from-center.active:before {
+	left: 0;
+	width: 100%;
+}
+
+.from-center.active:after {
+	top: 0;
+	height: 100%;
+}
+
 /* ---------- Contenedor cartas ---------- */
 
 .container-cubo, .containerCard {
@@ -56,7 +169,8 @@ body {
 	transition: transform 300ms cubic-bezier(0.30, 0.89, 0.43, 1.19);
 }
 .containerCard {
-	height: 110vh;
+	margin-top: 12vh; 
+	height: 90vh;
 	width: 130vw;
 	overflow-y: auto;
 }
@@ -433,8 +547,8 @@ td#definitiva {
 }
 .btnAgregar, .btnAgregarGrande, .btnNotas, .btnEliminar {
 	justify-content: center;
-	height: 50px;
 	align-items: center;
+	height: 50px;
 	height: 100%;
 	width: 100%;
 	display: flex;
