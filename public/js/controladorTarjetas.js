@@ -6,8 +6,6 @@ window.addEventListener("load", async() => {
 /*---------------------------------crear tarjetas---------------------------------*/ 
     let btnAnadir = document.querySelector("#boton-tarjeta");
     let btnCubo= document.querySelector("#boton-cubo");
-    btnAnadir.addEventListener("click", crearTarjetas);
-    btnCubo.addEventListener("click", creacion);
     
     const templateCubo=document.querySelector("#cubo-template").content;
     let containerGeneral=document.querySelector(".container-general");
@@ -18,19 +16,22 @@ window.addEventListener("load", async() => {
     let contadorCubos=0;
     
     let btnMostrarcartas=document.getElementsByClassName("botonCubo");
+
+    btnAnadir.addEventListener("click", () => crearTarjetas('materia', 0, 'profesor'));
+    btnCubo.addEventListener("click", () => creacion(contadorContainer, contadorCubos));
     
-    function creacion() {
+    function creacion(contadorCubos, contadorContainer) {
         if (contadorCubos<3) {
-            let containerCubos=document.getElementById(`${contadorContainer}`);
+            const containerCubos=document.getElementById(`${contadorContainer}`);
             crearCubo(containerCubos);
-            contadorCubos=contadorCubos+1;
+            contadorCubos++;
         } else {
             contadorCubos=0;
             contadorContainer++;
             crearContainer(contadorContainer);
-            let containerCubos=document.getElementById(`${contadorContainer}`);
+            const containerCubos=document.getElementById(`${contadorContainer}`);
             crearCubo(containerCubos);
-            contadorCubos=contadorCubos+1;
+            contadorCubos++;
         }
     }
 
@@ -59,7 +60,7 @@ window.addEventListener("load", async() => {
        
     }
     
-    function crearTarjetas() {
+    function crearTarjetas(valorNombre, valorNota, valorProfesor) {
                         
         let cardFather=document.createElement("div");
         cardFather.classList.add("card-father");
@@ -83,7 +84,7 @@ window.addEventListener("load", async() => {
         cardFront.append(bodyCardFront);
 
         let nombreClase=document.createElement("h1");
-        nombreClase.innerText="Calculo integral";
+        nombreClase.innerText = valorNombre;
         bodyCardFront.appendChild(nombreClase);
 
         let cardBack=document.createElement("div");
@@ -102,27 +103,27 @@ window.addEventListener("load", async() => {
 
         let nota=document.createElement("h2");
         nota.classList.add("alejate");
-        nota.innerText="Nota:";
+        nota.innerText=`Nota: ${valorNota}`;
         bodyCardBack.appendChild(nota);
 
         let profesor=document.createElement("h2");
         profesor.classList.add("alejate");
-        profesor.innerText="Profesor:";
+        profesor.innerText=`Profesor: ${valorProfesor}`;
         bodyCardBack.appendChild(profesor);
 
         let btn=document.createElement("button");
         btn.classList.add("btn",'btn-abrir-popup');
         bodyCardBack.appendChild(btn);
 
-        let span=document.createElement("span");
-        span.innerText="Cálculo Diferencial";
+        let span = document.createElement("span");
+        span.innerText = valorNombre;
         btn.appendChild(span);
            
         let btnAbrirPopup = document.getElementsByClassName('btn-abrir-popup'),
             overlay = document.querySelector(".overlay");
     
         for (let index = 0; index < btnAbrirPopup.length; index++) {
-            btnAbrirPopup[index].addEventListener('click', function(){
+            btnAbrirPopup[index].addEventListener('click', () => {
                 overlay.classList.add('active');
 	            document.getElementsByClassName("popup-father")[0].classList.add("active")
             });
@@ -134,14 +135,14 @@ window.addEventListener("load", async() => {
     let btnsCerrar = document.getElementsByClassName("btn-cerrar-popup");
     let btnIzquierda= document.getElementById("regresar");
     
-    btnsCerrar[0].addEventListener("click", function(){
+    btnsCerrar[0].addEventListener("click", () => {
         overlay.classList.remove("active");
         this.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
        
     });
     
-    btnsCerrar[1].addEventListener("click", function(){
+    btnsCerrar[1].addEventListener("click", () => {
         overlay.classList.remove("active");
         this.classList.remove("active");
         popup.classList.remove("active");
@@ -150,12 +151,11 @@ window.addEventListener("load", async() => {
         bodyPopupRight.classList.remove("active");
        
     });
-    btnsCerrar[2].addEventListener("click", function(){
+    btnsCerrar[2].addEventListener("click", () => {
         containerCardPapa.classList.remove('active');
         containerGeneral.classList.remove("active");
     });
-    btnIzquierda.addEventListener("click",function()
-    {
+    btnIzquierda.addEventListener("click", () => {
         popup.classList.remove("active");
         bodyPopupRight.classList.remove("active");
         bodyPopupFront.classList.remove("active");

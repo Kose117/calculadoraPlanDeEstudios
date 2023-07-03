@@ -56,7 +56,6 @@ const carreraJsonPut = (req, res) => {
             carrera.semestres[semestre] = [clase];
         } else {
             const index = carrera.semestres[semestre].findIndex(element => codigo == element.id);
-            console.log({index});
             (index == -1)
                 ?carrera.semestres[semestre].push(clase)
                 :carrera.semestres[semestre][index] = clase;
