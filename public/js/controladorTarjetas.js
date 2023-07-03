@@ -1,9 +1,12 @@
 
 import { agregar_fila } from "../helpers/functions.js";
+import { getCarrera } from "../helpers/requests.js";
 
 
 window.addEventListener("load", async() => {
-/*---------------------------------crear tarjetas---------------------------------*/ 
+/*---------------------------------crear tarjetas---------------------------------*/
+    const carrera = await getCarrera();
+
     let btnAnadir = document.querySelector("#boton-tarjeta");
     let btnCubo= document.querySelector("#boton-cubo");
     btnAnadir.addEventListener("click", crearTarjetas);
@@ -135,14 +138,16 @@ window.addEventListener("load", async() => {
     let btnsCerrar = document.getElementsByClassName("btn-cerrar-popup");
     let btnIzquierda= document.getElementById("regresar");
     
-    btnsCerrar[0].addEventListener("click", function(){
+    btnsCerrar[0].addEventListener("click", () => {
         overlay.classList.remove("active");
         this.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
+        
+        console.log(tables[0].rows[0].cells[0].textContent)
        
     });
     
-    btnsCerrar[1].addEventListener("click", function(){
+    btnsCerrar[1].addEventListener("click", () => {
         overlay.classList.remove("active");
         this.classList.remove("active");
         popup.classList.remove("active");
@@ -151,18 +156,17 @@ window.addEventListener("load", async() => {
         bodyPopupRight.classList.remove("active");
        
     });
-    btnsCerrar[2].addEventListener("click", function(){
+
+    btnsCerrar[2].addEventListener("click", () => {
         containerCardPapa.classList.remove('active');
         containerGeneral.classList.remove("active");
     });
-    btnIzquierda.addEventListener("click",function()
-    {
+
+    btnIzquierda.addEventListener("click", () => {
         popup.classList.remove("active");
         bodyPopupRight.classList.remove("active");
         bodyPopupFront.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.add("active"); 
-        tables[1].rows[rIndex].style.backgroundColor = "white";
-        rIndex = -1;
     })       
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
