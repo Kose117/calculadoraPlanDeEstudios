@@ -6,6 +6,8 @@ window.addEventListener("load", async() => {
 /*---------------------------------crear tarjetas---------------------------------*/ 
     let btnAnadir = document.querySelector("#boton-tarjeta");
     let btnCubo= document.querySelector("#boton-cubo");
+    btnAnadir.addEventListener("click", crearTarjetas);
+    btnCubo.addEventListener("click", creacion);
     
     
     const templateCubo=document.querySelector("#cubo-template").content;
@@ -17,22 +19,19 @@ window.addEventListener("load", async() => {
     let contadorCubos=0;
     
     let btnMostrarcartas=document.getElementsByClassName("botonCubo");
-
-    btnAnadir.addEventListener("click", () => crearTarjetas('materia', 0, 'profesor'));
-    btnCubo.addEventListener("click", () => creacion(contadorContainer, contadorCubos));
     
-    function creacion(contadorCubos, contadorContainer) {
+    function creacion() {
         if (contadorCubos<3) {
-            const containerCubos=document.getElementById(`${contadorContainer}`);
+            let containerCubos=document.getElementById(`${contadorContainer}`);
             crearCubo(containerCubos);
-            contadorCubos++;
+            contadorCubos=contadorCubos+1;
         } else {
             contadorCubos=0;
             contadorContainer++;
             crearContainer(contadorContainer);
-            const containerCubos=document.getElementById(`${contadorContainer}`);
+            let containerCubos=document.getElementById(`${contadorContainer}`);
             crearCubo(containerCubos);
-            contadorCubos++;
+            contadorCubos=contadorCubos+1;
         }
     }
 
@@ -136,14 +135,14 @@ window.addEventListener("load", async() => {
     let btnsCerrar = document.getElementsByClassName("btn-cerrar-popup");
     let btnIzquierda= document.getElementById("regresar");
     
-    btnsCerrar[0].addEventListener("click", () => {
+    btnsCerrar[0].addEventListener("click", function(){
         overlay.classList.remove("active");
         this.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
        
     });
     
-    btnsCerrar[1].addEventListener("click", () => {
+    btnsCerrar[1].addEventListener("click", function(){
         overlay.classList.remove("active");
         this.classList.remove("active");
         popup.classList.remove("active");
@@ -152,11 +151,12 @@ window.addEventListener("load", async() => {
         bodyPopupRight.classList.remove("active");
        
     });
-    btnsCerrar[2].addEventListener("click", () => {
+    btnsCerrar[2].addEventListener("click", function(){
         containerCardPapa.classList.remove('active');
         containerGeneral.classList.remove("active");
     });
-    btnIzquierda.addEventListener("click", () => {
+    btnIzquierda.addEventListener("click",function()
+    {
         popup.classList.remove("active");
         bodyPopupRight.classList.remove("active");
         bodyPopupFront.classList.remove("active");
