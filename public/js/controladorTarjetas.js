@@ -10,7 +10,10 @@ window.addEventListener("load", async() => {
     let btnAnadir = document.querySelector("#boton-tarjeta");
     let btnCubo= document.querySelector("#boton-cubo");
     btnAnadir.addEventListener("click", crearTarjetas);
-    btnCubo.addEventListener("click", creacionCubos);
+    btnCubo.addEventListener("click", () => {
+        creacionCubos();
+        carrera.semestres[btnMostrarcartas.length] = [];
+    });
     
     
     let templateCubo=document.querySelector("#cubo-template").content;
@@ -27,6 +30,11 @@ window.addEventListener("load", async() => {
     let contadorSemestres=0;
     
     const btnMostrarcartas=document.getElementsByClassName("botonCubo");
+
+    for (const semestre in carrera.semestres) {
+        creacionCubos();
+    }
+
     
     function creacionCubos() {
         if (contadorCubos<3) {
