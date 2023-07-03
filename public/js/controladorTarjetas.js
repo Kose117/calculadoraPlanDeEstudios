@@ -192,23 +192,23 @@ window.addEventListener("load", async() => {
 
     const addDefinitiva = (table, nota) => {
         if (table.rows.length > 1) {
-          const definitiva = table.rows[1].querySelector('#definitiva');
-          if (definitiva) {
-            if (nota !== undefined) {
-              definitiva.textContent = nota;
+            const definitiva = table.rows[1].querySelector('#definitiva');
+            if (definitiva) {
+                if (nota !== undefined) {
+                    definitiva.textContent = nota;
+                }
+            } else {
+                const newDefinitiva = document.createElement('td');
+                newDefinitiva.contentEditable = 'true';
+                newDefinitiva.id = 'definitiva';
+                newDefinitiva.rowSpan = '100%';
+                newDefinitiva.textContent = nota !== undefined ? nota : '0';
+                table.rows[1].appendChild(newDefinitiva);
             }
-          } else {
-            const newDefinitiva = document.createElement('td');
-            newDefinitiva.contentEditable = 'true';
-            newDefinitiva.id = 'definitiva';
-            newDefinitiva.rowSpan = '100%';
-            newDefinitiva.textContent = nota !== undefined ? nota : '0';
-            table.rows[1].appendChild(newDefinitiva);
-          }
         } else {
-          console.error('La tabla o la fila no están definidas correctamente.');
+            console.error('La tabla o la fila no están definidas correctamente.');
         }   
-      }
+    }
       
 
     const actualizarPorcentajes = (table) => {
@@ -222,9 +222,9 @@ window.addEventListener("load", async() => {
             porcentajeCell.textContent = porcentaje;
             totalPorcentaje += parseFloat(porcentaje);
         }
-      };
+    };
       
-      const agregarFila = (table, cellContent, cellValues) => {
+    const agregarFila = (table, cellContent, cellValues) => {
         const row = table.insertRow(-1);
         for (let i = 0; i < cellValues.length; i++) {
             const cell = row.insertCell(i);
@@ -292,7 +292,8 @@ window.addEventListener("load", async() => {
             `<button class="btn btnNotas btn-animacion"><span class="spanNotas">0</span></button>`]
         );
 
-        if (tables[0].rows.length == 2) addDefinitiva(tables[0]);
+        if (tables[0].rows.length == 2)
+            addDefinitiva(tables[0]);
         
         const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
         btns[btns.length-1].addEventListener('click', girar);
@@ -312,37 +313,37 @@ window.addEventListener("load", async() => {
     /*---------------------------------Calculos tabla---------------------------------*/ 
     const calcularNotas = (table) => {
         if (table.rows.length > 0) {
-          const rowCount = table.rows.length;
-          let acumulador = 0;
-          for (let i = 1; i < rowCount; i++) {
-            const row = table.rows[i];
-            if (row.cells.length >= 3) {
-              const notasCell = parseFloat(row.cells[2].textContent); // Índice 1 corresponde a la columna de notas
-              const porcentajeCell = parseFloat(row.cells[1].textContent); // Índice 2 corresponde a la columna de porcentaje
-          
-              const notaCalculada = (notasCell / 100) * porcentajeCell;
-              acumulador += notaCalculada;
-              console.log("acumula:"+acumulador);
-            } else {
-              console.error('La fila no tiene suficientes celdas.');
+            const rowCount = table.rows.length;
+            let acumulador = 0;
+            for (let i = 1; i < rowCount; i++) {
+                const row = table.rows[i];
+                if (row.cells.length >= 3) {
+                    const notasCell = parseFloat(row.cells[2].textContent); // Índice 1 corresponde a la columna de notas
+                    const porcentajeCell = parseFloat(row.cells[1].textContent); // Índice 2 corresponde a la columna de porcentaje
+                
+                    const notaCalculada = (notasCell / 100) * porcentajeCell;
+                    acumulador += notaCalculada;
+                    console.log("acumula:"+acumulador);
+                } else {
+                    console.error('La fila no tiene suficientes celdas.');
+                }
             }
-          }
         
-          addDefinitiva(table, acumulador.toFixed(2));
+            addDefinitiva(table, acumulador.toFixed(2));
         } else {
-          console.error('La tabla no está definida o no tiene suficientes filas.');
+            console.error('La tabla no está definida o no tiene suficientes filas.');
         }
-      }
-    for (const table of tables)
-    {
+    }
+
+    for (const table of tables) {
         table.addEventListener('input', (event) => {
-        const target = event.target;
-        const cellIndex = target.cellIndex;
-    
-        // Verificar si la celda pertenece a la columna 2
-        if (cellIndex === 2 || cellIndex === 1) {
-            calcularNotas(table);
-        }
+            const target = event.target;
+            const cellIndex = target.cellIndex;
+        
+            // Verificar si la celda pertenece a la columna 2
+            if (cellIndex === 2 || cellIndex === 1) {
+                calcularNotas(table);
+            }
         });
     } 
     

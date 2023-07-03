@@ -1,14 +1,13 @@
 "using strict"
 
-import { getJson, putClase, delClase } from "../helpers/requests.js";
+import { getClases, putClase, delClase,  } from "../helpers/requests.js";
 import { agregar_fila } from "../helpers/functions.js";
 import { error_alerta } from "./sweetAlert.js";
 
 
 window.addEventListener("load", async() => {
     
-    const clases = await (await getJson('/json/clases')).json();
-    // await (await getJson('/json/carrera')).json() para leer el archivo carrera
+    const clases = await getClases();
 
     var btnsMaterias = document.getElementsByClassName("btn-materias");
     var overlay = document.querySelector(".overlay");
@@ -38,13 +37,12 @@ window.addEventListener("load", async() => {
         clases[codigo].semestre=num_semestre;
         clases[codigo].registro = true;
 
-        console.log(await putClase(codigo, num_semestre, profesor, mi_nota));
+        console.log(await putClase(codigo, num_semestre, profesor));
     }
 
     const editarMateria = () => {
         semestre.removeAttribute('readonly');
         profe.removeAttribute('readonly');
-        nota.removeAttribute('readonly');
     }
 
     const eliminarMateira = async(codigo, num_semestre) => {
@@ -119,7 +117,6 @@ window.addEventListener("load", async() => {
                 btnAgregar.textContent = "Guardar";
     
             } else {
-                console.log('aaaa');
                 if (semestre.value === '')
                     semestre.value = 1;
 
@@ -130,8 +127,6 @@ window.addEventListener("load", async() => {
                     throw new Error("El semestre debe ser positivio y mayor a 0");
                 else if (nota.value === 'NaN' || parseInt(nota.value) < 0 || parseInt(nota.value) > 5)
                     throw new Error("La nota debe ser positiva y menor a 5");
-
-                console.log(semestre.value, nota.value)
 
                 guardarMateria(codigo.value, semestre.value, profe.value, nota.value);
                 
