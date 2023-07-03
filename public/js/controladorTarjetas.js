@@ -74,16 +74,70 @@ window.addEventListener("load", async() => {
         }
     }
     
-    function crearTarjetas() {
-        const fragmente=document.createDocumentFragment();
-        const clone=templateTarjeta.cloneNode(true);
-        fragmente.appendChild(clone);
-        containerCard?.appendChild(fragmente);         
-        const btnAbrirPopup = document.getElementsByClassName('btn-abrir-popup'),
+    function crearTarjetas(valorNombre, valorNota, valorProfesor) {
+                        
+        let cardFather=document.createElement("div");
+        cardFather.classList.add("card-father");
+        containerCard.appendChild(cardFather);
+        
+        let card=document.createElement("div");
+        card.classList.add("card");
+        cardFather.appendChild(card);
+        
+        let cardFront=document.createElement("div");
+        cardFront.classList.add("card-front");
+        cardFront.style.backgroundImage= "url('../images/formula.png')";;
+        card.appendChild(cardFront);
+
+        let bg=document.createElement("div");
+        bg.classList.add("bg");
+        cardFront.append(bg);
+
+        let bodyCardFront=document.createElement("div");
+        bodyCardFront.classList.add("body-card-front");
+        cardFront.append(bodyCardFront);
+
+        let nombreClase=document.createElement("h1");
+        nombreClase.innerText = valorNombre;
+        bodyCardFront.appendChild(nombreClase);
+
+        let cardBack=document.createElement("div");
+        cardBack.classList.add("card-back");
+        // cardBack.style.backgroundImage= "url('../images/')";
+        card.appendChild(cardBack);
+
+        let bodyCardBack=document.createElement("div");
+        bodyCardBack.classList.add("body-card-back");
+        cardBack.append(bodyCardBack);
+
+        let clase=document.createElement("h1");
+        clase.classList.add("alejate");
+        clase.innerText="Clase";
+        bodyCardBack.appendChild(clase);
+
+        let nota=document.createElement("h2");
+        nota.classList.add("alejate");
+        nota.innerText=`Nota: ${valorNota}`;
+        bodyCardBack.appendChild(nota);
+
+        let profesor=document.createElement("h2");
+        profesor.classList.add("alejate");
+        profesor.innerText=`Profesor: ${valorProfesor}`;
+        bodyCardBack.appendChild(profesor);
+
+        let btn=document.createElement("button");
+        btn.classList.add("btn",'btn-abrir-popup');
+        bodyCardBack.appendChild(btn);
+
+        let span = document.createElement("span");
+        span.innerText = valorNombre;
+        btn.appendChild(span);
+           
+        let btnAbrirPopup = document.getElementsByClassName('btn-abrir-popup'),
             overlay = document.querySelector(".overlay");
     
         for (let index = 0; index < btnAbrirPopup.length; index++) {
-            btnAbrirPopup[index].addEventListener('click', function(){
+            btnAbrirPopup[index].addEventListener('click', () => {
                 overlay.classList.add('active');
 	            document.getElementsByClassName("popup-father")[0].classList.add("active")
             });
@@ -156,23 +210,23 @@ window.addEventListener("load", async() => {
 
     const addDefinitiva = (table, nota) => {
         if (table.rows.length > 1) {
-          const definitiva = table.rows[1].querySelector('#definitiva');
-          if (definitiva) {
-            if (nota !== undefined) {
-              definitiva.textContent = nota;
+            const definitiva = table.rows[1].querySelector('#definitiva');
+            if (definitiva) {
+                if (nota !== undefined) {
+                    definitiva.textContent = nota;
+                }
+            } else {
+                const newDefinitiva = document.createElement('td');
+                newDefinitiva.contentEditable = 'true';
+                newDefinitiva.id = 'definitiva';
+                newDefinitiva.rowSpan = '100%';
+                newDefinitiva.textContent = nota !== undefined ? nota : '0';
+                table.rows[1].appendChild(newDefinitiva);
             }
-          } else {
-            const newDefinitiva = document.createElement('td');
-            newDefinitiva.contentEditable = 'true';
-            newDefinitiva.id = 'definitiva';
-            newDefinitiva.rowSpan = '100%';
-            newDefinitiva.textContent = nota !== undefined ? nota : '0';
-            table.rows[1].appendChild(newDefinitiva);
-          }
         } else {
-          console.error('La tabla o la fila no están definidas correctamente.');
+            console.error('La tabla o la fila no están definidas correctamente.');
         }   
-      }
+    }
       
 
     const actualizarPorcentajes = (table) => {
@@ -186,9 +240,9 @@ window.addEventListener("load", async() => {
             porcentajeCell.textContent = porcentaje;
             totalPorcentaje += parseFloat(porcentaje);
         }
-      };
+    };
       
-      const agregarFila = (table, cellContent, cellValues) => {
+    const agregarFila = (table, cellContent, cellValues) => {
         const row = table.insertRow(-1);
         for (let i = 0; i < cellValues.length; i++) {
             const cell = row.insertCell(i);
@@ -256,7 +310,8 @@ window.addEventListener("load", async() => {
             `<button class="btn btnNotas btn-animacion"><span class="spanNotas">0</span></button>`]
         );
 
-        if (tables[0].rows.length == 2) addDefinitiva(tables[0]);
+        if (tables[0].rows.length == 2)
+            addDefinitiva(tables[0]);
         
         const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
         btns[btns.length-1].addEventListener('click', girar);
@@ -276,37 +331,37 @@ window.addEventListener("load", async() => {
     /*---------------------------------Calculos tabla---------------------------------*/ 
     const calcularNotas = (table) => {
         if (table.rows.length > 0) {
-          const rowCount = table.rows.length;
-          let acumulador = 0;
-          for (let i = 1; i < rowCount; i++) {
-            const row = table.rows[i];
-            if (row.cells.length >= 3) {
-              const notasCell = parseFloat(row.cells[2].textContent); // Índice 1 corresponde a la columna de notas
-              const porcentajeCell = parseFloat(row.cells[1].textContent); // Índice 2 corresponde a la columna de porcentaje
-          
-              const notaCalculada = (notasCell / 100) * porcentajeCell;
-              acumulador += notaCalculada;
-              console.log("acumula:"+acumulador);
-            } else {
-              console.error('La fila no tiene suficientes celdas.');
+            const rowCount = table.rows.length;
+            let acumulador = 0;
+            for (let i = 1; i < rowCount; i++) {
+                const row = table.rows[i];
+                if (row.cells.length >= 3) {
+                    const notasCell = parseFloat(row.cells[2].textContent); // Índice 1 corresponde a la columna de notas
+                    const porcentajeCell = parseFloat(row.cells[1].textContent); // Índice 2 corresponde a la columna de porcentaje
+                
+                    const notaCalculada = (notasCell / 100) * porcentajeCell;
+                    acumulador += notaCalculada;
+                    console.log("acumula:"+acumulador);
+                } else {
+                    console.error('La fila no tiene suficientes celdas.');
+                }
             }
-          }
         
-          addDefinitiva(table, acumulador.toFixed(2));
+            addDefinitiva(table, acumulador.toFixed(2));
         } else {
-          console.error('La tabla no está definida o no tiene suficientes filas.');
+            console.error('La tabla no está definida o no tiene suficientes filas.');
         }
-      }
-    for (const table of tables)
-    {
+    }
+
+    for (const table of tables) {
         table.addEventListener('input', (event) => {
-        const target = event.target;
-        const cellIndex = target.cellIndex;
-    
-        // Verificar si la celda pertenece a la columna 2
-        if (cellIndex === 2 || cellIndex === 1) {
-            calcularNotas(table);
-        }
+            const target = event.target;
+            const cellIndex = target.cellIndex;
+        
+            // Verificar si la celda pertenece a la columna 2
+            if (cellIndex === 2 || cellIndex === 1) {
+                calcularNotas(table);
+            }
         });
     } 
     

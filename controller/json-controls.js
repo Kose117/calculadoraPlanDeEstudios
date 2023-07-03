@@ -42,24 +42,24 @@ const clasesJsonDelete = (req, res) => {
 const carreraJsonGet = (req, res) => res.json(readDB('./public/json/mi-carrera.json'));
 
 const carreraJsonPut = (req, res) => {
-    const { codigo, semestre } = req.body;
+    const { codigo, semestre, nota } = req.body;
     const clases = readDB('./public/json/clases.json');
     const clase = clases[codigo];
     
     clase.id = codigo;
-    clase.nota = {};
-    clase.aprobada = false;
+    clase.nota = nota;
+    clase.aprobada = nota >= 3.0;
     
     const carrera = readDB('./public/json/mi-carrera.json');
-    if (semestre != '0'){
-        if (carrera.semestres[semestre] === undefined){
+
+    if (semestre != '0') {
+        if (!carrera.semestres[semestre]) {
             carrera.semestres[semestre] = [clase];
         } else {
             const index = carrera.semestres[semestre].findIndex(element => codigo == element.id);
-            console.log({index});
             (index == -1)
-                ?carrera.semestres[semestre].push(clase)
-                :carrera.semestres[semestre][index] = clase;
+                ? carrera.semestres[semestre].push(clase)
+                : carrera.semestres[semestre][index] = clase;
         }
         saveDB('./public/json/mi-carrera.json', carrera);
         res.json({msg: 'La información de su clase se guardo correctamente'});
