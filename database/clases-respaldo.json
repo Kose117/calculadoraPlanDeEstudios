@@ -324,9 +324,7 @@
         "pre_requisitos":[
             "34580"
         ],
-        "co_requisitos":[
-            "33732"
-        ]
+        "co_requisitos":[]
     },
     "1299":{
         "nombre":"Cálculo vectorial",

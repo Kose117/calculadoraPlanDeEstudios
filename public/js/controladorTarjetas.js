@@ -11,7 +11,7 @@ window.addEventListener("load", async() => {
 
     let btnAnadir = document.querySelector("#boton-tarjeta");
     let btnCubo= document.querySelector("#boton-cubo");
-    btnAnadir.addEventListener("click", crearTarjetas);
+    btnAnadir.addEventListener("click", crearTarjeta);
     btnCubo.addEventListener("click", () => {
         creacionCubos();
         carrera.semestres[btnMostrarcartas.length] = [];
@@ -84,12 +84,13 @@ window.addEventListener("load", async() => {
                 btnCreate[0].textContent = "Semestre " + (index + 1);
                 btnCreate[0].classList.add('active');
                 fromCenter[0].classList.add('active');
-                calcularPromedioSemestre(carrera,(index + 1),ponderado);
+                calcularPromedioSemestre(carrera, index, ponderado);
+                crearTarjetas(carrera, index);
             });
         }
     }
     
-    function crearTarjetas(valorNombre, valorNota, valorProfesor) {
+    function crearTarjeta(valorNombre, valorNota, valorProfesor) {
                         
         let cardFather = document.createElement("div");
         cardFather.classList.add("card-father");
@@ -156,6 +157,13 @@ window.addEventListener("load", async() => {
                 overlay.classList.add('active');
 	            document.getElementsByClassName("popup-father")[0].classList.add("active")
             });
+        }
+    }
+
+    const crearTarjetas = (carrera, semestre) => {
+        const { materias } = carrera.semestres[semestre];
+        for (const clase in materias) {
+            crearTarjeta(materias[clase].nombre, materias[clase].nota.definitiva, materias[clase].profesor);
         }
     }
 
@@ -391,16 +399,18 @@ window.addEventListener("load", async() => {
         let sumaPonderada = 0;
       
        
-        for (const materia of clases.semestres[semestre]) {
-          const creditos = materia.creditos;
-          const definitiva = materia.nota.definitiva;
-      
-          totalCreditos += creditos;
-          sumaPonderada += creditos * definitiva;
+        for (const materia of clases.semestres[semestre].materias) {
+            const creditos = materia.creditos;
+            const definitiva = materia.nota.definitiva;
+        
+            totalCreditos += creditos;
+            sumaPonderada += creditos * definitiva;
         }
         
         const promedio = (sumaPonderada / totalCreditos).toFixed(3);
         // TOCA QUE ESTA MONDA SE PONGA EN LOS JSON DE CLASES 
         ponderado.textContent=promedio;
-      }
+    }
+
+    /*---------------------------------Crear tarjetas por Semestre---------------------------------*/
 });
