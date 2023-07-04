@@ -427,8 +427,9 @@ window.addEventListener("load", async() => {
         const promedio = (sumaPonderada / totalCreditos).toFixed(3);
         // TOCA QUE ESTA MONDA SE PONGA EN LOS JSON DE CLASES 
         ponderado.textContent=promedio;
-      }
-      function calcularPonderado(clases, ponderado) {
+    }
+    
+    function calcularPonderado(clases, ponderado) {
         let sumaPonderada = 0;
         let totalSemestres = 0;
       
@@ -441,6 +442,6 @@ window.addEventListener("load", async() => {
         console.log(sumaPonderada);
         const promedioPonderado = (sumaPonderada / totalSemestres).toFixed(3);
         ponderado.textContent = promedioPonderado;  
-      }
+    }
       
 });

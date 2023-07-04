@@ -29,14 +29,14 @@ window.addEventListener("load", async() => {
         const botones = document.querySelectorAll('.btn-materias');
         
         botones.forEach(boton => {
-          if (carrera.semestres.some(semestre => semestre.materias.some(materia => materia.id === boton.id))) {
-            boton.style.backgroundColor = '#AFF0BD';
-          }
+            if (carrera.semestres.some(semestre => semestre.materias.some(materia => materia.id === boton.id))) {
+                boton.style.backgroundColor = '#AFF0BD';
+            } else {
+                boton.style.backgroundColor = '';
+            }
         });
-        
-        console.log(carrera);
-      }
-      cambiarColorFondo();
+    }
+    cambiarColorFondo();
     
     const guardarMateria = async(codigo, num_semestre, profesor, mi_nota) => {
         if (num_semestre === '') num_semestre = 0;
@@ -73,8 +73,8 @@ window.addEventListener("load", async() => {
         clases[codigo].profesor = "";
         clases[codigo].semestre = 0;
         clases[codigo].registro = false;
-        cambiarColorFondo();
         console.log(await delClase(codigo, num_semestre));
+        cambiarColorFondo();
     }
 
     for (var i = 0; i < btnsMaterias.length; i++){

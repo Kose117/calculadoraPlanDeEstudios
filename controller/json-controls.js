@@ -55,13 +55,19 @@ const carreraJsonPut = (req, res) => {
     const carrera = readDB('./public/json/mi-carrera.json');
 
     if (semestre >= 0) {
+        carrera.semestres.forEach(sem => {
+            const index = sem.materias.findIndex(element => codigo === element.id);
+            if (index != -1) {
+                sem.materias.splice(index);
+            }
+        });
         if (!carrera.semestres[semestre]) {
             carrera.semestres[semestre] = {
                 definitiva: 0,
                 materias: [clase]
             };
         } else {
-            const index = carrera.semestres[semestre].materias.findIndex(element => codigo == element.id);
+            const index = carrera.semestres[semestre].materias.findIndex(element => codigo === element.id);
             (index == -1)
                 ? carrera.semestres[semestre].materias.push(clase)
                 : carrera.semestres[semestre].materias[index] = clase;
@@ -74,14 +80,18 @@ const carreraJsonPut = (req, res) => {
 }
 
 const carreraJsonDelete = (req, res) => {
-    const { codigo, semestre } = req.body;
+    let { codigo, semestre } = req.body;
     
     const carrera = readDB('./public/json/mi-carrera.json');
-    if (carrera.semestres[semestre] !== undefined){
-        const index = carrera.semestres[semestre].materias.findIndex(element => codigo == element.id);
+
+    semestre--;
+
+    if (carrera.semestres[semestre]) {
+        const index = carrera.semestres[semestre].materias.findIndex(element => codigo === element.id);
         carrera.semestres[semestre].materias.splice(index);
         saveDB('./public/json/mi-carrera.json', carrera);
         res.json({msg: 'La información de su clase se eliminó correctamente'});
+
     } else {
         res.status(400).json({errors: ['El código de clase no existe en el semestre ingresado']});
     }
