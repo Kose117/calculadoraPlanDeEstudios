@@ -1,1 +1,76 @@
-{"semestres":[{"definitiva":0,"materias":[{"nombre":"Cálculo diferencial","creditos":3,"departamento":"Matemáticas","tipo":"Núcleo fundamental","semestre":"1","profesor":"","nota":{"definitiva":0,"notas":[]},"registro":true,"pre_requisitos":[],"co_requisitos":[],"id":"1295","aprobada":false},{"nombre":"Ecuaciones diferenciales","creditos":3,"departamento":"Matemáticas","tipo":"Núcleo fundamental","semestre":"1","profesor":"","nota":{"definitiva":0,"notas":[]},"registro":true,"pre_requisitos":["1297","1290"],"co_requisitos":[],"id":"1300","aprobada":false}]},{"definitiva":0,"materias":[{"nombre":"Lógica y matemáticas discretas","creditos":3,"departamento":"Matemáticas","tipo":"Núcleo fundamental","semestre":"2","profesor":"","nota":{"definitiva":0,"notas":[]},"registro":true,"pre_requisitos":[],"co_requisitos":[],"id":"33518","aprobada":false}]}],"carrera":"Ingeniería de sistemas","semestre-actual":0,"creditos-aprobados-NFF":0,"creditos-aprobados-enfasis":0,"creditos-aprobados-electivas":0,"creditos-aprobados-complementarias":0,"creditos-aprobados":0,"promedio-general":0}
+{
+    "semestres": [
+        {
+            "definitiva": 0,
+            "materias": [
+                {
+                    "nombre": "Cálculo diferencial",
+                    "creditos": 3,
+                    "departamento": "Matemáticas",
+                    "tipo": "Núcleo fundamental",
+                    "semestre": "1",
+                    "profesor": "",
+                    "nota": {
+                        "definitiva": 0,
+                        "notas": []
+                    },
+                    "registro": true,
+                    "pre_requisitos": [],
+                    "co_requisitos": [],
+                    "id": "1295",
+                    "aprobada": false
+                },
+                {
+                    "nombre": "Ecuaciones diferenciales",
+                    "creditos": 3,
+                    "departamento": "Matemáticas",
+                    "tipo": "Núcleo fundamental",
+                    "semestre": "1",
+                    "profesor": "",
+                    "nota": {
+                        "definitiva": 0,
+                        "notas": []
+                    },
+                    "registro": true,
+                    "pre_requisitos": [
+                        "1297",
+                        "1290"
+                    ],
+                    "co_requisitos": [],
+                    "id": "1300",
+                    "aprobada": false
+                }
+            ]
+        },
+        {
+            "definitiva": 0,
+            "materias": [
+                {
+                    "nombre": "Lógica y matemáticas discretas",
+                    "creditos": 3,
+                    "departamento": "Matemáticas",
+                    "tipo": "Núcleo fundamental",
+                    "semestre": "2",
+                    "profesor": "",
+                    "nota": {
+                        "definitiva": 0,
+                        "notas": []
+                    },
+                    "registro": true,
+                    "pre_requisitos": [],
+                    "co_requisitos": [],
+                    "id": "33518",
+                    "aprobada": false
+                }
+            ]
+        }
+    ],
+    "carrera": "Ingeniería de sistemas",
+    "semestre-actual": 0,
+    "creditos-aprobados-NFF": 0,
+    "creditos-aprobados-enfasis": 0,
+    "creditos-aprobados-electivas": 0,
+    "creditos-aprobados-complementarias": 0,
+    "creditos-aprobados": 0,
+    "promedio-general": 0
+}

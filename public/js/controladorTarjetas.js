@@ -85,6 +85,7 @@ window.addEventListener("load", async() => {
                 btnCreate[0].classList.add('active');
                 fromCenter[0].classList.add('active');
                 calcularPromedioSemestre(carrera, index, ponderado);
+                borrarTarjetas();
                 crearTarjetas(carrera, index);
             });
         }
@@ -166,6 +167,13 @@ window.addEventListener("load", async() => {
             crearTarjeta(materias[clase].nombre, materias[clase].nota.definitiva, materias[clase].profesor);
         }
     }
+
+    const borrarTarjetas = () => {
+        while (containerCard.firstChild) {
+            containerCard.removeChild(containerCard.firstChild);
+        }
+    }
+
 
     let bodyPopupFront=document.querySelector(".body-popup-front");
     let bodyPopupRight=document.querySelector(".body-popup-right");
