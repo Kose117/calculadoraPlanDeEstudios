@@ -45,7 +45,7 @@ window.addEventListener("load", async() => {
         profe.removeAttribute('readonly');
     }
 
-    const eliminarMateira = async(codigo, num_semestre) => {
+    const eliminarMateria = async(codigo, num_semestre) => {
         semestre.setAttribute('readonly','true');
         profe.setAttribute('readonly','true');
         nota.setAttribute('readonly','true');
@@ -118,7 +118,7 @@ window.addEventListener("load", async() => {
     
             } else {
                 if (semestre.value === '')
-                    semestre.value = 1;
+                    semestre.value = '1';
 
                 semestre.value = parseInt(semestre.value);
                 nota.value = parseInt(nota.value);
@@ -150,7 +150,7 @@ window.addEventListener("load", async() => {
             btnEliminar.textContent = "Guardar";
 
         } else if(btnEliminar.textContent === "Eliminar") {
-            eliminarMateira(codigo.value, semestre.value);
+            eliminarMateria(codigo.value, semestre.value);
             
             btnAgregar.textContent = "Agregar";
             btnEliminar.textContent = "Editar";

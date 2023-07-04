@@ -403,4 +403,16 @@ window.addEventListener("load", async() => {
         // TOCA QUE ESTA MONDA SE PONGA EN LOS JSON DE CLASES 
         ponderado.textContent=promedio;
       }
+      function calcularPonderado(clases,ponderado) {
+        let sumaPonderada = 0;
+       
+        for (const semestre in clases.semestres) {
+          
+        }
+        
+        
+        // TOCA QUE ESTA MONDA SE PONGA EN LOS JSON DE CLASES 
+        
+      }
+      calcularPonderado(carrera,ponderado);
 });
