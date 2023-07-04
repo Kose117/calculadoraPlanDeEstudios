@@ -3,9 +3,11 @@ import { agregar_fila } from "../helpers/functions.js";
 import { getCarrera } from "../helpers/requests.js";
 
 
+
 window.addEventListener("load", async() => {
 /*---------------------------------crear tarjetas---------------------------------*/
     const carrera = await getCarrera();
+    
 
     let btnAnadir = document.querySelector("#boton-tarjeta");
     let btnCubo= document.querySelector("#boton-cubo");
@@ -82,6 +84,7 @@ window.addEventListener("load", async() => {
                 btnCreate[0].textContent = "Semestre " + (index + 1);
                 btnCreate[0].classList.add('active');
                 fromCenter[0].classList.add('active');
+                calcularPromedioSemestre(carrera,(index + 1),ponderado);
             });
         }
     }
@@ -197,6 +200,7 @@ window.addEventListener("load", async() => {
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
     const tables = [document.querySelector("#tabla-materias"), document.querySelector("#tabla-materias2")];
+    const ponderado=document.getElementById("ponderado");
     let rIndexs = [-1, -1];
 
     const hasFocus = element => (element === document.activeElement);
@@ -226,6 +230,10 @@ window.addEventListener("load", async() => {
             if (definitiva) {
                 if (nota !== undefined) {
                     definitiva.textContent = nota;
+
+
+                    a.textContent=nota;
+
                 }
             } else {
                 const newDefinitiva = document.createElement('td');
@@ -377,5 +385,22 @@ window.addEventListener("load", async() => {
         });
     } 
     
+    /*---------------------------------Calculos Definitiva Semestre---------------------------------*/ 
+    function calcularPromedioSemestre(clases,semestre,ponderado) {
+        let totalCreditos = 0;
+        let sumaPonderada = 0;
+      
+       
+        for (const materia of clases.semestres[semestre]) {
+          const creditos = materia.creditos;
+          const definitiva = materia.nota.definitiva;
+      
+          totalCreditos += creditos;
+          sumaPonderada += creditos * definitiva;
+        }
+        
+        const promedio = (sumaPonderada / totalCreditos).toFixed(3);
+        // TOCA QUE ESTA MONDA SE PONGA EN LOS JSON DE CLASES 
+        ponderado.textContent=promedio;
+      }
 });
-  

@@ -27,6 +27,7 @@ export const getClases = async() => {
     return await clases_msg.json();
 }
 
+
 export const getCarrera = async() => {
     const carrera_msg = await getJson('/json/carrera');
 
