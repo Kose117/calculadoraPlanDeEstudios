@@ -42,24 +42,29 @@ const clasesJsonDelete = (req, res) => {
 const carreraJsonGet = (req, res) => res.json(readDB('./public/json/mi-carrera.json'));
 
 const carreraJsonPut = (req, res) => {
-    const { codigo, semestre, nota } = req.body;
+    let { codigo, semestre, nota } = req.body;
     const clases = readDB('./public/json/clases.json');
     const clase = clases[codigo];
     
     clase.id = codigo;
     clase.nota = nota;
     clase.aprobada = nota >= 3.0;
-    
+
+    semestre--;
+
     const carrera = readDB('./public/json/mi-carrera.json');
 
-    if (semestre != '0') {
+    if (semestre >= 0) {
         if (!carrera.semestres[semestre]) {
-            carrera.semestres[semestre] = [clase];
+            carrera.semestres[semestre] = {
+                definitiva: 0,
+                materias: [clase]
+            };
         } else {
-            const index = carrera.semestres[semestre].findIndex(element => codigo == element.id);
+            const index = carrera.semestres[semestre].materias.findIndex(element => codigo == element.id);
             (index == -1)
-                ? carrera.semestres[semestre].push(clase)
-                : carrera.semestres[semestre][index] = clase;
+                ? carrera.semestres[semestre].materias.push(clase)
+                : carrera.semestres[semestre].materias[index] = clase;
         }
         saveDB('./public/json/mi-carrera.json', carrera);
         res.json({msg: 'La información de su clase se guardo correctamente'});
@@ -73,8 +78,8 @@ const carreraJsonDelete = (req, res) => {
     
     const carrera = readDB('./public/json/mi-carrera.json');
     if (carrera.semestres[semestre] !== undefined){
-        const index = carrera.semestres[semestre].findIndex(element => codigo == element.id);
-        carrera.semestres[semestre].splice(index);
+        const index = carrera.semestres[semestre].materias.findIndex(element => codigo == element.id);
+        carrera.semestres[semestre].materias.splice(index);
         saveDB('./public/json/mi-carrera.json', carrera);
         res.json({msg: 'La información de su clase se eliminó correctamente'});
     } else {
