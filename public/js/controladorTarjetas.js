@@ -7,11 +7,10 @@ import { getCarrera } from "../helpers/requests.js";
 window.addEventListener("load", async() => {
 /*---------------------------------crear tarjetas---------------------------------*/
     const carrera = await getCarrera();
-    
-
-    let btnAnadir = document.querySelector("#boton-tarjeta");
+    const ponderado=document.getElementById("ponderado");
+    calcularPonderado(carrera,ponderado);
+   
     let btnCubo= document.querySelector("#boton-cubo");
-    btnAnadir.addEventListener("click", crearTarjeta);
     btnCubo.addEventListener("click", () => {
         creacionCubos();
         carrera.semestres[btnMostrarcartas.length] = [];
@@ -66,14 +65,15 @@ window.addEventListener("load", async() => {
     }
     
     function crearCubo(containerCubos) {
-        contadorSemestres=contadorSemestres+1;
-        const fragmente=document.createDocumentFragment();
-        const clone=templateCubo.cloneNode(true);
+        contadorSemestres = contadorSemestres + 1;
+        const fragmente = document.createDocumentFragment();
+        const clone = templateCubo.cloneNode(true);
+       
         const carasCubo = clone.querySelectorAll('.caras');
         carasCubo.forEach((cara) => {
-            cara.textContent = "Semestre " + (contadorSemestres);
+          cara.textContent = "Semestre " + (contadorSemestres);
         });
-
+      
         fragmente.appendChild(clone);
         containerCubos?.appendChild(fragmente);
 
@@ -91,7 +91,7 @@ window.addEventListener("load", async() => {
         }
     }
     
-    function crearTarjeta(valorNombre, valorNota, valorProfesor) {
+    function crearTarjeta(valorNombre, valorNota, valorProfesor,id,departamento) {
                         
         let cardFather = document.createElement("div");
         cardFather.classList.add("card-father");
@@ -101,9 +101,17 @@ window.addEventListener("load", async() => {
         card.classList.add("card");
         cardFather.appendChild(card);
         
-        let cardFront=document.createElement("div");
+        let cardFront = document.createElement("div");
         cardFront.classList.add("card-front");
-        cardFront.style.backgroundImage= "url('../images/formula.png')";;
+        if (departamento === "Matemáticas" || departamento === "Física") {
+        cardFront.style.backgroundImage = "url('../images/formula.png')";
+        } else if (departamento === "Filosofía" || departamento === "Centro de formación teológica" || departamento === "Derecho") {
+        cardFront.style.backgroundImage = "url('../images/filo.png')";
+        } else if (departamento === "Sistemas" || departamento === "Industrial" || departamento === "Electrónica") {
+        cardFront.style.backgroundImage = "url('../images/sistemas.jpeg')";
+        } else {
+        cardFront.style.backgroundImage = "url('../images/nose.jpg')";
+        }
         card.appendChild(cardFront);
 
         let bg=document.createElement("div");
@@ -129,7 +137,7 @@ window.addEventListener("load", async() => {
 
         let clase=document.createElement("h1");
         clase.classList.add("alejate");
-        clase.innerText="Clase";
+        clase.innerText=`Clase: ${id}`;
         bodyCardBack.appendChild(clase);
 
         let nota=document.createElement("h2");
@@ -164,7 +172,7 @@ window.addEventListener("load", async() => {
     const crearTarjetas = (carrera, semestre) => {
         const { materias } = carrera.semestres[semestre];
         for (const clase in materias) {
-            crearTarjeta(materias[clase].nombre, materias[clase].nota.definitiva, materias[clase].profesor);
+            crearTarjeta(materias[clase].nombre, materias[clase].nota.definitiva, materias[clase].profesor,materias[clase].id,materias[clase].departamento);
         }
     }
 
@@ -205,6 +213,7 @@ window.addEventListener("load", async() => {
         btnCreate[0].classList.remove('active');
         fromCenter[0].classList.remove('active');
         btnCreate[0].textContent="Crear Semestre";
+        calcularPonderado(carrera,ponderado);
     });
 
     btnIzquierda.addEventListener("click", () => {
@@ -216,7 +225,7 @@ window.addEventListener("load", async() => {
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
     const tables = [document.querySelector("#tabla-materias"), document.querySelector("#tabla-materias2")];
-    const ponderado=document.getElementById("ponderado");
+    
     let rIndexs = [-1, -1];
 
     const hasFocus = element => (element === document.activeElement);
@@ -419,16 +428,19 @@ window.addEventListener("load", async() => {
         // TOCA QUE ESTA MONDA SE PONGA EN LOS JSON DE CLASES 
         ponderado.textContent=promedio;
       }
-      function calcularPonderado(clases,ponderado) {
+      function calcularPonderado(clases, ponderado) {
         let sumaPonderada = 0;
-       
-        for (const semestre in clases.semestres) {
-          
+        let totalSemestres = 0;
+      
+        for (const semestre of clases.semestres) {
+          const definitivaSemestre = semestre.definitiva;
+      
+          sumaPonderada += definitivaSemestre;
+          totalSemestres++;
         }
-        
-        
-        // TOCA QUE ESTA MONDA SE PONGA EN LOS JSON DE CLASES 
-        
+        console.log(sumaPonderada);
+        const promedioPonderado = (sumaPonderada / totalSemestres).toFixed(3);
+        ponderado.textContent = promedioPonderado;  
       }
-      calcularPonderado(carrera,ponderado);
+      
 });

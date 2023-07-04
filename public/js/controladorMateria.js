@@ -3,12 +3,13 @@
 import { getClases, putClase, delClase,  } from "../helpers/requests.js";
 import { agregar_fila } from "../helpers/functions.js";
 import { error_alerta } from "./sweetAlert.js";
+import { getCarrera } from "../helpers/requests.js";
 
 
 window.addEventListener("load", async() => {
     
     const clases = await getClases();
-
+    
     var btnsMaterias = document.getElementsByClassName("btn-materias");
     var overlay = document.querySelector(".overlay");
     var btnCerrar = document.querySelector("#cerrar");
@@ -23,6 +24,20 @@ window.addEventListener("load", async() => {
     var btnAgregar = document.querySelector("#bt2");
     var btnEliminar = document.querySelector("#bt1");
     
+    async function cambiarColorFondo() {
+        const carrera = await getCarrera();
+        const botones = document.querySelectorAll('.btn-materias');
+        
+        botones.forEach(boton => {
+          if (carrera.semestres.some(semestre => semestre.materias.some(materia => materia.id === boton.id))) {
+            boton.style.backgroundColor = '#AFF0BD';
+          }
+        });
+        
+        console.log(carrera);
+      }
+      cambiarColorFondo();
+    
     const guardarMateria = async(codigo, num_semestre, profesor, mi_nota) => {
         if (num_semestre === '') num_semestre = 0;
 
@@ -36,10 +51,10 @@ window.addEventListener("load", async() => {
         clases[codigo].profesor=profesor;
         clases[codigo].semestre=num_semestre;
         clases[codigo].registro = true;
-
         console.log(await putClase(codigo, num_semestre, profesor));
+        cambiarColorFondo();
     }
-
+    
     const editarMateria = () => {
         semestre.removeAttribute('readonly');
         profe.removeAttribute('readonly');
@@ -58,7 +73,7 @@ window.addEventListener("load", async() => {
         clases[codigo].profesor = "";
         clases[codigo].semestre = 0;
         clases[codigo].registro = false;
-
+        cambiarColorFondo();
         console.log(await delClase(codigo, num_semestre));
     }
 
@@ -129,7 +144,6 @@ window.addEventListener("load", async() => {
                     throw new Error("La nota debe ser positiva y menor a 5");
 
                 guardarMateria(codigo.value, semestre.value, profe.value, nota.value);
-                
                 if (btnAgregar.textContent == "Agregar")
                     btnEliminar.textContent = "Eliminar";
                 
