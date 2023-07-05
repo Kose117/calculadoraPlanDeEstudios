@@ -60,7 +60,7 @@ window.addEventListener("load", async() => {
         let contenedor=document.createElement("div");
         contenedor.classList.add("container-cubo")
         contenedor.setAttribute('id',`${contador}`);
-        console.log("a");
+        // console.log("a");
         seccion.appendChild(contenedor);
     }
     
@@ -91,7 +91,7 @@ window.addEventListener("load", async() => {
         }
     }
     
-    function crearTarjeta(valorNombre, valorNota, valorProfesor,id,departamento) {
+    function crearTarjeta(valorNombre, valorNota, valorProfesor, id, departamento) {
                         
         let cardFather = document.createElement("div");
         cardFather.classList.add("card-father");
@@ -102,15 +102,15 @@ window.addEventListener("load", async() => {
         cardFather.appendChild(card);
         
         let cardFront = document.createElement("div");
-        cardFront.classList.add("card-front");
+            cardFront.classList.add("card-front");
         if (departamento === "Matemáticas" || departamento === "Física") {
-        cardFront.style.backgroundImage = "url('../images/formula.png')";
+            cardFront.style.backgroundImage = "url('../images/formula.png')";
         } else if (departamento === "Filosofía" || departamento === "Centro de formación teológica" || departamento === "Derecho") {
-        cardFront.style.backgroundImage = "url('../images/filo.png')";
+            cardFront.style.backgroundImage = "url('../images/filo.png')";
         } else if (departamento === "Sistemas" || departamento === "Industrial" || departamento === "Electrónica") {
-        cardFront.style.backgroundImage = "url('../images/sistemas.jpeg')";
+            cardFront.style.backgroundImage = "url('../images/sistemas.jpeg')";
         } else {
-        cardFront.style.backgroundImage = "url('../images/nose.jpg')";
+            cardFront.style.backgroundImage = "url('../images/nose.jpg')";
         }
         card.appendChild(cardFront);
 
@@ -150,7 +150,8 @@ window.addEventListener("load", async() => {
         profesor.innerText=`Profesor: ${valorProfesor}`;
         bodyCardBack.appendChild(profesor);
 
-        let btn=document.createElement("button");
+        let btn = document.createElement("button");
+        btn.setAttribute("id", id);
         btn.classList.add("btn",'btn-abrir-popup');
         bodyCardBack.appendChild(btn);
 
@@ -158,15 +159,40 @@ window.addEventListener("load", async() => {
         span.innerText = valorNombre;
         btn.appendChild(span);
            
-        let btnAbrirPopup = document.getElementsByClassName('btn-abrir-popup'),
-            overlay = document.querySelector(".overlay");
-    
-        for (let index = 0; index < btnAbrirPopup.length; index++) {
-            btnAbrirPopup[index].addEventListener('click', () => {
-                overlay.classList.add('active');
-	            document.getElementsByClassName("popup-father")[0].classList.add("active")
+        let overlay = document.querySelector(".overlay");
+        
+        btn.addEventListener('click', () => {
+            overlay.classList.add('active');
+            
+            tables[0].innerHTML = `<tr>
+                <th>Nombre</th>
+                <th>%</th>
+                <th>Notas</th>
+                <th>Definitiva</th>
+            </tr>`;
+
+            const id = btn.getAttribute("id");
+
+            let nota;
+            carrera.semestres.forEach((semestre) => {
+                const materia = semestre.materias.find((materia) => materia.id === id);
+                if (materia) {
+                    nota = materia.nota;
+                }
             });
-        }
+            
+            document.getElementsByClassName("popup-father")[0].classList.add("active");
+
+            nota.notas.forEach((nota) => {
+                agregarFila(tables[0], 'td contenteditable="true"', [nota.nombre, nota.porcentaje, nota.nota]);
+            });
+
+            if (nota.notas.length > 0) {
+                addDefinitiva(tables[0], nota.definitiva);
+                updateLastRowEvents(0);
+            }
+        });
+        
     }
 
     const crearTarjetas = (carrera, semestre) => {
@@ -193,7 +219,7 @@ window.addEventListener("load", async() => {
         this.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
         
-        console.log(tables[0].rows[0].cells[0].textContent)
+        // console.log(tables[0].rows[0].cells[0].textContent)
        
     });
     
@@ -255,10 +281,7 @@ window.addEventListener("load", async() => {
             if (definitiva) {
                 if (nota !== undefined) {
                     definitiva.textContent = nota;
-
-
                     a.textContent=nota;
-
                 }
             } else {
                 const newDefinitiva = document.createElement('td');
@@ -439,7 +462,7 @@ window.addEventListener("load", async() => {
           sumaPonderada += definitivaSemestre;
           totalSemestres++;
         }
-        console.log(sumaPonderada);
+        // console.log(sumaPonderada);
         const promedioPonderado = (sumaPonderada / totalSemestres).toFixed(3);
         ponderado.textContent = promedioPonderado;  
     }
