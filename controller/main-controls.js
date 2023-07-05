@@ -11,8 +11,8 @@ const calculadoraPromedioGet = (req, res) => {
     res.render('calculadora-promedio');
 }
 
-const cubeGet = (req, res) => {
-    res.render('cubo');
+const administradorGet = (req, res) => {
+    res.render('administrador-materias');
 }
 
 
@@ -20,5 +20,5 @@ module.exports = {
     mainGet,
     planEstudiosGet,
     calculadoraPromedioGet,
-    cubeGet
+    administradorGet
 }

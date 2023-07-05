@@ -63,6 +63,7 @@
     position: relative;
 }
 
+
 .confirm-error::after,.btn-materias::after {
 	content: "";
 	width: 1px;
@@ -396,12 +397,11 @@
 .requisitos{
     display: block;
     overflow-y: scroll;
-    height: 105px;
-    width: 99%;
+    
     border-radius: 5px;
     border:black 3px solid;
     text-align: justify;
-    font-size: 125%;
+    
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
     background-color: #fff;
 }

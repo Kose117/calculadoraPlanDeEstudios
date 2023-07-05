@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/administrador-materias.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c15a751039.js" crossorigin="anonymous"></script>
+    <script type="module" src="../js/controladorAdministrador.js"></script>
+    
+</head>
+<body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <label for="btn-menu" class="icono-menu"><i class="fa-solid fa-bars"></i></label>
+    <input type="checkbox" id="btn-menu">
+    {{> menu }}
+    <div class="container mt-5 position-relative">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-success mb-2">Nueva Materia</button>
+        <div class="container-tabla">
+
+        <table class="table table-dark" id="table">
+          <thead>
+            <tr>
+                <th class="col-2">Id</th>
+                <th class="col-4">Nombre</th>
+                <th class="col-3">Tipo</th>
+                <th class="col-2 text-center">Creditos</th>
+                <th class="col-1">Editar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>32502</td>
+              <td>Teclado Gamer Rgba</td>
+              <td>Electiva</td>
+              <td class="col-2 text-center">23</td>
+              <td><button class="btn btn-warning">Editar</button></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Teclado</td>
+              <td>Electiva </td>
+              <td class="col-2 text-center">23</td>
+              <td><button class="btn btn-warning">Editar</button></td>
+            </tr>
+            
+
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <div class="position-absolute w-100 top translate" id="modal">
+    <form class="form-control w-75 h-150">
+      <h1 class="text-center">New Register</h1>
+      <div class="form-control border-white">
+        <label for="">Id :</label>
+        <input type="text" class="form-control w-25">
+      </div>
+      <div class="form-control border-white">
+        <label for="">Nombre :</label>
+        <input type="text" class="form-control custom-size">
+      </div>
+      <div class="form-control border-white">
+        <label for="">Tipo :</label>
+        <select class="form-select custom-size" aria-label="Default select example">
+            <option selected>Opciones</option>
+            <option value="1">Electiva</option>
+            <option value="2">Complementaria</option>
+            <option value="3">Énfasis</option>
+            <option value="3">Núcleo fundamental</option>
+        </select>
+      </div>
+      <div class="form-control border-white">
+        <label for="">Creditos :</label>
+        <input type="number" class="form-control w-25">
+      </div>
+      <div class="form-control border-white">
+        <button class="btn btn-primary">Guardar!</button>
+      </div>
+    </form>
+    <button class="position-absolute btn btn-danger close">Cerrar</button>
+    </div>
+    
+</body>
+</html> 
