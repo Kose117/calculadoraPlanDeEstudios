@@ -19,7 +19,7 @@
     <div class="container mt-5 position-relative">
     <div class="row">
       <div class="col">
-        <button class="btn btn-success mb-2">Nueva Materia</button>
+        <button class="btn btn-success mb-2" id="nueva-materia">Nueva Materia</button>
         <div class="container-tabla">
 
         <table class="table table-dark" id="table">
@@ -33,21 +33,6 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>32502</td>
-              <td>Teclado Gamer Rgba</td>
-              <td>Electiva</td>
-              <td class="col-2 text-center">23</td>
-              <td><button class="btn btn-warning">Editar</button></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Teclado</td>
-              <td>Electiva </td>
-              <td class="col-2 text-center">23</td>
-              <td><button class="btn btn-warning">Editar</button></td>
-            </tr>
-            
 
           </tbody>
         </table>
@@ -57,36 +42,58 @@
     </div>
 
   <div class="position-absolute w-100 top translate" id="modal">
-    <form class="form-control w-75 h-150">
-      <h1 class="text-center">New Register</h1>
-      <div class="form-control border-white">
-        <label for="">Id :</label>
-        <input type="text" class="form-control w-25">
-      </div>
-      <div class="form-control border-white">
-        <label for="">Nombre :</label>
-        <input type="text" class="form-control custom-size">
-      </div>
-      <div class="form-control border-white">
-        <label for="">Tipo :</label>
-        <select class="form-select custom-size" aria-label="Default select example">
+  <form class="wrapper">
+    <div class="one">
+      <h1 class="text-center">Materia</h1>
+    </div>
+    <div class="two">
+        <div class="form-control border-white">
+            <label for="idInput">Id :</label>
+            <input type="text" class="form-control custom-size" readonly id="idInput">
+        </div>
+        <div class="form-control border-white">
+            <label for="nombreInput">Nombre :</label>
+            <input type="text" class="form-control custom-size" readonly id="nombreInput">
+        </div>
+        <div class="form-control border-white">
+            <label for="tipoSelect">Tipo :</label>
+            <select class="form-select custom-size" disabled id="tipoSelect" aria-label="Default select example">
             <option selected>Opciones</option>
             <option value="1">Electiva</option>
             <option value="2">Complementaria</option>
             <option value="3">Énfasis</option>
-            <option value="3">Núcleo fundamental</option>
-        </select>
-      </div>
-      <div class="form-control border-white">
-        <label for="">Creditos :</label>
-        <input type="number" class="form-control w-25">
-      </div>
-      <div class="form-control border-white">
-        <button class="btn btn-primary">Guardar!</button>
-      </div>
-    </form>
-    <button class="position-absolute btn btn-danger close">Cerrar</button>
+            <option value="4">Núcleo fundamental</option>
+            </select>
+        </div>
+        <div class="form-control border-white">
+            <label for="creditosInput">Créditos :</label>
+            <input type="number" class="form-control custom-size" readonly min="0" id="creditosInput">
+        </div>
     </div>
-    
+    <div class="three">
+        <div class="form-control border-white">
+            <label for="profesorInput">Profesor :</label>
+            <input type="text" class="form-control custom-size" id="profesorInput">
+        </div>
+        <div class="form-control border-white">
+            <label for="departamentoInput">Departamento :</label>
+            <input type="text" class="form-control custom-size" readonly id="departamentoInput">
+        </div>
+        <div class="form-control border-white">
+            <label for="semestreInput">Semestre :</label>
+            <input type="number" class="form-control custom-size" min="0" id="semestreInput">
+        </div>
+        <div class="form-control border-white">
+            <label for="notaInput">Nota :</label>
+           <input type="number" class="form-control custom-size" min="0" max="5" step="0.01" id="notaInput">
+
+        </div>
+    </div>
+
+    <div class="four"><button class="btn btn-primary" id="guardar" type="button">Guardar!</button></div>
+  </form>
+  <button class="custom-sizeCerrar btn btn-danger close">Cerrar</button>
+</div>
+
 </body>
 </html> 

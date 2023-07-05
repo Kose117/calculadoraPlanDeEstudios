@@ -78,6 +78,50 @@ const carreraJsonPut = (req, res) => {
         res.status(400).json({errors: ['El semestre ingresado es inválido']});
     }
 }
+const carreraJsonPost=(req, res) =>
+{
+    let {codigo, semestre, definitiva, tipo, creditos, nombre, departamento, profesor}=req.body;
+    const clases = readDB('./public/json/clases.json');
+    const clase = clases[codigo];
+    
+    clase.id = codigo;
+    clase.nota = {definitiva,notas:[]};
+    clase.aprobada = nota >= 3.0;
+    clase.nombre=nombre;
+    clase.profesor=profesor;
+    clase.departamento=departamento;
+    clase.tipo=tipo;
+    clase.creditos=creditos;
+
+    semestre--;
+
+    const carrera = readDB('./public/json/mi-carrera.json');
+
+    if (semestre >= 0) {
+        carrera.semestres.forEach(sem => {
+            const index = sem.materias.findIndex(element => codigo === element.id);
+            if (index != -1) {
+                sem.materias.splice(index);
+            }
+        });
+        if (!carrera.semestres[semestre]) {
+            carrera.semestres[semestre] = {
+                definitiva: 0,
+                materias: [clase]
+            };
+        } else {
+            const index = carrera.semestres[semestre].materias.findIndex(element => codigo === element.id);
+            (index == -1)
+                ? carrera.semestres[semestre].materias.push(clase)
+                : carrera.semestres[semestre].materias[index] = clase;
+        }        
+        saveDB('./public/json/mi-carrera.json', carrera);
+        res.json({msg: 'La información de su clase se guardo correctamente'});
+    } else {
+        res.status(400).json({errors: ['El semestre ingresado es inválido']});
+    }
+
+}
 
 const carreraJsonDelete = (req, res) => {
     let { codigo, semestre } = req.body;
@@ -107,5 +151,6 @@ module.exports = {
     carreraJsonGet,
     carreraJsonPut,
     carreraJsonDelete,
-    clasesRespaldoJsonGet
+    clasesRespaldoJsonGet,
+    carreraJsonPost
 };

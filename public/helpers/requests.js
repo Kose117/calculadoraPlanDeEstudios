@@ -10,6 +10,15 @@ export const putJson = async(path, body) => {
         body: JSON.stringify(body)
     });
 }
+export const postJson = async(path, body) => {
+    return await fetch(path, {
+        method: 'post',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+}
 
 export const deleteJson = async(path, body) => {
     return await fetch(path, {
@@ -80,4 +89,16 @@ export const delClase = async(codigo, semestre) => {
         }
     ];
     return {msgs};
+}
+export const carreraJsonPost= async(codigo,semestre,definitiva,tipo,creditos,nombre)=>
+{
+    const msg =await postJson('/json/clases', {
+        codigo,
+        semestre,
+        definitiva,
+        tipo,
+        creditos,
+        nombre
+    });
+    return {msg};
 }
