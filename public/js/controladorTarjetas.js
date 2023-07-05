@@ -163,7 +163,7 @@ window.addEventListener("load", async() => {
         
         btn.addEventListener('click', () => {
             overlay.classList.add('active');
-            
+
             tables[0].innerHTML = `<tr>
                 <th>Nombre</th>
                 <th>%</th>
@@ -183,8 +183,11 @@ window.addEventListener("load", async() => {
             
             document.getElementsByClassName("popup-father")[0].classList.add("active");
 
+            let i = 1;
             nota.notas.forEach((nota) => {
-                agregarFila(tables[0], 'td contenteditable="true"', [nota.nombre, nota.porcentaje, nota.nota]);
+                agregar_fila(tables[0], 'td contenteditable="true"', [nota.nombre, nota.porcentaje, nota.nota]);
+                updateLastRowEvents(0, i);
+                i++;
             });
 
             if (nota.notas.length > 0) {
@@ -328,15 +331,20 @@ window.addEventListener("load", async() => {
 
     btnAgregar.addEventListener("click", () => {
         const table = tables[0];
-        agregarFila(table, 'td contenteditable="true"', ['', '', '0']);
+        agregar_fila(table, 'td contenteditable="true"', ['', '', '0']);
+
+        if (table.rows.length == 2)
+            addDefinitiva(table);
+        
+        updateLastRowEvents(0);
+        actualizarPorcentajes(table);
 
         if (table.rows.length >= 2) calcularNotas(table);
-
-        updateLastRowEvents(0);
     });
 
     btnEliminar.addEventListener("click", () => {
         const table = tables[0];
+        
         if (table.rows.length <= 1)
             return;
         if (rIndexs[0] == 1) {
@@ -351,15 +359,20 @@ window.addEventListener("load", async() => {
 
     btnAgregar2.addEventListener("click", () => {
         const table = tables[1];
-        agregarFila(table, 'td contenteditable="true"', ['', '', '0']);
+        agregar_fila(table, 'td contenteditable="true"', ['', '', '0']);
+
+        if (table.rows.length == 2)
+            addDefinitiva(table);
+        
+        updateLastRowEvents(1);
+        actualizarPorcentajes(table);
 
         if (table.rows.length >= 2) calcularNotas(table);
-
-        updateLastRowEvents(1);
     });
 
     btnEliminar2.addEventListener("click", () => {
         const table = tables[1];
+
         if (table.rows.length <= 1)
             return;
         if (rIndexs[1] == 1) {
@@ -373,19 +386,20 @@ window.addEventListener("load", async() => {
     });
     
     btnAgregarGrande.addEventListener("click", () => {
+        const table = tables[0];
         
-        agregar_fila(tables[0], 'td contenteditable="true"', ['', '',
+        agregar_fila(table, 'td contenteditable="true"', ['', '',
             `<button class="btn btnNotas btn-animacion"><span class="spanNotas">0</span></button>`]
         );
 
-        if (tables[0].rows.length == 2)
-            addDefinitiva(tables[0]);
+        if (table.rows.length == 2)
+            addDefinitiva(table);
         
         const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
         btns[btns.length-1].addEventListener('click', girar);
         
         updateLastRowEvents(0);
-        actualizarPorcentajes(tables[0]);
+        actualizarPorcentajes(table);
     });
     
     const girar = () => {
