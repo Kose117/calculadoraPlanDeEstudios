@@ -113,52 +113,52 @@ window.addEventListener("load", async() => {
         }
         card.appendChild(cardFront);
 
-        let bg=document.createElement("div");
+        const bg = document.createElement("div");
         bg.classList.add("bg");
         cardFront.append(bg);
 
-        let bodyCardFront=document.createElement("div");
+        const bodyCardFront = document.createElement("div");
         bodyCardFront.classList.add("body-card-front");
         cardFront.append(bodyCardFront);
 
-        let nombreClase=document.createElement("h1");
+        const nombreClase = document.createElement("h1");
         nombreClase.innerText = valorNombre;
         bodyCardFront.appendChild(nombreClase);
 
-        let cardBack=document.createElement("div");
+        const cardBack = document.createElement("div");
         cardBack.classList.add("card-back");
         // cardBack.style.backgroundImage= "url('../images/')";
         card.appendChild(cardBack);
 
-        let bodyCardBack=document.createElement("div");
+        const bodyCardBack=document.createElement("div");
         bodyCardBack.classList.add("body-card-back");
         cardBack.append(bodyCardBack);
 
-        let clase=document.createElement("h1");
+        const clase=document.createElement("h1");
         clase.classList.add("alejate");
         clase.innerText=`Clase: ${id}`;
         bodyCardBack.appendChild(clase);
 
-        let nota=document.createElement("h2");
+        const nota=document.createElement("h2");
         nota.classList.add("alejate");
         nota.innerText=`Nota: ${valorNota}`;
         bodyCardBack.appendChild(nota);
 
-        let profesor=document.createElement("h2");
+        const profesor=document.createElement("h2");
         profesor.classList.add("alejate");
         profesor.innerText=`Profesor: ${valorProfesor}`;
         bodyCardBack.appendChild(profesor);
 
-        let btn = document.createElement("button");
+        const btn = document.createElement("button");
         btn.setAttribute("id", id);
         btn.classList.add("btn",'btn-abrir-popup');
         bodyCardBack.appendChild(btn);
 
-        let span = document.createElement("span");
+        const span = document.createElement("span");
         span.innerText = valorNombre;
         btn.appendChild(span);
            
-        let overlay = document.querySelector(".overlay");
+        const overlay = document.querySelector(".overlay");
         
         btn.addEventListener('click', () => {
             overlay.classList.add('active');
@@ -297,7 +297,6 @@ window.addEventListener("load", async() => {
             console.error('La tabla o la fila no están definidas correctamente.');
         }   
     }
-      
 
     const actualizarPorcentajes = (table) => {
         const rowCount = table.rows.length - 1; // Excluir la fila de encabezado
@@ -310,17 +309,6 @@ window.addEventListener("load", async() => {
             porcentajeCell.textContent = porcentaje;
             totalPorcentaje += parseFloat(porcentaje);
         }
-    };
-      
-    const agregarFila = (table, cellContent, cellValues) => {
-        const row = table.insertRow(-1);
-        for (let i = 0; i < cellValues.length; i++) {
-            const cell = row.insertCell(i);
-            cell.setAttribute('contenteditable', 'true');
-            cell.innerHTML = cellContent;
-            cell.textContent = cellValues[i];
-        }
-        actualizarPorcentajes(table);
     };
 
     const btnAgregar = document.querySelector("#btnAgregar");
@@ -447,7 +435,7 @@ window.addEventListener("load", async() => {
     } 
     
     /*---------------------------------Calculos Definitiva Semestre---------------------------------*/ 
-    const calcularPromedioSemestre = (clases, semestre, ponderado) => {
+    function calcularPromedioSemestre(clases, semestre, ponderado) {
         let totalCreditos = 0;
         let sumaPonderada = 0;
       
@@ -464,7 +452,7 @@ window.addEventListener("load", async() => {
         ponderado.textContent=promedio;
     }
     
-    const calcularPonderado = (clases, ponderado) => {
+    function calcularPonderado (clases, ponderado) {
         let sumaPonderada = 0;
         let totalSemestres = 0;
       
