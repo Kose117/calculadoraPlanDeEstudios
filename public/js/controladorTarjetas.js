@@ -3,7 +3,6 @@ import { agregar_fila } from "../helpers/functions.js";
 import { getCarrera } from "../helpers/requests.js";
 
 
-
 window.addEventListener("load", async() => {
 /*---------------------------------crear tarjetas---------------------------------*/
     const carrera = await getCarrera();
@@ -448,7 +447,7 @@ window.addEventListener("load", async() => {
     } 
     
     /*---------------------------------Calculos Definitiva Semestre---------------------------------*/ 
-    function calcularPromedioSemestre(clases,semestre,ponderado) {
+    const calcularPromedioSemestre = (clases, semestre, ponderado) => {
         let totalCreditos = 0;
         let sumaPonderada = 0;
       
@@ -462,11 +461,10 @@ window.addEventListener("load", async() => {
         }
         
         const promedio = (sumaPonderada / totalCreditos).toFixed(3);
-        // TOCA QUE ESTA MONDA SE PONGA EN LOS JSON DE CLASES 
         ponderado.textContent=promedio;
     }
     
-    function calcularPonderado(clases, ponderado) {
+    const calcularPonderado = (clases, ponderado) => {
         let sumaPonderada = 0;
         let totalSemestres = 0;
       

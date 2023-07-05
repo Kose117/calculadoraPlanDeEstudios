@@ -79,20 +79,22 @@ const carreraJsonPut = (req, res) => {
         res.status(400).json({errors: ['El semestre ingresado es inválido']});
     }
 }
-const carreraJsonPost=(req, res) =>
-{
-    let {codigo, semestre, definitiva, tipo, creditos, nombre, departamento, profesor}=req.body;
+const carreraJsonPost = (req, res) => {
+    let { codigo, semestre, definitiva, tipo, creditos, nombre, departamento, profesor } = req.body;
     const clases = readDB('./public/json/clases.json');
     const clase = clases[codigo];
     
     clase.id = codigo;
-    clase.nota = {definitiva,notas:[]};
+    clase.nota = {
+        definitiva,
+        notas:[]
+    };
     clase.aprobada = nota >= 3.0;
-    clase.nombre=nombre;
-    clase.profesor=profesor;
-    clase.departamento=departamento;
-    clase.tipo=tipo;
-    clase.creditos=creditos;
+    clase.nombre = nombre;
+    clase.profesor = profesor;
+    clase.departamento = departamento;
+    clase.tipo = tipo;
+    clase.creditos = creditos;
 
     semestre--;
 
