@@ -5,7 +5,8 @@ const { check } = require('express-validator')
 const {
     clasesJsonGet, clasesJsonPut, clasesJsonDelete,
     carreraJsonGet, carreraJsonPut, carreraJsonDelete,
-    clasesRespaldoJsonGet
+    clasesRespaldoJsonGet,
+    carreraJsonPost
 } = require('../controller/json-controls');
 const { validate_params } = require('../middlewares/validate-params');
 
@@ -36,6 +37,16 @@ router.put('/carrera', [
     check('nota.notas', 'La nota debe tener notas parciales').isArray(),
     validate_params
 ], carreraJsonPut);
+
+router.post('/carrera', [
+    check('codigo', 'El código de materia es obligatorio').notEmpty(),
+    check('semestre', 'El semestre tiene que ser un entero positivo').notEmpty().isInt({min:0}),
+    check('definitiva', 'La nota debe ser un numero entre 0 y 5').notEmpty().isFloat({min:0, max:5}),
+    check('tipo').notEmpty().isIn(["Electiva","Complementaria","Énfasis","Núcleo fundamental"]),
+    check('creditos').notEmpty().isInt({min:0}),
+    check('nombre').notEmpty(),
+    validate_params
+],carreraJsonPost);
 
 router.delete('/carrera', [
     check('codigo', 'El código de materia es obligatorio').notEmpty(),
