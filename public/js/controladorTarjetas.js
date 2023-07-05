@@ -6,30 +6,30 @@ import { getCarrera } from "../helpers/requests.js";
 window.addEventListener("load", async() => {
 /*---------------------------------crear tarjetas---------------------------------*/
     const carrera = await getCarrera();
-    const ponderado=document.getElementById("ponderado");
+    const ponderado = document.getElementById("ponderado");
     calcularPonderado(carrera,ponderado);
    
-    let btnCubo= document.querySelector("#boton-cubo");
+    let btnCubo = document.querySelector("#boton-cubo");
     btnCubo.addEventListener("click", () => {
         creacionCubos();
         carrera.semestres[btnMostrarcartas.length] = [];
     });
     
     
-    let templateCubo=document.querySelector("#cubo-template").content;
+    let templateCubo = document.querySelector("#cubo-template").content;
     // let templateTarjeta=document.querySelector("#tarjeta-template").content;
-    let containerGeneral=document.querySelector(".container-general");
-    let containerCardPapa=document.querySelector(".containerCard-papa");
-    let containerCard=document.querySelector(".containerCard");
+    let containerGeneral = document.querySelector(".container-general");
+    let containerCardPapa = document.querySelector(".containerCard-papa");
+    let containerCard = document.querySelector(".containerCard");
     let btnCreate = document.getElementsByClassName('btnCreate');
     let fromCenter = document.getElementsByClassName('from-center');
     
     
-    let contadorContainerCubos=0;
-    let contadorCubos=0;
-    let contadorSemestres=0;
+    let contadorContainerCubos = 0;
+    let contadorCubos = 0;
+    let contadorSemestres = 0;
     
-    const btnMostrarcartas=document.getElementsByClassName("botonCubo");
+    const btnMostrarcartas = document.getElementsByClassName("botonCubo");
 
     for (const semestre in carrera.semestres) {
         creacionCubos();
@@ -38,25 +38,25 @@ window.addEventListener("load", async() => {
     
     function creacionCubos() {
         if (contadorCubos<3) {
-            let containerCubos=document.getElementById(`${contadorContainerCubos}`);
+            let containerCubos = document.getElementById(`${contadorContainerCubos}`);
             crearCubo(containerCubos);
-            contadorCubos=contadorCubos+1;
+            contadorCubos = contadorCubos+1;
 
         } else {
-            contadorCubos=0;
+            contadorCubos = 0;
             contadorContainerCubos++;
             crearContainerCubo(contadorContainerCubos);
-            let containerCubos=document.getElementById(`${contadorContainerCubos}`);
+            let containerCubos = document.getElementById(`${contadorContainerCubos}`);
             crearCubo(containerCubos);
-            contadorCubos=contadorCubos+1;
+            contadorCubos = contadorCubos+1;
         }
     }
 
     function crearContainerCubo(contador) {
-        let seccion=document.createElement("section");
+        let seccion = document.createElement("section");
         containerGeneral.appendChild(seccion);
 
-        let contenedor=document.createElement("div");
+        let contenedor = document.createElement("div");
         contenedor.classList.add("container-cubo")
         contenedor.setAttribute('id',`${contador}`);
         // console.log("a");
@@ -96,7 +96,7 @@ window.addEventListener("load", async() => {
         cardFather.classList.add("card-father");
         containerCard.appendChild(cardFather);
         
-        let card=document.createElement("div");
+        let card = document.createElement("div");
         card.classList.add("card");
         cardFather.appendChild(card);
         
@@ -130,23 +130,23 @@ window.addEventListener("load", async() => {
         // cardBack.style.backgroundImage= "url('../images/')";
         card.appendChild(cardBack);
 
-        const bodyCardBack=document.createElement("div");
+        const bodyCardBack = document.createElement("div");
         bodyCardBack.classList.add("body-card-back");
         cardBack.append(bodyCardBack);
 
-        const clase=document.createElement("h1");
+        const clase = document.createElement("h1");
         clase.classList.add("alejate");
-        clase.innerText=`Clase: ${id}`;
+        clase.innerText = `Clase: ${id}`;
         bodyCardBack.appendChild(clase);
 
-        const nota=document.createElement("h2");
+        const nota = document.createElement("h2");
         nota.classList.add("alejate");
-        nota.innerText=`Nota: ${valorNota}`;
+        nota.innerText = `Nota: ${valorNota}`;
         bodyCardBack.appendChild(nota);
 
-        const profesor=document.createElement("h2");
+        const profesor = document.createElement("h2");
         profesor.classList.add("alejate");
-        profesor.innerText=`Profesor: ${valorProfesor}`;
+        profesor.innerText = `Profesor: ${valorProfesor}`;
         bodyCardBack.appendChild(profesor);
 
         const btn = document.createElement("button");
@@ -200,7 +200,13 @@ window.addEventListener("load", async() => {
     const crearTarjetas = (carrera, semestre) => {
         const { materias } = carrera.semestres[semestre];
         for (const clase in materias) {
-            crearTarjeta(materias[clase].nombre, materias[clase].nota.definitiva, materias[clase].profesor,materias[clase].id,materias[clase].departamento);
+            crearTarjeta(
+                materias[clase].nombre,
+                materias[clase].nota.definitiva,
+                materias[clase].profesor,
+                materias[clase].id,
+                materias[clase].departamento
+            );
         }
     }
 
@@ -211,10 +217,10 @@ window.addEventListener("load", async() => {
     }
 
 
-    let bodyPopupFront=document.querySelector(".body-popup-front");
-    let bodyPopupRight=document.querySelector(".body-popup-right");
+    let bodyPopupFront = document.querySelector(".body-popup-front");
+    let bodyPopupRight = document.querySelector(".body-popup-right");
     let btnsCerrar = document.getElementsByClassName("btn-cerrar-popup");
-    let btnIzquierda= document.getElementById("regresar");
+    let btnIzquierda = document.getElementById("regresar");
     
     btnsCerrar[0].addEventListener("click", function() {
         overlay.classList.remove("active");
@@ -240,7 +246,7 @@ window.addEventListener("load", async() => {
         containerGeneral.classList.remove("active");
         btnCreate[0].classList.remove('active');
         fromCenter[0].classList.remove('active');
-        btnCreate[0].textContent="Crear Semestre";
+        btnCreate[0].textContent = "Crear Semestre";
         calcularPonderado(carrera,ponderado);
     });
 
