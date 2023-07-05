@@ -58,7 +58,8 @@ const carreraJsonPut = (req, res) => {
         carrera.semestres.forEach(sem => {
             const index = sem.materias.findIndex(element => codigo === element.id);
             if (index != -1) {
-                sem.materias.splice(index);
+                sem.materias.splice(index, 1);
+                return;
             }
         });
         if (!carrera.semestres[semestre]) {
