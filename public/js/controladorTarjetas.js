@@ -8,8 +8,11 @@ window.addEventListener("load", async() => {
     const carrera = await getCarrera();
     const ponderado = document.getElementById("ponderado");
     calcularPonderado(carrera,ponderado);
+
+    let idMateriaActual = null;
    
     let btnCubo = document.querySelector("#boton-cubo");
+
     btnCubo.addEventListener("click", () => {
         creacionCubos();
         carrera.semestres[btnMostrarcartas.length] = [];
@@ -17,7 +20,7 @@ window.addEventListener("load", async() => {
     
     
     let templateCubo = document.querySelector("#cubo-template").content;
-    // let templateTarjeta=document.querySelector("#tarjeta-template").content;
+    // let templateTarjeta = document.querySelector("#tarjeta-template").content;
     let containerGeneral = document.querySelector(".container-general");
     let containerCardPapa = document.querySelector(".containerCard-papa");
     let containerCard = document.querySelector(".containerCard");
@@ -31,7 +34,7 @@ window.addEventListener("load", async() => {
     
     const btnMostrarcartas = document.getElementsByClassName("botonCubo");
 
-    for (const semestre in carrera.semestres) {
+    for (const _ in carrera.semestres) {
         creacionCubos();
     }
 
@@ -170,7 +173,8 @@ window.addEventListener("load", async() => {
                 <th>Definitiva</th>
             </tr>`;
 
-            const id = btn.getAttribute("id");
+            idMateriaActual = btn.getAttribute("id");
+            const id = idMateriaActual;
 
             let nota;
             carrera.semestres.forEach((semestre) => {
@@ -228,6 +232,28 @@ window.addEventListener("load", async() => {
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
         
         // console.log(tables[0].rows[0].cells[0].textContent)
+
+        const id = idMateriaActual;
+
+        let nota;
+        carrera.semestres.forEach((semestre) => {
+            const materia = semestre.materias.find((materia) => materia.id === id);
+            if (materia) {
+                nota = materia.nota;
+            }
+        });
+
+        const { rows } = tables[0];
+
+        for (let i = 1; i < rows.length; i++) {
+            const [ nombre, porcentaje, valorNota ] = rows[i].cells;
+
+            nota.notas[i - 1] = {
+                nombre: nombre.textContent,
+                porcentaje: porcentaje.textContent,
+                nota: valorNota.textContent
+            };
+        }
        
     });
     
@@ -289,7 +315,6 @@ window.addEventListener("load", async() => {
             if (definitiva) {
                 if (nota !== undefined) {
                     definitiva.textContent = nota;
-                    a.textContent=nota;
                 }
             } else {
                 const newDefinitiva = document.createElement('td');
@@ -416,7 +441,7 @@ window.addEventListener("load", async() => {
                 
                     const notaCalculada = (notasCell / 100) * porcentajeCell;
                     acumulador += notaCalculada;
-                    console.log("acumula:"+acumulador);
+                    // console.log("acumula:"+acumulador);
                 } else {
                     console.error('La fila no tiene suficientes celdas.');
                 }
