@@ -1,6 +1,6 @@
 
 import { agregar_fila } from "../helpers/functions.js";
-import { getCarrera } from "../helpers/requests.js";
+import { getCarrera, putClase } from "../helpers/requests.js";
 
 
 window.addEventListener("load", async() => {
@@ -226,7 +226,7 @@ window.addEventListener("load", async() => {
     let btnsCerrar = document.getElementsByClassName("btn-cerrar-popup");
     let btnIzquierda = document.getElementById("regresar");
     
-    btnsCerrar[0].addEventListener("click", function() {
+    btnsCerrar[0].addEventListener("click", async function() {
         overlay.classList.remove("active");
         this.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
@@ -235,26 +235,29 @@ window.addEventListener("load", async() => {
 
         const id = idMateriaActual;
 
-        let nota;
+        let clase;
         carrera.semestres.forEach((semestre) => {
             const materia = semestre.materias.find((materia) => materia.id === id);
             if (materia) {
-                nota = materia.nota;
+                clase = materia;
             }
         });
 
         const { rows } = tables[0];
 
+        clase.nota.notas = [];
+
         for (let i = 1; i < rows.length; i++) {
             const [ nombre, porcentaje, valorNota ] = rows[i].cells;
 
-            nota.notas[i - 1] = {
+            clase.nota.notas.push({
                 nombre: nombre.textContent,
                 porcentaje: porcentaje.textContent,
                 nota: valorNota.textContent
-            };
+            });
         }
-       
+        
+        console.log(await putClase(clase.id, clase.semestre, clase.profesor, clase.nota));
     });
     
     btnsCerrar[1].addEventListener("click", function() {
