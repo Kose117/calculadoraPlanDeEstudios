@@ -2,7 +2,7 @@
 
 import { getClases, putClase, delClase,  } from "../helpers/requests.js";
 import { agregar_fila } from "../helpers/functions.js";
-import { error_alerta } from "./sweetAlert.js";
+import { error_alerta,correctamente } from "./sweetAlert.js";
 import { getCarrera } from "../helpers/requests.js";
 
 
@@ -52,6 +52,10 @@ window.addEventListener("load", async() => {
         clases[codigo].semestre=num_semestre;
         clases[codigo].registro = true;
         console.log(await putClase(codigo, num_semestre, profesor));
+        correctamente.fire({ 
+            icon: 'success',
+            title: 'Se agregó correctamente'
+          });
         cambiarColorFondo();
     }
     
@@ -74,6 +78,10 @@ window.addEventListener("load", async() => {
         clases[codigo].semestre = 0;
         clases[codigo].registro = false;
         console.log(await delClase(codigo, num_semestre));
+        correctamente.fire({ 
+            icon: 'error',
+            title: 'Se eliminó  correctamente'
+        });
         cambiarColorFondo();
     }
 

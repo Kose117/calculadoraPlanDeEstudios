@@ -42,7 +42,7 @@ router.post('/carrera', [
     check('codigo', 'El código de materia es obligatorio').notEmpty(),
     check('semestre', 'El semestre tiene que ser un entero positivo').notEmpty().isInt({min:0}),
     check('definitiva', 'La nota debe ser un numero entre 0 y 5').notEmpty().isFloat({min:0, max:5}),
-    check('tipo').notEmpty().isIn(["Electiva","Complementaria","Énfasis","Núcleo fundamental"]),
+    check('tipo').notEmpty(),
     check('creditos').notEmpty().isInt({min:0}),
     check('nombre').notEmpty(),
     validate_params
