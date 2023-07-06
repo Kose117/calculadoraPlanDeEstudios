@@ -90,15 +90,17 @@ export const delClase = async(codigo, semestre) => {
     ];
     return {msgs};
 }
-export const carreraJsonPost= async(codigo,semestre,definitiva,tipo,creditos,nombre)=>
+export const carreraJsonPost= async(codigo,semestre,definitiva,tipo,creditos,nombre,departamento,profesor)=>
 {
-    const msg =await postJson('/json/clases', {
+    const resp =await postJson('/json/carrera', {
         codigo,
         semestre,
         definitiva,
         tipo,
         creditos,
-        nombre
+        nombre,
+        departamento,
+        profesor
     });
-    return {msg};
+    return {mesg:await(resp.json())};
 }

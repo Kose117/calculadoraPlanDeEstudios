@@ -10,6 +10,57 @@ body {
     background:#25292d !important;
     
 }
+#particles-js
+{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: -1;
+}
+
+
+/* Cambiar el color del texto en las celdas de DataTables */
+#table_info,#table_filter,#table_length
+{
+    color: #fff;
+    position: sticky;
+}
+
+/* Ocultar la flecha de ordenamiento en la columna con la clase "no-sort" */
+table.dataTable thead .no-sort::after,
+table.dataTable thead .no-sort::before {
+  display: none !important;
+}
+.dataTables_paginate,
+.paging_simple_numbers  {
+  color: #ffffff6e !important; 
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button
+{
+    transition: 0.3s all;
+    background: transparent !important; 
+    border-color: transparent  !important; 
+}
+
+.paginate_button:hover
+{
+    
+    color: rgb(28, 161, 72) !important;
+}
+select {
+    /* Estilos CSS personalizados */
+    color: white !important;
+    font-size: 16px;
+    background: #212529!important;
+    /* ...otros estilos */
+}
+#tipoSelect
+{
+    color: #000 !important;
+    background: white !important;
+}
+  
 .top{
     top: 0;
     height: 100vh;
@@ -37,6 +88,8 @@ body {
     font-size: 125%;
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
     background-color: #212529;
+    padding-top: 3px;
+    z-index: 30;
   }
   .container-tabla::-webkit-scrollbar{
     width: 5px;
@@ -50,6 +103,7 @@ body {
 .container-tabla{
     width: 100%;
     border: 2px grey;
+    
 }
 #table th{
     position: sticky;
@@ -95,12 +149,17 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 2vh;
   }
 .custom-sizeCerrar
 {
     position: absolute;
     top: 5vh;
     left: 185vh;
+}
+.custom-size5
+{
+    width: 15vh !important;
 }
 
 

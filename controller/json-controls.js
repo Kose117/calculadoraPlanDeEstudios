@@ -81,24 +81,33 @@ const carreraJsonPut = (req, res) => {
 }
 const carreraJsonPost = (req, res) => {
     let { codigo, semestre, definitiva, tipo, creditos, nombre, departamento, profesor } = req.body;
-    const clases = readDB('./public/json/clases.json');
-    const clase = clases[codigo];
-    
-    clase.id = codigo;
-    clase.nota = {
-        definitiva,
-        notas:[]
-    };
-    clase.aprobada = nota >= 3.0;
-    clase.nombre = nombre;
-    clase.profesor = profesor;
-    clase.departamento = departamento;
-    clase.tipo = tipo;
-    clase.creditos = creditos;
-
-    semestre--;
-
     const carrera = readDB('./public/json/mi-carrera.json');
+    
+    carrera.semestres.forEach(semestre => {
+        if(semestre.materias.find(materia=>{
+            return codigo===materia.id}))
+        {
+            res.status(400).json({message:["ya existe una materia con ese id"]})
+        }
+        
+    });
+    clase={
+        id:codigo,
+        semestre,
+        nota:{
+            definitiva,
+            notas:[]
+        },
+        aprobada:definitiva>=3.0,
+        nombre,
+        profesor,
+        departamento,
+        tipo,
+        creditos
+    }
+    semestre--;
+    console.log(clase.tipo+" "+clase.departamento,clase.profesor,clase.semestre);
+    
 
     if (semestre >= 0) {
         carrera.semestres.forEach(sem => {
