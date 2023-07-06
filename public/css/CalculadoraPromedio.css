@@ -588,7 +588,7 @@ td#definitiva {
 	width: var(--tamanoCubo);
 	height: var(--tamanoCubo);
 	transform-style: preserve-3d;
-	/* transform: rotateX(-360deg); */
+	transform: rotateX(-360deg);
 	animation: animate 15s linear infinite;
 	cursor: pointer;
 	transform: rotateX(-20deg)
@@ -639,14 +639,14 @@ td#definitiva {
 	font-size: calc(var(--tamanoCubo)/7);
 	animation: colorChange 8s linear infinite;
 }
-/* @keyframes colorChange {
+@keyframes colorChange {
 	0% {
 		filter: hue-rotate(0deg);
 	}
 	100% {
 		filter: hue-rotate(360deg);
 	}
-} */
+}
 #abajo {
 	transform: rotateX(90deg) translateZ(calc(var(--tamanoCubo)/-2));
 	background: var(--colorCaraCubo);
