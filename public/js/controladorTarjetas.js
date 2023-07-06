@@ -245,14 +245,16 @@ window.addEventListener("load", async() => {
 
         const { rows } = tables[0];
 
+        clase.nota.notas = [];
+
         for (let i = 1; i < rows.length; i++) {
             const [ nombre, porcentaje, valorNota ] = rows[i].cells;
 
-            clase.nota.notas[i - 1] = {
+            clase.nota.notas.push({
                 nombre: nombre.textContent,
                 porcentaje: porcentaje.textContent,
                 nota: valorNota.textContent
-            };
+            });
         }
         
         console.log(await putClase(clase.id, clase.semestre, clase.profesor, clase.nota));

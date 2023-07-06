@@ -624,7 +624,7 @@ td#definitiva {
 }
 .caras {
 	transition: all 800ms;
-	transform-style: preserve-3d;
+	/* transform-style: preserve-3d; */
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -639,14 +639,14 @@ td#definitiva {
 	font-size: calc(var(--tamanoCubo)/7);
 	animation: colorChange 8s linear infinite;
 }
-@keyframes colorChange {
+/* @keyframes colorChange {
 	0% {
 		filter: hue-rotate(0deg);
 	}
 	100% {
 		filter: hue-rotate(360deg);
 	}
-}
+} */
 #abajo {
 	transform: rotateX(90deg) translateZ(calc(var(--tamanoCubo)/-2));
 	background: var(--colorCaraCubo);
