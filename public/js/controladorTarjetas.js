@@ -189,7 +189,22 @@ window.addEventListener("load", async() => {
 
             let i = 1;
             nota.notas.forEach((nota) => {
-                agregar_fila(tables[0], 'td contenteditable="true"', [nota.nombre, nota.porcentaje, nota.nota]);
+                if (nota.subnotas) {
+                    agregar_fila(tables[0], 'td contenteditable="true"', [
+                        nota.nombre,
+                        nota.porcentaje,
+                        `<button id="${id}-${i}" class="btn btnNotas btn-animacion">
+                            <span class="spanNotas">${nota.nota}</span>
+                        </button>`
+                    ]);
+
+                    const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
+                    const btn = btns[btns.length-1];
+                    btn.addEventListener('click', girar);
+                    
+                } else {
+                    agregar_fila(tables[0], 'td contenteditable="true"', [nota.nombre, nota.porcentaje, nota.nota]);
+                }
                 updateLastRowEvents(0, i);
                 i++;
             });
@@ -252,11 +267,17 @@ window.addEventListener("load", async() => {
 
         for (let i = 1; i < rows.length; i++) {
             const [ nombre, porcentaje, valorNota ] = rows[i].cells;
+            
+            let subnotas;
+            if (valorNota.childNodes[0].tagName === 'BUTTON') {
+                subnotas = JSON.parse(valorNota.childNodes[0].getAttribute('subNotas'));
+            }
 
             clase.nota.notas.push({
                 nombre: nombre.textContent,
                 porcentaje: porcentaje.textContent,
-                nota: valorNota.textContent
+                nota: valorNota.textContent,
+                subnotas
             });
         }
         
@@ -289,7 +310,46 @@ window.addEventListener("load", async() => {
         bodyPopupRight.classList.remove("active");
         bodyPopupFront.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.add("active");
-    })       
+
+        const { rows } = tables[1];
+
+        let subNotas = [];
+
+        let nota = 0;
+        if (rows.length > 1) {
+            nota = rows[1].cells[3].textContent;
+        }
+
+        for (let i = 1; i < rows.length; i++) {
+            const [ nombre, porcentaje, valorNota ] = rows[i].cells;
+            subNotas.push({
+                nombre: nombre.textContent,
+                porcentaje: porcentaje.textContent,
+                nota: valorNota.textContent
+            });
+        }
+
+        const [ btn ] = tables[0].rows[rIndexs[0]].cells[2].childNodes;
+        const [ codigo, idNota ] = btn.id.split('-');
+        btn.textContent = nota;
+
+        for (let i = 0; i < carrera.semestres.length; i++) {
+            const semestre = carrera.semestres[i];
+            const materia = semestre.materias.find((materia) => materia.id === codigo);
+            if (materia) {
+                materia.nota.notas[idNota].subNota = subNotas;
+                materia.nota.notas[idNota].nota = nota;
+                break;
+            }
+        }
+
+        tables[1].innerHTML = `<tr>
+            <th>Nombre</th>
+            <th>%</th>
+            <th>Notas</th>
+            <th>Definitiva</th>
+        </tr>`;
+    });     
     
     /*---------------------------------Agregar filas a la tabla---------------------------------*/ 
     const tables = [document.querySelector("#tabla-materias"), document.querySelector("#tabla-materias2")];
@@ -297,7 +357,6 @@ window.addEventListener("load", async() => {
     let rIndexs = [-1, -1];
 
     const hasFocus = element => (element === document.activeElement);
-
 
     const updateLastRowEvents = (i, index = tables[i].rows.length - 1) => {
         const row = tables[i].rows[index];
@@ -315,7 +374,6 @@ window.addEventListener("load", async() => {
             row.style.backgroundColor = "lightblue";
         });
     };
-      
 
     const addDefinitiva = (table, nota) => {
         if (table.rows.length > 1) {
@@ -414,26 +472,50 @@ window.addEventListener("load", async() => {
     btnAgregarGrande.addEventListener("click", () => {
         const table = tables[0];
         
+        
         agregar_fila(table, 'td contenteditable="true"', ['', '',
-            `<button class="btn btnNotas btn-animacion"><span class="spanNotas">0</span></button>`]
+            `<button id="" class="btn btnNotas btn-animacion"><span class="spanNotas">0</span></button>`]
         );
 
         if (table.rows.length == 2)
             addDefinitiva(table);
         
         const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
-        btns[btns.length-1].addEventListener('click', girar);
+        const btn = btns[btns.length-1];
+        btn.addEventListener('click', girar);
+
+        nota.notas.forEach((nota) => {
+            agregar_fila(table, 'td contenteditable="true"', [nota.nombre, nota.porcentaje, nota.nota]);
+
+            updateLastRowEvents(1, i);
+            i++;
+        });
         
-        updateLastRowEvents(0);
+        updateLastRowEvents(1);
         actualizarPorcentajes(table);
     });
     
-    const girar = () => {
+    const girar = (event) => {
         popup.classList.add('active');
         bodyPopupFront.classList.add('active');
         bodyPopupRight.classList.add('active');
-        tables[0].rows[rIndexs[0]].style.backgroundColor = 'white';
-        rIndexs[0] = -1;
+
+        const btn = event.target;
+        console.log(btn.getAttribute('subNotas'));
+        const subNotas = JSON.parse(btn.getAttribute('subNotas'));
+        
+        const table = tables[1];
+        
+        for (let i = 0; i < subNotas.length; i++) {
+            const subNota = subNotas[i];
+            agregar_fila(table, 'td contenteditable="true"', [subNota.nombre, subNota.porcentaje, subNota.nota]);
+            updateLastRowEvents(1);
+        }
+
+        if (subNotas.length > 1) {
+            const notaDefinitiva = btn.textContent;
+            addDefinitiva(table, notaDefinitiva);
+        }
     }
     
     /*---------------------------------Calculos tabla---------------------------------*/ 
