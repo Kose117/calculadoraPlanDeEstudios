@@ -635,7 +635,7 @@ td#definitiva {
 	align-items: center;
 	display: flex;
 	font-size: calc(var(--tamanoCubo)/7);
-	animation: colorChange 8s linear infinite;
+	animation: /*colorChange*/ 8s linear infinite;
 }
 @keyframes colorChange {
 	0% {

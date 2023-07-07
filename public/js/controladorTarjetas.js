@@ -7,9 +7,11 @@ window.addEventListener("load", async() => {
 /*---------------------------------crear tarjetas---------------------------------*/
     const carrera = await getCarrera();
     const ponderado = document.getElementById("ponderado");
-    calcularPonderado(carrera,ponderado);
+    calcularPonderado(carrera, ponderado);
 
+    let semestreActual = null;
     let idMateriaActual = null;
+    let notaActual = null;
    
     let btnCubo = document.querySelector("#boton-cubo");
 
@@ -73,7 +75,7 @@ window.addEventListener("load", async() => {
        
         const carasCubo = clone.querySelectorAll('.caras');
         carasCubo.forEach((cara) => {
-          cara.textContent = "Semestre " + (contadorSemestres);
+            cara.textContent = "Semestre " + (contadorSemestres);
         });
       
         fragmente.appendChild(clone);
@@ -89,6 +91,7 @@ window.addEventListener("load", async() => {
                 calcularPromedioSemestre(carrera, index, ponderado);
                 borrarTarjetas();
                 crearTarjetas(carrera, index);
+                semestreActual = index;
             });
         }
     }
@@ -166,33 +169,32 @@ window.addEventListener("load", async() => {
         btn.addEventListener('click', () => {
             overlay.classList.add('active');
 
+            
             tables[0].innerHTML = `<tr>
                 <th>Nombre</th>
                 <th>%</th>
                 <th>Notas</th>
                 <th>Definitiva</th>
             </tr>`;
+            
+            idMateriaActual = btn.id;
+            tables[0].setAttribute('id_materia', idMateriaActual);
 
-            idMateriaActual = btn.getAttribute("id");
-            const id = idMateriaActual;
-
-            let nota;
-            carrera.semestres.forEach((semestre) => {
-                const materia = semestre.materias.find((materia) => materia.id === id);
-                if (materia) {
-                    nota = materia.nota;
-                }
-            });
+            const materia = carrera.semestres[semestreActual].materias.find(
+                (materia) => materia.id === idMateriaActual
+            );
+            
+            const nota = materia.nota;
             
             document.getElementsByClassName("popup-father")[0].classList.add("active");
 
             let i = 1;
             nota.notas.forEach((nota) => {
-                if (nota.subnotas) {
+                if (nota.subNotas) {
                     agregar_fila(tables[0], 'td contenteditable="true"', [
                         nota.nombre,
                         nota.porcentaje,
-                        `<button id="${id}-${i}" class="btn btnNotas btn-animacion">
+                        `<button id="${i - 1}" class="btn btnNotas btn-animacion">
                             <span class="spanNotas">${nota.nota}</span>
                         </button>`
                     ]);
@@ -246,47 +248,54 @@ window.addEventListener("load", async() => {
         this.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
 
-        const id = idMateriaActual;
-
-        let clase;
-        carrera.semestres.forEach((semestre) => {
-            const materia = semestre.materias.find((materia) => materia.id === id);
-            if (materia) {
-                clase = materia;
-            }
-        });
-
-        const { rows } = tables[0];
-
-        clase.nota.notas = [];
-
-        for (let i = 1; i < rows.length; i++) {
-            const [ nombre, porcentaje, valorNota ] = rows[i].cells;
-            
-            let subnotas;
-            if (valorNota.childNodes[0].tagName === 'BUTTON') {
-                subnotas = JSON.parse(valorNota.childNodes[0].getAttribute('subNotas'));
-            }
-
-            clase.nota.notas.push({
-                nombre: nombre.textContent,
-                porcentaje: porcentaje.textContent,
-                nota: valorNota.textContent,
-                subnotas
-            });
-        }
+        const materia = carrera.semestres[semestreActual].materias.find(
+            (materia) => materia.id === idMateriaActual
+        );
         
-        console.log(await putClase(clase.id, clase.semestre, clase.profesor, clase.nota));
+        console.log(await putClase(materia.id, materia.semestre, materia.profesor, materia.nota));
     });
     
-    btnsCerrar[1].addEventListener("click", function() {
+    btnsCerrar[1].addEventListener("click", async function() {
         overlay.classList.remove("active");
         this.classList.remove("active");
         popup.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
         bodyPopupFront.classList.remove("active");
         bodyPopupRight.classList.remove("active");
-       
+
+        const { rows } = tables[1];
+
+        let subNotas = [];
+        
+        for (let i = 1; i < rows.length; i++) {
+            const [ nombre, porcentaje, valorNota ] = rows[i].cells;
+            subNotas.push({
+                nombre: nombre.textContent,
+                porcentaje: porcentaje.textContent,
+                nota: valorNota.textContent
+            });
+        }
+
+        let nota = 0;
+        if (rows.length > 1) {
+            nota = rows[1].cells[3].textContent;
+        }
+
+        const materia = carrera.semestres[semestreActual].materias.find(
+            (materia) => materia.id === idMateriaActual
+        );
+
+        materia.nota.notas[notaActual].nota = nota;
+        materia.nota.notas[notaActual].subNotas = subNotas;
+
+        console.log(await putClase(materia.id, materia.semestre, materia.profesor, materia.nota));
+
+        tables[1].innerHTML = `<tr>
+            <th>Nombre</th>
+            <th>%</th>
+            <th>Notas</th>
+            <th>Definitiva</th>
+        </tr>`;
     });
 
     btnsCerrar[2].addEventListener("click", function() {
@@ -307,12 +316,7 @@ window.addEventListener("load", async() => {
         const { rows } = tables[1];
 
         let subNotas = [];
-
-        let nota = 0;
-        if (rows.length > 1) {
-            nota = rows[1].cells[3].textContent;
-        }
-
+        
         for (let i = 1; i < rows.length; i++) {
             const [ nombre, porcentaje, valorNota ] = rows[i].cells;
             subNotas.push({
@@ -322,19 +326,19 @@ window.addEventListener("load", async() => {
             });
         }
 
-        const [ btn ] = tables[0].rows[rIndexs[0]].cells[2].childNodes;
-        const [ codigo, idNota ] = btn.id.split('-');
-        btn.textContent = nota;
-
-        for (let i = 0; i < carrera.semestres.length; i++) {
-            const semestre = carrera.semestres[i];
-            const materia = semestre.materias.find((materia) => materia.id === codigo);
-            if (materia) {
-                materia.nota.notas[idNota].subNota = subNotas;
-                materia.nota.notas[idNota].nota = nota;
-                break;
-            }
+        let nota = 0;
+        if (rows.length > 1) {
+            nota = rows[1].cells[3].textContent;
         }
+
+        const materia = carrera.semestres[semestreActual].materias.find(
+            (materia) => materia.id === idMateriaActual
+        );
+
+        tables[0].rows[parseInt(notaActual) + 1].cells[2].firstChild.childNodes[1].textContent = nota;
+
+        materia.nota.notas[notaActual].nota = nota;
+        materia.nota.notas[notaActual].subNotas = subNotas;
 
         tables[1].innerHTML = `<tr>
             <th>Nombre</th>
@@ -410,13 +414,26 @@ window.addEventListener("load", async() => {
         const table = tables[0];
         agregar_fila(table, 'td contenteditable="true"', ['', '', '0']);
 
-        if (table.rows.length == 2)
+        if (table.rows.length === 2)
             addDefinitiva(table);
         
         updateLastRowEvents(0);
         actualizarPorcentajes(table);
 
-        if (table.rows.length >= 2) calcularNotas(table);
+        calcularNotas(table);
+
+        const materia = carrera.semestres[semestreActual].materias.find(
+            (materia) => materia.id === idMateriaActual
+        );
+
+        const [ nombre, porcentaje, nota ] = table.rows[table.rows.length - 1].cells;
+        materia.nota.notas.push({
+            nombre: nombre.textContent,
+            porcentaje: porcentaje.textContent,
+            nota: nota.textContent
+        });
+
+        materia.nota.definitiva = table.rows[1].cells[3].textContent;
     });
 
     btnEliminar.addEventListener("click", () => {
@@ -424,13 +441,19 @@ window.addEventListener("load", async() => {
         
         if (table.rows.length <= 1)
             return;
-        if (rIndexs[0] == 1) {
-            const notaDefinitiva = document.querySelector('#definitiva').textContent;
-            table.deleteRow(rIndexs[0]);
-            addDefinitiva(table, notaDefinitiva);
+        
+        const materia = carrera.semestres[semestreActual].materias.find(
+            (materia) => materia.id === idMateriaActual
+        );
+
+        table.deleteRow(rIndexs[0]);
+        if (table.rows.length >= 2) {
+            calcularNotas(table);
+            materia.nota.definitiva = table.rows[1].cells[3].textContent;
         } else {
-            table.deleteRow(rIndexs[0]);
+            materia.nota.definitiva = '0';
         }
+        
         rIndexs[0] = -1;
     });
 
@@ -452,71 +475,94 @@ window.addEventListener("load", async() => {
 
         if (table.rows.length <= 1)
             return;
-        if (rIndexs[1] == 1) {
-            const notaDefinitiva = document.querySelector('#definitiva').textContent;
-            table.deleteRow(rIndexs[1]);
-            addDefinitiva(table, notaDefinitiva);
-        } else {
-            table.deleteRow(rIndexs[1]);
+        table.deleteRow(rIndexs[1]);
+        if (table.rows.length >= 2) {
+            calcularNotas(table);
         }
+
         rIndexs[1] = -1;
     });
     
     btnAgregarGrande.addEventListener("click", () => {
         const table = tables[0];
         
-        
         agregar_fila(table, 'td contenteditable="true"', ['', '',
-            `<button id="" class="btn btnNotas btn-animacion"><span class="spanNotas">0</span></button>`]
+            `<button class="btn btnNotas btn-animacion"><span class="spanNotas">0</span></button>`]
         );
 
         if (table.rows.length == 2)
             addDefinitiva(table);
         
         const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
-        const btn = btns[btns.length-1];
+        const btn = btns[btns.length - 1];
+
+        let id_btn;
+        if (btns.length === 1) {
+            id_btn = 0;
+        } else {
+            id_btn = parseInt(btns[btns.length - 2].id) + 1;
+        }
+
+        btn.id = id_btn;
+
         btn.addEventListener('click', girar);
-
-        nota.notas.forEach((nota) => {
-            agregar_fila(table, 'td contenteditable="true"', [nota.nombre, nota.porcentaje, nota.nota]);
-
-            updateLastRowEvents(1, i);
-            i++;
-        });
         
         updateLastRowEvents(1);
         actualizarPorcentajes(table);
+
+        calcularNotas(table);
+
+        const materia = carrera.semestres[semestreActual].materias.find(
+            (materia) => materia.id === idMateriaActual
+        );
+
+        const [ nombre, porcentaje, nota ] = table.rows[table.rows.length - 1].cells;
+        materia.nota.notas.push({
+            nombre: nombre.textContent,
+            porcentaje: porcentaje.textContent,
+            nota: nota.textContent,
+            subNotas: []
+        });
+
+        materia.nota.definitiva = table.rows[1].cells[3].textContent;
     });
     
     const girar = (event) => {
         popup.classList.add('active');
         bodyPopupFront.classList.add('active');
         bodyPopupRight.classList.add('active');
-
-        const btn = event.target;
-        console.log(btn.getAttribute('subNotas'));
-        const subNotas = JSON.parse(btn.getAttribute('subNotas'));
         
         const table = tables[1];
-        
-        for (let i = 0; i < subNotas.length; i++) {
-            const subNota = subNotas[i];
-            agregar_fila(table, 'td contenteditable="true"', [subNota.nombre, subNota.porcentaje, subNota.nota]);
-            updateLastRowEvents(1);
+
+        let btn;
+        if (event.target.tagName === 'BUTTON') {
+            btn = event.target;
+        } else {
+            btn = event.target.parentElement;
         }
 
-        if (subNotas.length > 1) {
-            const notaDefinitiva = btn.textContent;
-            addDefinitiva(table, notaDefinitiva);
-        }
+        notaActual = btn.id;
+
+        const materia = carrera.semestres[semestreActual].materias.find((materia) => materia.id === idMateriaActual);
+
+        const nota = materia.nota.notas[notaActual];
+
+        nota.subNotas.forEach((subNota) => {
+            agregar_fila(table, 'td contenteditable="true"', [
+                subNota.nombre, subNota.porcentaje, subNota.nota
+            ]);
+        });
+
+        if (table.rows.length >= 2)
+            addDefinitiva(table, nota.nota);
     }
     
     /*---------------------------------Calculos tabla---------------------------------*/ 
     const calcularNotas = (table) => {
         if (table.rows.length > 0) {
-            const rowCount = table.rows.length;
             let acumulador = 0;
-            for (let i = 1; i < rowCount; i++) {
+            
+            for (let i = 1; i < table.rows.length; i++) {
                 const row = table.rows[i];
                 if (row.cells.length >= 3) {
                     const notasCell = parseFloat(row.cells[2].textContent); // Índice 1 corresponde a la columna de notas
