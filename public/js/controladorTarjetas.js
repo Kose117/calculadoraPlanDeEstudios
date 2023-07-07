@@ -165,7 +165,8 @@ window.addEventListener("load", async() => {
         
         btn.addEventListener('click', () => {
             overlay.classList.add('active');
-
+            btnCubo.classList.add("invisible");
+            ponderado.classList.add("invisible");
             tables[0].innerHTML = `<tr>
                 <th>Nombre</th>
                 <th>%</th>
@@ -230,6 +231,8 @@ window.addEventListener("load", async() => {
         overlay.classList.remove("active");
         this.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
+        btnCubo.classList.remove("invisible");
+        ponderado.classList.remove("invisible");
         
         // console.log(tables[0].rows[0].cells[0].textContent)
 
@@ -267,6 +270,7 @@ window.addEventListener("load", async() => {
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
         bodyPopupFront.classList.remove("active");
         bodyPopupRight.classList.remove("active");
+        
        
     });
 
@@ -277,6 +281,7 @@ window.addEventListener("load", async() => {
         fromCenter[0].classList.remove('active');
         btnCreate[0].textContent = "Crear Semestre";
         calcularPonderado(carrera,ponderado);
+        
     });
 
     btnIzquierda.addEventListener("click", () => {
