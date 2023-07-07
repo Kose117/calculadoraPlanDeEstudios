@@ -168,10 +168,7 @@ window.addEventListener("load", async() => {
         
         btn.addEventListener('click', () => {
             overlay.classList.add('active');
-            btnCubo.classList.add("invisible");
-            ponderado.classList.add("invisible");
 
-            
             tables[0].innerHTML = `<tr>
                 <th>Nombre</th>
                 <th>%</th>
@@ -202,7 +199,7 @@ window.addEventListener("load", async() => {
                     ]);
 
                     const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
-                    const btn = btns[btns.length-1];
+                    const btn = btns[btns.length - 1];
                     btn.addEventListener('click', girar);
                     
                 } else {
@@ -249,10 +246,6 @@ window.addEventListener("load", async() => {
         overlay.classList.remove("active");
         this.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
-        btnCubo.classList.remove("invisible");
-        ponderado.classList.remove("invisible");
-        
-        // console.log(tables[0].rows[0].cells[0].textContent)
 
         const materia = carrera.semestres[semestreActual].materias.find(
             (materia) => materia.id === idMateriaActual
@@ -268,7 +261,7 @@ window.addEventListener("load", async() => {
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
         bodyPopupFront.classList.remove("active");
         bodyPopupRight.classList.remove("active");
-        
+
         const { rows } = tables[1];
 
         let subNotas = [];
@@ -297,7 +290,7 @@ window.addEventListener("load", async() => {
         console.log(await putClase(materia.id, materia.semestre, materia.profesor, materia.nota));
 
         tables[1].innerHTML = `<tr>
-            <th>Nombre</th> 
+            <th>Nombre</th>
             <th>%</th>
             <th>Notas</th>
             <th>Definitiva</th>
@@ -311,7 +304,6 @@ window.addEventListener("load", async() => {
         fromCenter[0].classList.remove('active');
         btnCreate[0].textContent = "Crear Semestre";
         calcularPonderado(carrera,ponderado);
-        
     });
 
     btnIzquierda.addEventListener("click", () => {
