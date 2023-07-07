@@ -163,58 +163,63 @@ window.addEventListener("load", async() => {
         const span = document.createElement("span");
         span.innerText = valorNombre;
         btn.appendChild(span);
-           
+        
+        btn.addEventListener('click', abrirNotas);
+    }
+
+    const abrirNotas = (event) => {
         const overlay = document.querySelector(".overlay");
+        overlay.classList.add('active');
+
+        tables[0].innerHTML = `<tr>
+            <th>Nombre</th>
+            <th>%</th>
+            <th>Notas</th>
+            <th>Definitiva</th>
+        </tr>`;
         
-        btn.addEventListener('click', () => {
-            overlay.classList.add('active');
+        const btn = event.target.tagName === 'BUTTON'
+            ? event.target
+            : event.target.parentElement;
+        
+        idMateriaActual = btn.id;
 
-            tables[0].innerHTML = `<tr>
-                <th>Nombre</th>
-                <th>%</th>
-                <th>Notas</th>
-                <th>Definitiva</th>
-            </tr>`;
-            
-            idMateriaActual = btn.id;
-            tables[0].setAttribute('id_materia', idMateriaActual);
+        tables[0].setAttribute('id_materia', idMateriaActual);
 
-            const materia = carrera.semestres[semestreActual].materias.find(
-                (materia) => materia.id === idMateriaActual
-            );
-            
-            const nota = materia.nota;
-            
-            document.getElementsByClassName("popup-father")[0].classList.add("active");
+        const materia = carrera.semestres[semestreActual].materias.find(
+            (materia) => materia.id === idMateriaActual
+        );
+        
+        const nota = materia.nota;
+        
+        document.getElementsByClassName("popup-father")[0].classList.add("active");
 
-            let i = 1;
-            nota.notas.forEach((nota) => {
-                if (nota.subNotas) {
-                    agregar_fila(tables[0], 'td contenteditable="true"', [
-                        nota.nombre,
-                        nota.porcentaje,
-                        `<button id="${i - 1}" class="btn btnNotas btn-animacion">
-                            <span class="spanNotas">${nota.nota}</span>
-                        </button>`
-                    ]);
+        let i = 1;
+        nota.notas.forEach((nota) => {
+            if (nota.subNotas) {
+                agregar_fila(tables[0], 'td contenteditable="true"', [
+                    nota.nombre,
+                    nota.porcentaje,
+                    `<button class="btn btnNotas btn-animacion">
+                        <span class="spanNotas">${nota.nota}</span>
+                    </button>`
+                ]);
 
-                    const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
-                    const btn = btns[btns.length - 1];
-                    btn.addEventListener('click', girar);
-                    
-                } else {
-                    agregar_fila(tables[0], 'td contenteditable="true"', [nota.nombre, nota.porcentaje, nota.nota]);
-                }
-                updateLastRowEvents(0, i);
-                i++;
-            });
-
-            if (nota.notas.length > 0) {
-                addDefinitiva(tables[0], nota.definitiva);
-                updateLastRowEvents(0);
+                const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
+                const btn = btns[btns.length - 1];
+                btn.addEventListener('click', girar);
+                
+            } else {
+                agregar_fila(tables[0], 'td contenteditable="true"', [nota.nombre, nota.porcentaje, nota.nota]);
             }
+            updateLastRowEvents(0, i);
+            i++;
         });
-        
+
+        if (nota.notas.length > 0) {
+            addDefinitiva(tables[0], nota.definitiva);
+            updateLastRowEvents(0);
+        }
     }
 
     const crearTarjetas = (carrera, semestre) => {
@@ -358,7 +363,6 @@ window.addEventListener("load", async() => {
         const row = tables[i].rows[index];
       
         row.addEventListener("click", () => {
-          
             if (hasFocus(document.getElementById('definitiva'))) {
                 return;
             }
@@ -533,14 +537,11 @@ window.addEventListener("load", async() => {
         
         const table = tables[1];
 
-        let btn;
-        if (event.target.tagName === 'BUTTON') {
-            btn = event.target;
-        } else {
-            btn = event.target.parentElement;
-        }
+        const row = event.target.tagName === 'BUTTON'
+            ? event.target.parentElement.parentElement
+            : event.target.parentElement.parentElement.parentElement;
 
-        notaActual = btn.id;
+        notaActual = row.rowIndex - 1;
 
         const materia = carrera.semestres[semestreActual].materias.find((materia) => materia.id === idMateriaActual);
 
@@ -550,6 +551,8 @@ window.addEventListener("load", async() => {
             agregar_fila(table, 'td contenteditable="true"', [
                 subNota.nombre, subNota.porcentaje, subNota.nota
             ]);
+
+            updateLastRowEvents(1);
         });
 
         if (table.rows.length >= 2)
