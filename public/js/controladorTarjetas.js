@@ -200,7 +200,7 @@ window.addEventListener("load", async() => {
                 agregar_fila(tables[0], 'td contenteditable="true"', [
                     nota.nombre,
                     nota.porcentaje,
-                    `<button class="btn btnNotas btn-animacion"><span class="spanNotas">${nota.nota}</span></button>`
+                    `<button class="btn btnNotas btn-animacion"><span class="spanNotas">${parseFloat(nota.nota).toFixed(2)}</span></button>`
                 ]);
 
                 const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
@@ -208,7 +208,7 @@ window.addEventListener("load", async() => {
                 btn.addEventListener('click', girar);
                 
             } else {
-                agregar_fila(tables[0], 'td contenteditable="true"', [nota.nombre, nota.porcentaje, nota.nota]);
+                agregar_fila(tables[0], 'td contenteditable="true"', [nota.nombre, nota.porcentaje, parseFloat(nota.nota).toFixed(2)]);
             }
             updateLastRowEvents(0, i);
             i++;
@@ -253,6 +253,27 @@ window.addEventListener("load", async() => {
         const materia = carrera.semestres[semestreActual].materias.find(
             (materia) => materia.id === idMateriaActual
         );
+
+        const { rows } = tables[0];
+
+        for (let i = 1; i < rows.length; i++) {
+            const [ nombre, porcentaje, valorNota ] = rows[i].cells;
+            materia.nota.notas[i - 1].nombre = nombre.textContent;
+            materia.nota.notas[i - 1].porcentaje = parseFloat(porcentaje.textContent);
+            materia.nota.notas[i - 1].nota = parseFloat(valorNota.textContent).toFixed(2);
+        }
+
+        if (rows.length > 1) {
+            materia.nota.definitiva = parseFloat(rows[1].cells[3].textContent).toFixed(2);
+        } else {
+            materia.nota.definitiva = 0.00;
+        }
+
+        const btn_tarjeta = document.getElementById(materia.id);
+
+        const label_nota = btn_tarjeta.parentElement.querySelector("h2");
+
+        label_nota.textContent = `Nota: ${materia.nota.definitiva}`;
         
         console.log(await putClase(materia.id, materia.semestre, materia.profesor, materia.nota));
     });
@@ -273,14 +294,14 @@ window.addEventListener("load", async() => {
             const [ nombre, porcentaje, valorNota ] = rows[i].cells;
             subNotas.push({
                 nombre: nombre.textContent,
-                porcentaje: porcentaje.textContent,
-                nota: valorNota.textContent
+                porcentaje: parseFloat(porcentaje.textContent),
+                nota: parseFloat(valorNota.textContent).toFixed(2)
             });
         }
 
-        let nota = 0;
+        let nota = 0.00;
         if (rows.length > 1) {
-            nota = rows[1].cells[3].textContent;
+            nota = parseFloat(rows[1].cells[3].textContent).toFixed(2);
         }
 
         const materia = carrera.semestres[semestreActual].materias.find(
@@ -289,6 +310,18 @@ window.addEventListener("load", async() => {
 
         materia.nota.notas[notaActual].nota = nota;
         materia.nota.notas[notaActual].subNotas = subNotas;
+
+        tables[0].rows[parseInt(notaActual) + 1].cells[2].firstChild.firstChild.textContent = nota;
+
+        calcularNotas(tables[0]);
+
+        materia.nota.definitiva = parseFloat(tables[0].rows[1].cells[3].textContent).toFixed(2);
+
+        const btn_tarjeta = document.getElementById(materia.id);
+
+        const label_nota = btn_tarjeta.parentElement.querySelector("h2");
+
+        label_nota.textContent = `Nota: ${materia.nota.definitiva}`;
 
         console.log(await putClase(materia.id, materia.semestre, materia.profesor, materia.nota));
 
@@ -323,14 +356,14 @@ window.addEventListener("load", async() => {
             const [ nombre, porcentaje, valorNota ] = rows[i].cells;
             subNotas.push({
                 nombre: nombre.textContent,
-                porcentaje: porcentaje.textContent,
-                nota: valorNota.textContent
+                porcentaje: parseFloat(porcentaje.textContent),
+                nota: parseFloat(valorNota.textContent).toFixed(2)
             });
         }
 
         let nota = 0;
         if (rows.length > 1) {
-            nota = rows[1].cells[3].textContent;
+            nota = parseFloat(rows[1].cells[3].textContent).toFixed(2);
         }
 
         const materia = carrera.semestres[semestreActual].materias.find(
@@ -338,6 +371,8 @@ window.addEventListener("load", async() => {
         );
 
         tables[0].rows[parseInt(notaActual) + 1].cells[2].firstChild.firstChild.textContent = nota;
+
+        calcularNotas(tables[0]);
 
         materia.nota.notas[notaActual].nota = nota;
         materia.nota.notas[notaActual].subNotas = subNotas;
@@ -413,7 +448,7 @@ window.addEventListener("load", async() => {
 
     btnAgregar.addEventListener("click", () => {
         const table = tables[0];
-        agregar_fila(table, 'td contenteditable="true"', ['', '', '0']);
+        agregar_fila(table, 'td contenteditable="true"', ['', '', '0.00']);
 
         if (table.rows.length === 2)
             addDefinitiva(table);
@@ -430,11 +465,11 @@ window.addEventListener("load", async() => {
         const [ nombre, porcentaje, nota ] = table.rows[table.rows.length - 1].cells;
         materia.nota.notas.push({
             nombre: nombre.textContent,
-            porcentaje: porcentaje.textContent,
-            nota: nota.textContent
+            porcentaje: parseFloat(porcentaje.textContent),
+            nota: parseFloat(nota.textContent).toFixed(2)
         });
 
-        materia.nota.definitiva = table.rows[1].cells[3].textContent;
+        materia.nota.definitiva = parseFloat(table.rows[1].cells[3].textContent).toFixed(2);
     });
 
     btnEliminar.addEventListener("click", () => {
@@ -451,9 +486,9 @@ window.addEventListener("load", async() => {
         materia.nota.notas.splice(rIndexs[0] - 1, 1);
         if (table.rows.length >= 2) {
             calcularNotas(table);
-            materia.nota.definitiva = table.rows[1].cells[3].textContent;
+            materia.nota.definitiva = parseFloat(table.rows[1].cells[3].textContent).toFixed(2);
         } else {
-            materia.nota.definitiva = '0';
+            materia.nota.definitiva = 0.00;
         }
         
         rIndexs[0] = -1;
@@ -461,7 +496,7 @@ window.addEventListener("load", async() => {
 
     btnAgregar2.addEventListener("click", () => {
         const table = tables[1];
-        agregar_fila(table, 'td contenteditable="true"', ['', '', '0']);
+        agregar_fila(table, 'td contenteditable="true"', ['', '', '0.00']);
 
         if (table.rows.length == 2)
             addDefinitiva(table);
@@ -489,7 +524,7 @@ window.addEventListener("load", async() => {
         const table = tables[0];
         
         agregar_fila(table, 'td contenteditable="true"', ['', '',
-            `<button class="btn btnNotas btn-animacion"><span class="spanNotas">0</span></button>`]
+            `<button class="btn btnNotas btn-animacion"><span class="spanNotas">0.00</span></button>`]
         );
 
         if (table.rows.length == 2)
@@ -509,7 +544,7 @@ window.addEventListener("load", async() => {
 
         btn.addEventListener('click', girar);
         
-        updateLastRowEvents(1);
+        updateLastRowEvents(0);
         actualizarPorcentajes(table);
 
         calcularNotas(table);
@@ -521,12 +556,12 @@ window.addEventListener("load", async() => {
         const [ nombre, porcentaje, nota ] = table.rows[table.rows.length - 1].cells;
         materia.nota.notas.push({
             nombre: nombre.textContent,
-            porcentaje: porcentaje.textContent,
-            nota: nota.textContent,
+            porcentaje: parseFloat(porcentaje.textContent),
+            nota: parseFloat(nota.textContent).toFixed(2),
             subNotas: []
         });
 
-        materia.nota.definitiva = table.rows[1].cells[3].textContent;
+        materia.nota.definitiva = parseFloat(table.rows[1].cells[3].textContent).toFixed(2);
     });
     
     const girar = (event) => {
@@ -566,10 +601,10 @@ window.addEventListener("load", async() => {
             for (let i = 1; i < table.rows.length; i++) {
                 const row = table.rows[i];
                 if (row.cells.length >= 3) {
-                    const notasCell = parseFloat(row.cells[2].textContent); // Índice 1 corresponde a la columna de notas
-                    const porcentajeCell = parseFloat(row.cells[1].textContent); // Índice 2 corresponde a la columna de porcentaje
+                    const notasCell = parseFloat(row.cells[2].textContent) || 0; // Índice 1 corresponde a la columna de notas
+                    const porcentajeCell = parseFloat(row.cells[1].textContent) || 0; // Índice 2 corresponde a la columna de porcentaje
                 
-                    const notaCalculada = (notasCell / 100) * porcentajeCell;
+                    const notaCalculada = parseFloat((notasCell / 100) * porcentajeCell);
                     acumulador += notaCalculada;
                     // console.log("acumula:"+acumulador);
                 } else {
