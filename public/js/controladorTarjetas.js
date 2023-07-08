@@ -546,8 +546,6 @@ window.addEventListener("load", async() => {
 
         const materia = carrera.semestres[semestreActual].materias.find((materia) => materia.id === idMateriaActual);
 
-        console.log(materia)
-
         const nota = materia.nota.notas[notaActual];
 
         nota.subNotas.forEach((subNota) => {
