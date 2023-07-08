@@ -450,6 +450,7 @@ window.addEventListener("load", async() => {
         );
 
         table.deleteRow(rIndexs[0]);
+        materia.nota.notas.splice(rIndexs[0] - 1, 1);
         if (table.rows.length >= 2) {
             calcularNotas(table);
             materia.nota.definitiva = table.rows[1].cells[3].textContent;
@@ -544,6 +545,8 @@ window.addEventListener("load", async() => {
         notaActual = row.rowIndex - 1;
 
         const materia = carrera.semestres[semestreActual].materias.find((materia) => materia.id === idMateriaActual);
+
+        console.log(materia)
 
         const nota = materia.nota.notas[notaActual];
 
