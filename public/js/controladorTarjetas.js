@@ -200,9 +200,7 @@ window.addEventListener("load", async() => {
                 agregar_fila(tables[0], 'td contenteditable="true"', [
                     nota.nombre,
                     nota.porcentaje,
-                    `<button class="btn btnNotas btn-animacion">
-                        <span class="spanNotas">${nota.nota}</span>
-                    </button>`
+                    `<button class="btn btnNotas btn-animacion"><span class="spanNotas">${nota.nota}</span></button>`
                 ]);
 
                 const btns = document.getElementsByClassName('btn btnNotas btn-animacion');
@@ -339,7 +337,7 @@ window.addEventListener("load", async() => {
             (materia) => materia.id === idMateriaActual
         );
 
-        tables[0].rows[parseInt(notaActual) + 1].cells[2].firstChild.childNodes[1].textContent = nota;
+        tables[0].rows[parseInt(notaActual) + 1].cells[2].firstChild.firstChild.textContent = nota;
 
         materia.nota.notas[notaActual].nota = nota;
         materia.nota.notas[notaActual].subNotas = subNotas;
