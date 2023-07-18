@@ -170,6 +170,8 @@ window.addEventListener("load", async() => {
     const abrirNotas = (event) => {
         const overlay = document.querySelector(".overlay");
         overlay.classList.add('active');
+        btnCubo.classList.add("invisible");
+        ponderado.classList.add("invisible");
 
         tables[0].innerHTML = `<tr>
             <th>Nombre</th>
@@ -249,7 +251,8 @@ window.addEventListener("load", async() => {
         overlay.classList.remove("active");
         this.classList.remove("active");
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
-
+        btnCubo.classList.remove("invisible");
+        ponderado.classList.remove("invisible");
         const materia = carrera.semestres[semestreActual].materias.find(
             (materia) => materia.id === idMateriaActual
         );
