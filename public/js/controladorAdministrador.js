@@ -1,5 +1,5 @@
 import {correctamente } from "./sweetAlert.js";
-import { getCarrera, carreraJsonPost, putClase, delClase} from "../helpers/requests.js";
+import { getCarrera, carreraJsonPost, putClase, delClase, getClases, putCarrera } from "../helpers/requests.js";
 
 
 let modal = document.getElementById("modal");
@@ -29,6 +29,7 @@ async function obtenerMaterias() {
   
     return materias;
 }
+
 function validarCampoVacio(input) {
     if (input.value.trim().length === 0 || (input.id === "tipoSelect" && (input.value === "Opciones" || input.selectedIndex === 0))) {
         input.style.border = "2px solid red";
@@ -107,8 +108,13 @@ async function guardaar() {
             crearFilasTabla()
         }
     } else {
-        console.log(await putClase(idInput.value, semestreInput.value, profesorInput.value));
-        ocultarModal()
+        const clases = await getClases();
+        if (clases[idInput.value]) {
+            console.log(await putClase(idInput.value, semestreInput.value, profesorInput.value));
+        } else {
+            console.log(await putCarrera(idInput.value, semestreInput.value, profesorInput.value));
+        }
+        ocultarModal();
     }
 }
   
@@ -135,8 +141,8 @@ function funcNuevaMateria() {
     if (eliminarButton) {
       eliminarButton.remove();
     }
-  }
-  
+}
+
 
 btnNuevaMateria.addEventListener("click",funcNuevaMateria);
 btnGuardar.addEventListener("click", guardaar);
@@ -148,69 +154,69 @@ function mostrarModal() {
   
     // Obtén todas las materias del JSON
     obtenerMaterias().then((materias) => {
-      // Busca la materia con el ID correspondiente
-      const materia = materias.find((m) => m.id === materiaId);
-  
-      if (!materia) {
-        return; // Salir de la función si la materia no se encuentra
-      }
-  
-      // Autocompletar los campos del formulario con los datos de la materia
-      idInput.value = materia.id;
-      nombreInput.value = materia.nombre;
-      creditosInput.value = materia.creditos;
-      profesorInput.value = materia.profesor;
-      departamentoInput.value = materia.departamento;
-      semestreInput.value = materia.semestre;
-      notaInput.value = materia.nota.definitiva;
-  
-      // Establecer la opción seleccionada del campo "tipo"
-      for (let i = 0; i < tipoSelect.options.length; i++) {
-        if (tipoSelect.options[i].textContent === materia.tipo) {
-          tipoSelect.selectedIndex = i;
-          break;
+        // Busca la materia con el ID correspondiente
+        const materia = materias.find((m) => m.id === materiaId);
+    
+        if (!materia) {
+            return; // Salir de la función si la materia no se encuentra
         }
-      }
-  
-      // Verificar si ya existe un botón de eliminar
-      var eliminarButton = document.getElementById("cerrar");
-      if (!eliminarButton) {
-        // Obtén la referencia al div
-        var divFour = document.querySelector(".four");
-  
-        // Crea un nuevo elemento de botón
-         eliminarButton = document.createElement("button");
-        eliminarButton.classList.add("btn", "btn-danger", "custom-size5");
-        eliminarButton.textContent = "Eliminar";
-        eliminarButton.id = "cerrar";
-        eliminarButton.type = "button";
-  
-        // Asignar la función de eliminar al botón
-        eliminarButton.addEventListener("click", async function () {
-          if (materia) {
-            await delClase(materia.id, materia.semestre);
-            eliminarFila(fila);
-            correctamente.fire({ 
-                icon: 'error',
-                title: 'Se eliminó  correctamente'
+    
+        // Autocompletar los campos del formulario con los datos de la materia
+        idInput.value = materia.id;
+        nombreInput.value = materia.nombre;
+        creditosInput.value = materia.creditos;
+        profesorInput.value = materia.profesor;
+        departamentoInput.value = materia.departamento;
+        semestreInput.value = materia.semestre;
+        notaInput.value = materia.nota.definitiva;
+    
+        // Establecer la opción seleccionada del campo "tipo"
+        for (let i = 0; i < tipoSelect.options.length; i++) {
+            if (tipoSelect.options[i].textContent === materia.tipo) {
+            tipoSelect.selectedIndex = i;
+            break;
+            }
+        }
+    
+        // Verificar si ya existe un botón de eliminar
+        var eliminarButton = document.getElementById("cerrar");
+        if (!eliminarButton) {
+            // Obtén la referencia al div
+            var divFour = document.querySelector(".four");
+    
+            // Crea un nuevo elemento de botón
+            eliminarButton = document.createElement("button");
+            eliminarButton.classList.add("btn", "btn-danger", "custom-size5");
+            eliminarButton.textContent = "Eliminar";
+            eliminarButton.id = "cerrar";
+            eliminarButton.type = "button";
+    
+            // Asignar la función de eliminar al botón
+            eliminarButton.addEventListener("click", async function () {
+                if (materia) {
+                    console.log(await delClase(materia.id, materia.semestre))
+                    eliminarFila(fila);
+                    correctamente.fire({ 
+                        icon: 'error',
+                        title: 'Se eliminó correctamente'
+                    });
+                }
+                ocultarModal();
             });
-          }
-          ocultarModal();
-        });
+    
+            // Agrega el botón de eliminar al div
+            divFour.appendChild(eliminarButton);
+        }
   
-        // Agrega el botón de eliminar al div
-        divFour.appendChild(eliminarButton);
-      }
-  
-      modal.classList.toggle("translate");
+        modal.classList.toggle("translate");
     });
-  }
+}
   
   
-  function eliminarFila(fila) {
+function eliminarFila(fila) {
     const table = document.getElementById("table");
     table.deleteRow(fila.rowIndex);
-  }
+}
   
 
 
@@ -242,45 +248,45 @@ function ocultarModal() {
 }
   
   // Función para crear las filas de la tabla con los datos del JSON
-  function crearFilasTabla() {
+function crearFilasTabla() {
     const table = $("#table").DataTable({
         language: {
-          url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+            url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
         },
         columnDefs: [
-          { targets: [4], orderable: false }
+            { targets: [4], orderable: false }
         ]
-      });
-  
-    obtenerMaterias().then((materias) => {
-      for (const materia of materias) {
-        const existingRow = table.row(`:contains("${materia.id}")`);
-  
-        if (existingRow.length) {
-          continue; // Saltar a la siguiente iteración si la fila ya existe
-        }
-  
-        const rowData = [
-          materia.id,
-          materia.nombre,
-          materia.tipo,
-          materia.creditos,
-          '<button class="btn btn-warning editar-btn">Editar</button>'
-        ];
-  
-        table.row.add(rowData).draw();
-      }
-  
-      // Maneja el evento de clic en los botones de "Editar"
-      $("#table").on("click", ".editar-btn", function () {
-        mostrarModal.call(this); // Asegura el contexto correcto al llamar a mostrarModal()
-      });
     });
-  
+
+    obtenerMaterias().then((materias) => {
+        for (const materia of materias) {
+            const existingRow = table.row(`:contains("${materia.id}")`);
+    
+            if (existingRow.length) {
+                continue; // Saltar a la siguiente iteración si la fila ya existe
+            }
+    
+            const rowData = [
+                materia.id,
+                materia.nombre,
+                materia.tipo,
+                materia.creditos,
+                '<button class="btn btn-warning editar-btn">Editar</button>'
+            ];
+    
+            table.row.add(rowData).draw();
+        }
+    
+        // Maneja el evento de clic en los botones de "Editar"
+        $("#table").on("click", ".editar-btn", function () {
+            mostrarModal.call(this); // Asegura el contexto correcto al llamar a mostrarModal()
+        });
+    });
+
     // Maneja el evento de clic en el botón "Cerrar" del modal
     const cerrarButton = document.querySelector("#modal .close");
     cerrarButton.addEventListener("click", ocultarModal);
-  }
+}
   
   
   

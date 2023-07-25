@@ -69,6 +69,21 @@ export const putClase = async(codigo, semestre = 0, profesor = "", nota = {defin
     return {msgs};
 }
 
+export const putCarrera = async(codigo, semestre = 0, preofesor = '', nota = {definitiva: 0, notas: []}) => {
+    const carrera_msg = await putJson('/json/carrera', {
+        codigo,
+        semestre,
+        nota
+    });
+
+    const msg = {
+        status: carrera_msg.status,
+        msg: await carrera_msg.json()
+    }
+
+    return {msg};
+}
+
 export const delClase = async(codigo, semestre) => {
     const clases_msg = await deleteJson('/json/clases', {
         codigo
