@@ -84,9 +84,9 @@ const carreraJsonPost = (req, res) => {
     const carrera = readDB('./public/json/mi-carrera.json');
     
     carrera.semestres.forEach(semestre => {
-        if(semestre.materias.find(materia=>{
-            return codigo===materia.id}))
-        {
+        if(semestre.materias.find(materia => {
+            return codigo === materia.id
+        })) {
             res.status(400).json({message:["ya existe una materia con ese id"]})
         }
         
@@ -113,7 +113,7 @@ const carreraJsonPost = (req, res) => {
         carrera.semestres.forEach(sem => {
             const index = sem.materias.findIndex(element => codigo === element.id);
             if (index != -1) {
-                sem.materias.splice(index);
+                sem.materias.splice(index, 1);
             }
         });
         if (!carrera.semestres[semestre]) {
@@ -148,7 +148,13 @@ const carreraJsonDelete = (req, res) => {
         if (index === -1)
             return res.status(404).json({msg: 'Clase no encontrada'});
 
-        carrera.semestres[semestre].materias.splice(index, index + 1);
+        const elim = carrera.semestres[semestre].materias[index];
+        console.log(carrera.semestres[semestre]);
+        
+        carrera.semestres[semestre].materias.splice(index, 1);
+
+        console.log(elim);
+        console.log(carrera.semestres[semestre]);
 
         saveDB('./public/json/mi-carrera.json', carrera);
         res.json({msg: 'La información de su clase se eliminó correctamente'});
