@@ -149,12 +149,8 @@ const carreraJsonDelete = (req, res) => {
             return res.status(404).json({msg: 'Clase no encontrada'});
 
         const elim = carrera.semestres[semestre].materias[index];
-        console.log(carrera.semestres[semestre]);
         
         carrera.semestres[semestre].materias.splice(index, 1);
-
-        console.log(elim);
-        console.log(carrera.semestres[semestre]);
 
         saveDB('./public/json/mi-carrera.json', carrera);
         res.json({msg: 'La información de su clase se eliminó correctamente'});

@@ -202,6 +202,10 @@ function mostrarModal() {
                     });
                 }
                 ocultarModal();
+                //sleep
+                await new Promise(r => setTimeout(r, 1000));
+                // reload
+                window.location.reload();
             });
     
             // Agrega el botón de eliminar al div
