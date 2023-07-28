@@ -288,6 +288,8 @@ window.addEventListener("load", async() => {
         document.getElementsByClassName("popup-father")[0].classList.remove("active");
         bodyPopupFront.classList.remove("active");
         bodyPopupRight.classList.remove("active");
+        btnCubo.classList.remove("invisible");
+        ponderado.classList.remove("invisible");
 
         const { rows } = tables[1];
 
@@ -349,6 +351,7 @@ window.addEventListener("load", async() => {
         popup.classList.remove("active");
         bodyPopupRight.classList.remove("active");
         bodyPopupFront.classList.remove("active");
+        
         document.getElementsByClassName("popup-father")[0].classList.add("active");
 
         const { rows } = tables[1];
@@ -649,6 +652,8 @@ window.addEventListener("load", async() => {
         
         const promedio = (sumaPonderada / totalCreditos).toFixed(3);
         ponderado.textContent=promedio;
+        // DEBAJO DE ESTO EN TEORIA DEBERIA ESTAR LA FUNCION QUE TE DIGO XD
+        clases.semestres[semestre].definitiva=promedio;
     }
     
     function calcularPonderado (clases, ponderado) {
@@ -657,11 +662,10 @@ window.addEventListener("load", async() => {
       
         for (const semestre of clases.semestres) {
           const definitivaSemestre = semestre.definitiva;
-      
           sumaPonderada += definitivaSemestre;
           totalSemestres++;
         }
-        // console.log(sumaPonderada);
+        console.log(sumaPonderada);
         const promedioPonderado = (sumaPonderada / totalSemestres).toFixed(3);
         ponderado.textContent = promedioPonderado;  
     }
