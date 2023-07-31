@@ -224,16 +224,22 @@ window.addEventListener("load", async() => {
 
     const crearTarjetas = (carrera, semestre) => {
         const { materias } = carrera.semestres[semestre];
-        for (const clase in materias) {
-            crearTarjeta(
-                materias[clase].nombre,
-                materias[clase].nota.definitiva,
-                materias[clase].profesor,
-                materias[clase].id,
-                materias[clase].departamento
-            );
+        
+       
+        const numMaterias = materias.length;
+      
+       
+        for (let i = numMaterias - 1; i >= 0; i--) {
+          crearTarjeta(
+            materias[i].nombre,
+            materias[i].nota.definitiva,
+            materias[i].profesor,
+            materias[i].id,
+            materias[i].departamento
+          );
         }
-    }
+      };
+      
 
     const borrarTarjetas = () => {
         while (containerCard.firstChild) {
