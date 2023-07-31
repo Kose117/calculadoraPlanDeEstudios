@@ -80,7 +80,7 @@ window.addEventListener("load", async() => {
         console.log(await delClase(codigo, num_semestre));
         correctamente.fire({ 
             icon: 'error',
-            title: 'Se eliminó  correctamente'
+            title: 'Se eliminó correctamente'
         });
         cambiarColorFondo();
     }

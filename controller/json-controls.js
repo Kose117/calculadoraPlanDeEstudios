@@ -42,13 +42,15 @@ const clasesJsonDelete = (req, res) => {
 const carreraJsonGet = (req, res) => res.json(readDB('./public/json/mi-carrera.json'));
 
 const carreraJsonPut = (req, res) => {
-    let { codigo, semestre, nota } = req.body;
+    let { codigo, semestre, nota, profesor } = req.body;
     const clases = readDB('./public/json/clases.json');
     const clase = clases[codigo];
     
     clase.id = codigo;
     clase.nota = nota;
     clase.aprobada = nota >= 3.0;
+    if (profesor)
+        clase.profesor = profesor;
 
     semestre--;
 
@@ -84,15 +86,15 @@ const carreraJsonPost = (req, res) => {
     const carrera = readDB('./public/json/mi-carrera.json');
     
     carrera.semestres.forEach(semestre => {
-        if(semestre.materias.find(materia => {
+        if (semestre.materias.find(materia => {
             return codigo === materia.id
         })) {
-            res.status(400).json({message:["ya existe una materia con ese id"]})
+            res.status(400).json({message: "ya existe una materia con ese id"})
         }
         
     });
     clase={
-        id:codigo,
+        id: codigo,
         semestre,
         nota:{
             definitiva,
@@ -172,7 +174,7 @@ const carreraJsonDelete = (req, res) => {
         res.json({msg: 'La información de su clase se eliminó correctamente'});
 
     } else {
-        res.status(400).json({errors: ['El código de clase no existe en el semestre ingresado']});
+        res.status(400).json({errors: 'El código de clase no existe en el semestre ingresado'});
     }
 } 
 

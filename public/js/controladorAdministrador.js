@@ -1,4 +1,4 @@
-import {correctamente } from "./sweetAlert.js";
+import { correctamente } from "./sweetAlert.js";
 import { getCarrera, carreraJsonPost, putClase, delClase, getClases, putCarrera } from "../helpers/requests.js";
 
 
