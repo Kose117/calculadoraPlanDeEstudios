@@ -1,6 +1,6 @@
 
 import { agregar_fila } from "../helpers/functions.js";
-import { getCarrera, putClase } from "../helpers/requests.js";
+import { getCarrera, putClase, putDefinitivaSemestre } from "../helpers/requests.js";
 
 
 window.addEventListener("load", async() => {
@@ -637,7 +637,7 @@ window.addEventListener("load", async() => {
     } 
     
     /*---------------------------------Calculos Definitiva Semestre---------------------------------*/ 
-    function calcularPromedioSemestre(clases, semestre, ponderado) {
+    async function calcularPromedioSemestre(clases, semestre, ponderado) {
         let totalCreditos = 0;
         let sumaPonderada = 0;
       
@@ -645,15 +645,18 @@ window.addEventListener("load", async() => {
         for (const materia of clases.semestres[semestre].materias) {
             const creditos = materia.creditos;
             const definitiva = materia.nota.definitiva;
-        
             totalCreditos += creditos;
             sumaPonderada += creditos * definitiva;
         }
         
         const promedio = (sumaPonderada / totalCreditos).toFixed(3);
         ponderado.textContent=promedio;
+
         // DEBAJO DE ESTO EN TEORIA DEBERIA ESTAR LA FUNCION QUE TE DIGO XD
+
+        await putDefinitivaSemestre(semestre,promedio);
         clases.semestres[semestre].definitiva=promedio;
+
     }
     
     function calcularPonderado (clases, ponderado) {
@@ -662,10 +665,12 @@ window.addEventListener("load", async() => {
       
         for (const semestre of clases.semestres) {
           const definitivaSemestre = semestre.definitiva;
-          sumaPonderada += definitivaSemestre;
+          sumaPonderada += parseFloat(definitivaSemestre);
           totalSemestres++;
+          console.log(sumaPonderada);
         }
-        console.log(sumaPonderada);
+        console.log(totalSemestres);
+        // console.log(sumaPonderada);
         const promedioPonderado = (sumaPonderada / totalSemestres).toFixed(3);
         ponderado.textContent = promedioPonderado;  
     }

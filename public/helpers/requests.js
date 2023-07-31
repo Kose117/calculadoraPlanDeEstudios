@@ -42,6 +42,19 @@ export const getCarrera = async() => {
 
     return await carrera_msg.json();
 }
+export const putDefinitivaSemestre=async(semestre, definitiva)=>
+{
+    const carrera_msg = await putJson('/json/carrera/definitiva', {
+        nuevaDefinitiva:definitiva,
+        semestre
+    });
+    const msg = {
+        status: carrera_msg.status,
+        msg: await carrera_msg.json()
+    }
+
+    return {msg};
+}
 
 export const putClase = async(codigo, semestre = 0, profesor = "", nota = {definitiva: 0, notas: []}) => {
     const clases_msg = await putJson('/json/clases', {

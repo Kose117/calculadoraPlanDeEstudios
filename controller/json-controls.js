@@ -134,6 +134,22 @@ const carreraJsonPost = (req, res) => {
     }
 
 }
+const modificarDefinitivaSemestre = (req, res) => {
+    const { semestre, nuevaDefinitiva } = req.body;
+  
+    const carrera = readDB('./public/json/mi-carrera.json');
+  
+    const semestreIndex = semestre;
+    if (carrera.semestres[semestreIndex]) {
+      carrera.semestres[semestreIndex].definitiva = nuevaDefinitiva;
+      saveDB('./public/json/mi-carrera.json', carrera);
+      res.json({ msg: 'Definitiva del semestre actualizada correctamente' });
+    } else {
+      res.status(400).json({ msg: 'Semestre no encontrado' });
+    }
+  };
+  
+
 
 const carreraJsonDelete = (req, res) => {
     let { codigo, semestre } = req.body;
@@ -171,5 +187,6 @@ module.exports = {
     carreraJsonPut,
     carreraJsonDelete,
     clasesRespaldoJsonGet,
-    carreraJsonPost
+    carreraJsonPost,
+    modificarDefinitivaSemestre
 };

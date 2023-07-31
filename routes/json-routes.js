@@ -5,8 +5,7 @@ const { check } = require('express-validator')
 const {
     clasesJsonGet, clasesJsonPut, clasesJsonDelete,
     carreraJsonGet, carreraJsonPut, carreraJsonDelete,
-    clasesRespaldoJsonGet,
-    carreraJsonPost
+    clasesRespaldoJsonGet, carreraJsonPost, modificarDefinitivaSemestre
 } = require('../controller/json-controls');
 const { validate_params } = require('../middlewares/validate-params');
 
@@ -55,6 +54,9 @@ router.delete('/carrera', [
 ], carreraJsonDelete);
 
 router.get('/clases-respaldo', clasesRespaldoJsonGet);
+
+router.put('/carrera/definitiva', [check('definitiva', 'La nota debe ser un numero entre 0 y 5').notEmpty().isFloat({min:0, max:5})]
+,modificarDefinitivaSemestre);
 
 
 module.exports = router;
