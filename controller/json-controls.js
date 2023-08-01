@@ -89,51 +89,41 @@ const carreraJsonPost = (req, res) => {
         if (semestre.materias.find(materia => {
             return codigo === materia.id
         })) {
-            res.status(400).json({message: "ya existe una materia con ese id"})
+            return res.status(400).json({message: "ya existe una materia con ese id"})
         }
-        
     });
-    clase={
+
+    clase = {
+        nombre,
         id: codigo,
         semestre,
-        nota:{
+        nota: {
             definitiva,
             notas:[]
         },
-        aprobada:definitiva>=3.0,
-        nombre,
+        aprobada:definitiva >= 3.0,
         profesor,
         departamento,
         tipo,
-        creditos
+        creditos,
+        registro: true
     }
     semestre--;
-    console.log(clase.tipo+" "+clase.departamento,clase.profesor,clase.semestre);
-    
 
-    if (semestre >= 0) {
-        carrera.semestres.forEach(sem => {
-            const index = sem.materias.findIndex(element => codigo === element.id);
-            if (index != -1) {
-                sem.materias.splice(index, 1);
-            }
-        });
-        if (!carrera.semestres[semestre]) {
-            carrera.semestres[semestre] = {
-                definitiva: 0,
-                materias: [clase]
-            };
-        } else {
-            const index = carrera.semestres[semestre].materias.findIndex(element => codigo === element.id);
-            (index == -1)
-                ? carrera.semestres[semestre].materias.push(clase)
-                : carrera.semestres[semestre].materias[index] = clase;
-        }        
-        saveDB('./public/json/mi-carrera.json', carrera);
-        res.json({msg: 'La información de su clase se guardo correctamente'});
-    } else {
-        res.status(400).json({errors: ['El semestre ingresado es inválido']});
+    if (semestre < 0) {
+        return res.status(400).json({errors: ['El semestre ingresado es inválido']});
     }
+
+    if (!carrera.semestres[semestre]) {
+        carrera.semestres[semestre] = {
+            definitiva: 0,
+            materias: [clase]
+        };
+    } else {
+        carrera.semestres[semestre].materias.push(clase);
+    }        
+    saveDB('./public/json/mi-carrera.json', carrera);
+    res.json({msg: 'La información de su clase se guardo correctamente'});
 
 }
 const modificarDefinitivaSemestre = (req, res) => {

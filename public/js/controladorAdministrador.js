@@ -26,6 +26,7 @@ async function obtenerMaterias() {
             materias.push(materia);
         }
     }
+    // console.log(materias);
   
     return materias;
 }
@@ -265,10 +266,12 @@ function crearFilasTabla() {
     obtenerMaterias().then((materias) => {
         for (const materia of materias) {
             const existingRow = table.row(`:contains("${materia.id}")`);
-    
-            if (existingRow.length) {
-                continue; // Saltar a la siguiente iteración si la fila ya existe
-            }
+
+            if (materia.id === "1")
+                console.log(materia);
+                
+            if (materia.id === "1")
+                console.log(materia);
     
             const rowData = [
                 materia.id,
