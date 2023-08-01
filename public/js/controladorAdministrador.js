@@ -265,7 +265,6 @@ function crearFilasTabla() {
 
     obtenerMaterias().then((materias) => {
         for (const materia of materias) {
-            const existingRow = table.row(`:contains("${materia.id}")`);
 
             if (materia.id === "1")
                 console.log(materia);
