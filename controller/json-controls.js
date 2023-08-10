@@ -13,10 +13,6 @@ const readDB = (path) => {
 
 const clasesJsonGet = (req, res) => res.json(readDB('./public/json/clases.json'));
 
-const clasesJsonPost = (res, req) => {
-    
-}
-
 const clasesJsonPut = (req, res) => {
     const { codigo, semestre, profesor, nota } = req.body;
     const clases = readDB('./public/json/clases.json');
@@ -55,6 +51,7 @@ const carreraJsonPut = (req, res) => {
     clase.aprobada = nota >= 3.0;
     if (profesor)
         clase.profesor = profesor;
+    clase.semestre = semestre;
 
     semestre--;
 
@@ -143,8 +140,7 @@ const modificarDefinitivaSemestre = (req, res) => {
     } else {
       res.status(400).json({ msg: 'Semestre no encontrado' });
     }
-  };
-  
+};
 
 
 const carreraJsonDelete = (req, res) => {
@@ -174,6 +170,50 @@ const carreraJsonDelete = (req, res) => {
 
 const clasesRespaldoJsonGet = (req, res) => res.json(readDB('./database/clases-respaldo.json'));
 
+const carreraJsonPutNueva = (req, res) => {
+    let { codigo, semestre, nota, profesor } = req.body;
+
+    let clase;
+
+    semestre--;
+
+    const carrera = readDB('./public/json/mi-carrera.json');
+
+    if (semestre >= 0) {
+        carrera.semestres.forEach(sem => {
+            const index = sem.materias.findIndex(element => codigo === element.id);
+            if (index != -1) {
+                clase = sem.materias[index];
+                clase.nota = nota;
+                clase.aprobada = nota >= 3.0;
+                if (profesor)
+                    clase.profesor = profesor;
+                clase.semestre = semestre + 1;
+                sem.materias.splice(index, 1);
+                return;
+            }
+        });
+        if (clase === undefined) {
+            return res.status(404).json({msg: 'Clase no encontrada'});
+        }
+        if (!carrera.semestres[semestre]) {
+            carrera.semestres[semestre] = {
+                definitiva: 0,
+                materias: [clase]
+            };
+        } else {
+            const index = carrera.semestres[semestre].materias.findIndex(element => codigo === element.id);
+            (index == -1)
+                ? carrera.semestres[semestre].materias.push(clase)
+                : carrera.semestres[semestre].materias[index] = clase;
+        }
+        saveDB('./public/json/mi-carrera.json', carrera);
+        res.json({msg: 'La información de su clase se guardo correctamente'});
+    } else {
+        res.status(400).json({errors: ['El semestre ingresado es inválido']});
+    }
+};
+
 
 module.exports = {
     clasesJsonGet,
@@ -184,5 +224,6 @@ module.exports = {
     carreraJsonDelete,
     clasesRespaldoJsonGet,
     carreraJsonPost,
-    modificarDefinitivaSemestre
+    modificarDefinitivaSemestre,
+    carreraJsonPutNueva
 };

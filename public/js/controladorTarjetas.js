@@ -1,6 +1,6 @@
 
 import { agregar_fila } from "../helpers/functions.js";
-import { getClases, getCarrera, putClase, putDefinitivaSemestre } from "../helpers/requests.js";
+import { getClases, getCarrera, putClase, putDefinitivaSemestre, putNuevaCarrera } from "../helpers/requests.js";
 
 
 window.addEventListener("load", async() => {
@@ -289,7 +289,7 @@ window.addEventListener("load", async() => {
         if (clases[materia.id]) {
             console.log(await putClase(materia.id, materia.semestre, materia.profesor, materia.nota));
         } else {
-            console.log('aaa');
+            console.log(await putNuevaCarrera(materia.id, materia.semestre, materia.profesor, materia.nota));
         }
     });
     
@@ -343,7 +343,7 @@ window.addEventListener("load", async() => {
         if (clases[materia.id]) {
             console.log(await putClase(materia.id, materia.semestre, materia.profesor, materia.nota));
         } else {
-            console.log('aaa');
+            console.log(await putNuevaCarrera(materia.id, materia.semestre, materia.profesor, materia.nota));
         }
 
         tables[1].innerHTML = `<tr>
