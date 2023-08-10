@@ -1,11 +1,12 @@
 
 import { agregar_fila } from "../helpers/functions.js";
-import { getCarrera, putClase, putDefinitivaSemestre } from "../helpers/requests.js";
+import { getClases, getCarrera, putClase, putDefinitivaSemestre } from "../helpers/requests.js";
 
 
 window.addEventListener("load", async() => {
 /*---------------------------------crear tarjetas---------------------------------*/
     const carrera = await getCarrera();
+    const clases = await getClases();
     const ponderado = document.getElementById("ponderado");
     calcularPonderado(carrera, ponderado);
 
@@ -284,7 +285,11 @@ window.addEventListener("load", async() => {
 
         label_nota.textContent = `Nota: ${materia.nota.definitiva}`;
         
-        console.log(await putClase(materia.id, materia.semestre, materia.profesor, materia.nota));
+        if (clases[materia.id]) {
+            console.log(await putClase(materia.id, materia.semestre, materia.profesor, materia.nota));
+        } else {
+            console.log('aaa');
+        }
     });
     
     btnsCerrar[1].addEventListener("click", async function() {
@@ -334,7 +339,11 @@ window.addEventListener("load", async() => {
 
         label_nota.textContent = `Nota: ${materia.nota.definitiva}`;
 
-        console.log(await putClase(materia.id, materia.semestre, materia.profesor, materia.nota));
+        if (clases[materia.id]) {
+            console.log(await putClase(materia.id, materia.semestre, materia.profesor, materia.nota));
+        } else {
+            console.log('aaa');
+        }
 
         tables[1].innerHTML = `<tr>
             <th>Nombre</th>
