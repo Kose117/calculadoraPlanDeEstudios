@@ -13,6 +13,10 @@ const readDB = (path) => {
 
 const clasesJsonGet = (req, res) => res.json(readDB('./public/json/clases.json'));
 
+const clasesJsonPost = (res, req) => {
+    
+}
+
 const clasesJsonPut = (req, res) => {
     const { codigo, semestre, profesor, nota } = req.body;
     const clases = readDB('./public/json/clases.json');
