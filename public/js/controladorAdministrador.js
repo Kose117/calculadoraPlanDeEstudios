@@ -266,12 +266,7 @@ function crearFilasTabla() {
     obtenerMaterias().then((materias) => {
         for (const materia of materias) {
 
-            if (materia.id === "1")
-                console.log(materia);
-                
-            if (materia.id === "1")
-                console.log(materia);
-    
+            
             const rowData = [
                 materia.id,
                 materia.nombre,

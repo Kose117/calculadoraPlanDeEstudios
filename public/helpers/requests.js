@@ -110,7 +110,6 @@ export const delClase = async(codigo, semestre) => {
     const msgs = [
         {
             status: clases_msg.status,
-            msg: await clases_msg.json()
         }, {
             status: carrera_msg.status,
             msg: await carrera_msg.json()
@@ -118,9 +117,9 @@ export const delClase = async(codigo, semestre) => {
     ];
     return {msgs};
 }
-export const carreraJsonPost= async(codigo,semestre,definitiva,tipo,creditos,nombre,departamento,profesor)=>
+export const carreraJsonPost = async(codigo,semestre,definitiva,tipo,creditos,nombre,departamento,profesor)=>
 {
-    const resp =await postJson('/json/carrera', {
+    const resp = await postJson('/json/carrera', {
         codigo,
         semestre,
         definitiva,

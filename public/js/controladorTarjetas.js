@@ -268,6 +268,7 @@ window.addEventListener("load", async() => {
         for (let i = 1; i < rows.length; i++) {
             const [ nombre, porcentaje, valorNota ] = rows[i].cells;
             materia.nota.notas[i - 1].nombre = nombre.textContent;
+            console.log(materia.nota.notas[i - 1].nombre);
             materia.nota.notas[i - 1].porcentaje = parseFloat(porcentaje.textContent);
             materia.nota.notas[i - 1].nota = parseFloat(valorNota.textContent).toFixed(2);
         }
@@ -466,7 +467,7 @@ window.addEventListener("load", async() => {
             addDefinitiva(table);
         
         updateLastRowEvents(0);
-        actualizarPorcentajes(table);
+        // actualizarPorcentajes(table);
 
         calcularNotas(table);
 
@@ -514,7 +515,7 @@ window.addEventListener("load", async() => {
             addDefinitiva(table);
         
         updateLastRowEvents(1);
-        actualizarPorcentajes(table);
+        // actualizarPorcentajes(table);
 
         if (table.rows.length >= 2) calcularNotas(table);
     });
@@ -557,7 +558,7 @@ window.addEventListener("load", async() => {
         btn.addEventListener('click', girar);
         
         updateLastRowEvents(0);
-        actualizarPorcentajes(table);
+        // actualizarPorcentajes(table);
 
         calcularNotas(table);
 
