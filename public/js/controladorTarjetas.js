@@ -659,7 +659,7 @@ window.addEventListener("load", async() => {
       
        
         for (const materia of clases.semestres[semestre].materias) {
-            const creditos = materia.creditos;
+            const creditos = parseInt(materia.creditos);
             const definitiva = materia.nota.definitiva;
             totalCreditos += creditos;
             sumaPonderada += creditos * definitiva;
@@ -667,9 +667,7 @@ window.addEventListener("load", async() => {
         
         const promedio = (sumaPonderada / totalCreditos).toFixed(3);
         ponderado.textContent=promedio;
-
-        // DEBAJO DE ESTO EN TEORIA DEBERIA ESTAR LA FUNCION QUE TE DIGO XD
-
+    
         await putDefinitivaSemestre(semestre,promedio);
         clases.semestres[semestre].definitiva=promedio;
 
@@ -683,9 +681,9 @@ window.addEventListener("load", async() => {
           const definitivaSemestre = semestre.definitiva;
           sumaPonderada += parseFloat(definitivaSemestre);
           totalSemestres++;
-          console.log(sumaPonderada);
+          
         }
-        console.log(totalSemestres);
+        
         // console.log(sumaPonderada);
         const promedioPonderado = (sumaPonderada / totalSemestres).toFixed(3);
         ponderado.textContent = promedioPonderado;  
